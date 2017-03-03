@@ -1,0 +1,15 @@
+<ion-view cache-view="false" view-title="{{'review' | translate}}">
+    <ion-content>
+      <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
+        <ion-item ng-repeat="item in items" 
+                  href="#/app/review/{{item.id}}/{{item.who}}" class="item-remove-animate">
+          {{ item.who+" "}}
+            <ion-item>
+         {{item.what}}       
+        </ion-item>
+        </ion-item>
+      </ion-list>
+    </ion-content>     
+  </body>
+</html>
+</ion-view>

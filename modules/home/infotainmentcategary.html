@@ -1,0 +1,26 @@
+<ion-view cache-view="false" view-title="{{'infotainmentcategary' | translate}}" class="loginScreen"
+ ng-init="fetch()">
+  <div class="logo" style="margin: 100px 50px 30px 50px"> <img src="img/images/photo.jpg" alt=""> </div> <ion-content class="centerPage" id="infotainment" >
+  <form name="form1">
+  <ion-list>
+  <ion-item style="margin-top:100px">
+  <select class="button button-positive" name="select1" id="select1" ng-model="select1" ng-change="assignparent(select1)" required>
+      <option  value = "1">Select Parent Category</option>
+      <option ng-change="select2" ng-repeat="parent in parent_categary" value='{{parent.category_id}}'>{{parent.category_name}}</option>
+   </select>
+   </ion-item>
+   <span class="error" style="color:red" ng-show="form1.select1.$dirty && form1.select1.$invalid">Select Parent Category</span>
+   <br>
+   <ion-item>
+<select ng-show="form1.select1.$valid" class="button button-positive" name="select2" id="select2" ng-model="select2" ng-change="assignsub(select2)" required>
+      <option  value = "3">Select Sub Category</option>
+      <option ng-repeat="sub in sub_categary" value='{{sub.category_id}}'>{{sub.category_name}}</option>
+   </select>
+   </ion-item>
+   <span class="error" ng-show="form1.select2.$dirty && form1.select2.$invalid">Select Sub Category</span>
+   <ion-item ng-show="form1.select2.$valid">
+   <a ng-click="gotonext(select1,select2)" class="button button-positive">Submit</a></ion-item>
+</ion-list>
+</form>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,52 @@
+<ion-view cache-view="false" view-title="{{'raise concern' | translate}}" >
+   <ion-nav-buttons side="left">
+		<button class="button button-icon button-clear ion-navicon" menu-toggle="left"> </button>
+	</ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon button-clear jsm-home" ng-click="home()"></button>
+    </ion-nav-buttons>
+    <div class="logo" style="margin: 100px 50px 30px 50px"> <img src="img/images/photo.jpg" alt=""> </div>
+  <ion-content class="centerPage" id="loginPage">
+    <div class="list formList">
+      <form name="SignInForm" novalidate ng-submit="SignInForm.$valid && signIn()">
+        
+        <label class="item item-input item-icon-left"
+      ng-class="{ 'has-error' : SignInForm.name.$error.required && (SignInForm.name.$dirty || submitted),
+      'valid' : SignInForm.name.$valid  && (SignInForm.name.$dirty || SignInForm.$submitted)}">
+            
+          <input type="text"
+          placeholder="{{'name' | translate}}" name="name" ng-model="login.name" required="true">
+        </label>
+        <label class="item item-input item-icon-left"
+      ng-class="{ 'has-error' : SignInForm.mobile.$error.required && (SignInForm.mobile.$dirty || submitted),
+      'valid' : SignInForm.mobile.$valid  && (SignInForm.mobile.$dirty || SignInForm.$submitted)}">
+            <i class="icon mdi mdi"></i>
+          <input type="text"
+          placeholder="{{'mobile' | translate}}" name="mobile" ng-model="login.mobile" required="true" ng-minlength="10">
+        </label>
+        <label class="item item-input item-icon-left"
+      ng-class="{ 'has-error' : (SignInForm.email.$error.required || SignInForm.email.$error.pattern)  && (SignInForm.email.$dirty || submitted),
+      'valid' : SignInForm.email.$valid && (SignInForm.email.$dirty || SignInForm.$submitted)}">
+          <input type="email" placeholder="{{'enterEmail' | translate}}" name="email"  ng-model="login.email" required
+                    ng-pattern="/^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i">
+        </label>
+        <label class="item item-input item-icon-left"
+      ng-class="{ 'has-error' : SignInForm.subject.$error.required && (SignInForm.subject.$dirty || submitted),
+      'valid' : SignInForm.subject.$valid  && (SignInForm.subject.$dirty || SignInForm.$submitted)}">
+            <i class="icon mdi mdi"></i>
+          <input type="text"
+          placeholder="{{'subject' | translate}}" name="subject" ng-model="login.subject" required="true">
+        </label>
+        <label class="item item-input item-icon-left"
+      ng-class="{ 'has-error' : SignInForm.concern.$error.required && (SignInForm.concern.$dirty || submitted),
+      'valid' : SignInForm.concern.$valid  && (SignInForm.concern.$dirty || SignInForm.$submitted)}">
+            <i class="icon mdi mdi-flaticon-about-us" hidden></i>
+          <textarea style="height:100px"
+          placeholder="{{'Concern' | translate}}" name="concern" ng-model="login.concern" required="true"></textarea>
+        </label>
+
+        <button class="button button-block button-assertive" type="submit" ng-click="submitted=true"> {{'Submit' | translate}} </button>
+      </form>
+     </div>
+  </ion-content>
+</ion-view>

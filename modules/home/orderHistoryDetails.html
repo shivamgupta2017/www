@@ -1,0 +1,41 @@
+<ion-view view-title="{{'orderItems' | translate}}">
+	<ion-nav-buttons side="left">
+		<button ui-sref="app.orders_history" class="button back-button buttons button-clear header-item"><i class="icon ion-android-arrow-back"></i></button>
+	</ion-nav-buttons>
+	<ion-nav-buttons side="right">
+		<button  ng-controller="itemsListCtrl" id="cart_list_icon1" ng-click="viewCart()" class="button-icon button button-clear flaticon-trolley"><i class="badge badge-light header-badge"><span ng-if="cartCount!=0">{{cartCount}}</span></i></button>
+	</ion-nav-buttons>
+	<ion-content id="orderHistoryDetailsPage">
+		<div class="list card pageNote">
+			<div class="item item-text-wrap">{{'allTimeFavourites' | translate}} </div>
+		</div>
+		<div class="list listLink filter">
+			<div class="item item-text-wrap" ng-class="{'item-disable': item.is_deleted!='0'}" ng-repeat="item in orderItems  track by $index | orderBy:'item_name'">
+			<div>
+				<h2>{{item.item_name}}</h2>
+        <span class="item-note">{{siteSettings.currency_symbol}}</i> {{item.final_cost| number:2}}</span>
+					<h2 class="addedAmount" ng-if="item.size_id!=''"><i class="mdi ">{{siteSettings.currency_symbol}}</i>
+
+            {{item.size_price| number:2}}</h2>
+        <h2 class="addedAmount" ng-if="item.size_id==''"><i class="mdi ">{{siteSettings.currency_symbol}}</i>
+
+          {{item.item_cost| number:2}}</h2>
+        <h2 class="addedAmount"><i class="mdi "> <span style="color:red">Qnt:</span></i> {{item.item_qty}}</h2>
+					<p class="alert" ng-if="item.is_deleted!='0'">{{'deleted' | translate}}</p>
+				</div>
+			</div>
+      <!-- Order Addons-->
+      <div class="item item-text-wrap" ng-class="{'item-disable': addon.is_deleted!='0'}" ng-repeat="addon in orderAddons  track by $index | orderBy:'addon_name'">
+        <div>
+          <h2>{{addon.addon_name}}</h2>
+          <span class="item-note">{{siteSettings.currency_symbol}}</i> {{addon.final_cost| number:2}}</span>
+          <h2 class="addedAmount"><i class="mdi ">{{siteSettings.currency_symbol}}</i> {{addon.price| number:2}}</h2>
+          <h2 class="addedAmount"><i class="mdi "> <span style="color:red">Qnt:</span></i> {{addon.quantity}}</h2>
+          <p class="alert" ng-if="addon.is_deleted!='0'">{{'deleted' | translate}}</p>
+
+        </div>
+      </div>
+			<p>{{noItemsAvailable}}</p>
+		</div>
+	</ion-content>
+</ion-view>

@@ -1,0 +1,27 @@
+<ion-view cache-view="false" view-title="{{'infotainment' | translate}}" class="loginScreen"
+ ng-init="fetch()">
+ <ion-nav-bar align-title="center" class="bar-positive">
+  <ion-nav-back-button>
+  </ion-nav-back-button>
+</ion-nav-bar>
+
+<ion-content><button ng-click="singleInfotainment(3)">click</button>
+      <div class="list listLink filter">
+      <a class="item item-button-right item-text-wrap item-thumbnail-left" ng-repeat="file in result" >
+       <img style="width:80px;height:80px;" src='{{url}}/{{file.file_name}}'>
+        <div ng-click="singleInfotainment({{file.media_id}})">
+          {{file.file_name}}
+          <div class="amount">
+            <h2 class="addedAmount">{{file.media_name}}</h2>
+          </div>
+          <div class="amount">
+            <h2 class="addedAmount">{{file.description}}</h2>
+          </div>
+        </div>
+        <div class="buttons item-buttons">
+          <button class="button button-icon ion ion-ios-gear-outline"></button>
+          <button class="button button-icon button-cart flaticon-commerce item_list"></button>
+        </div>
+      </a></div>
+  </ion-content>
+</ion-view>
