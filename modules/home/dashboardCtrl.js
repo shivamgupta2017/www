@@ -1143,9 +1143,8 @@ app.controller('selectedItemCtrl', function($scope, $location, appConst, $localS
     $scope.selectedItemSize = function(size) {
     
             var index = $scope.findIndexInData($localStorage.cart_list,'item_id',size.item_id);
-           $scope.selected_item.costAfterSize  = size.price; 
             if(index==-1){
-            alert('index=-1');
+           // alert('index=-1');
                       
                       window.plugins.toast.show($translate.instant("firstAddItemToCart"), 'short', 'bottom');
             }else{
