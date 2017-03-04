@@ -1,7 +1,8 @@
 <ion-view cache-view="false" view-title="{{'signUp' | translate}}">
   <ion-header-bar align-title="center" class="bar-positive">
     <div class="buttons">
-      <button class="button back-button buttons button-clear header-item" ui-sref="app.login"><i class="icon ion-android-arrow-back"></i></button>
+      <!-- <button class="button back-button buttons button-clear header-item" ui-sref="app.login"><i class="icon ion-android-arrow-back"></i></button> -->
+       <button class="button back-button buttons button-clear header-item" ui-sref="app.dashboard"><i class="icon ion-android-arrow-back"></i></button>
     </div>
     <h1 class="title">{{'register' | translate}}</h1>
   </ion-header-bar>
@@ -24,14 +25,14 @@
         <i class="icon mdi mdi-phone"></i>
         <input type="number" name="mobileNo" ng-model="registration.phone" ng-pattern="/^[0-9]{10,10}$/" required placeholder="{{'phoneNumber' | translate}}">
       </label>
-      <label class="item item-input item-icon-left" ng-class="{ 'has-error' : (registrationForm.password.$error.required || registrationForm.password.$error.pattern) && (registrationForm.password.$dirty || submitted), 'valid' : registrationForm.password.$valid   && (registrationForm.password.$dirty || submitted)}">
+      <!-- <label class="item item-input item-icon-left" ng-class="{ 'has-error' : (registrationForm.password.$error.required || registrationForm.password.$error.pattern) && (registrationForm.password.$dirty || submitted), 'valid' : registrationForm.password.$valid   && (registrationForm.password.$dirty || submitted)}">
         <i class="icon mdi mdi-lock"></i>
         <input type="password" name="password" ng-model="registration.password" pattern=".{4,}" required placeholder="{{'password' | translate}}">
       </label>
       <label class="item item-input item-icon-left" ng-class="{ 'has-error' : (registrationForm.confirmPassword.$error.required || registrationForm.confirmPassword.$viewValue!=registrationForm.password.$viewValue) && (registrationForm.confirmPassword.$dirty || submitted), 'valid' : registrationForm.confirmPassword.$valid   && (registrationForm.confirmPassword.$dirty || submitted)}">
         <i class="icon mdi mdi-lock"></i>
         <input type="password" compare-to="registration.password" ng-change="compare()" pattern=".{4,}" name="confirmPassword" ng-model="registration.confirmPassword" required placeholder="{{'confirmPassword' | translate}}">
-      </label>
+      </label> -->
         <div class="termsCondition">
         <ion-checkbox ng-model="registration.terms" name="terms"
                       ng-class="{ 'has-error' : (registrationForm.terms.$error.required) && (registrationForm.terms.$dirty || submitted), 'valid' : registrationForm.terms.$valid   && (registrationForm.terms.$dirty || submitted)}" ng-required="true"></ion-checkbox>

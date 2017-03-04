@@ -1,12 +1,8 @@
-<ion-view cache-view="false" view-title="{{'raise concern' | translate}}" >
-   <ion-nav-buttons side="left">
-		<button class="button button-icon button-clear ion-navicon" menu-toggle="left"> </button>
-	</ion-nav-buttons>
-    <ion-nav-buttons side="right">
-        <button class="button button-icon button-clear jsm-home" ng-click="home()"></button>
-    </ion-nav-buttons>
-    <div class="logo" style="margin: 100px 50px 30px 50px"> <img src="img/images/photo.jpg" alt=""> </div>
-  <ion-content class="centerPage" id="loginPage">
+<ion-view cache-view="false" view-title="{{'raiseConcern' | translate}}" class="loginScreen"
+ ng-init="fetch()">
+  <div class="logo" style="margin: 70px 50px 30px 50px"> <img src="img/images/reportConcern.png" alt=""> </div> 
+    
+  <ion-content style="margin-top:150px;" class="centerPage" id="loginPage">
     <div class="list formList">
       <form name="SignInForm" novalidate ng-submit="SignInForm.$valid && signIn()">
         

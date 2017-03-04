@@ -1,9 +1,13 @@
 "use strict";
-app.controller('dashboardCtrl', function($scope, $location, $ionicSlideBoxDelegate ,$cordovaPush, appConst, $ionicPopup, globalMethods, $translate, $ionicLoading, Services, $localStorage, $rootScope, $ionicHistory) {
-    
-    
-    
-     $scope.showPrompt = function() {
+app.controller('dashboardCtrl', function($scope, $location, $ionicSlideBoxDelegate, $cordovaPush, appConst, $ionicPopup, globalMethods, $translate, $ionicLoading, 
+Services, $localStorage, $rootScope, $ionicHistory) {
+
+
+
+
+
+
+$scope.showPrompt = function() {
      
     //alert('hello');
      $scope.item={};
@@ -49,10 +53,13 @@ app.controller('dashboardCtrl', function($scope, $location, $ionicSlideBoxDelega
      
      };
       
-     
-    
-    
-    
+
+
+
+
+
+
+
     $scope.getCategories = function() {
         angular.element(document).ready(function() {
             $rootScope.cartCount = $localStorage.cart_list.length;
@@ -146,10 +153,7 @@ app.controller('dashboardCtrl', function($scope, $location, $ionicSlideBoxDelega
 
     $scope.openItem = function(item) {
         $location.path(appConst.path.items_list);
-        alert('calling from dashboard');
-        alert(appConst.path.items_list);
         $rootScope.selectedItem = item;
-        
     }
     $scope.lockSlide = function() {
         $ionicSlideBoxDelegate.enableSlide(false);
@@ -202,7 +206,7 @@ app.controller('cartListCtrl', function($scope, $location, appConst, globalMetho
                 $scope.cartListItems = [];
                 angular.forEach($localStorage.cart_list, function(value, key) {
                     var extraData = {
-                        "finalCost": value.selectedItemSizecostAfterSize,
+                        "finalCost": value.costAfterSize,
                         "quantity": 1
                     };
                     angular.extend(value, extraData);
@@ -323,7 +327,7 @@ app.controller('cartListCtrl', function($scope, $location, appConst, globalMetho
             $location.path(appConst.path.home_delivery);
         } else {
             $rootScope.loginThrough = "order";
-            $location.path(appConst.path.login);
+            $location.path(appConst.path.registration);
         }
     }
     $scope.handleEditDoneIcons = function(idShow, idHide) {
@@ -785,7 +789,7 @@ app.controller('orderHistoryCtrl', function($scope, $location, appConst, globalM
             });
         } else {
             $rootScope.loginThrough = 'orderHistory';
-            $location.path(appConst.path.login);
+            $location.path(appConst.path.registration);
         }
     }
     $scope.orderItems = [];
@@ -1045,7 +1049,6 @@ app.controller('paymentCtrl', function($scope, $location, stripe, checkCustomer,
                 }
             });
         } else {
-        alert('toast button coming');
             window.plugins.toast.showShortBottom($translate.instant("amountMustBeGreaterThanZero"));
         }
     }
@@ -1141,12 +1144,11 @@ app.controller('selectedItemCtrl', function($scope, $location, appConst, $localS
     }
     $scope.itemSizes = [];
     $scope.selectedItemSize = function(size) {
-    
             var index = $scope.findIndexInData($localStorage.cart_list,'item_id',size.item_id);
-            if(index==-1){
-           // alert('index=-1');
-                      
-                      window.plugins.toast.show($translate.instant("firstAddItemToCart"), 'short', 'bottom');
+            if(index==0){
+                 //if(index==-1){
+                     $scope.radioCheck = '';
+                     //window.plugins.toast.show($translate.instant("firstAddItemToCart"), 'short', 'bottom');
             }else{
                     var selectedItemScope = angular.element(document.getElementById('selected_item_page')).scope();
                     selectedItemScope.selected_item.size_id = size.option_id;
@@ -1275,7 +1277,7 @@ app.controller('selectedItemCtrl', function($scope, $location, appConst, $localS
     }
 });
 
-app.controller('menuCtrl', function($scope, $ionicModal,$location, appConst, globalMethods, $localStorage, $rootScope, $translate,$ionicHistory,$ionicLoading,Services) {
+app.controller('menuCtrl', function($scope, $location, appConst, globalMethods, $localStorage, $rootScope, $translate) {
     $scope.editProfile = {
         first_name: '',
         last_name: '',
@@ -1287,48 +1289,6 @@ app.controller('menuCtrl', function($scope, $ionicModal,$location, appConst, glo
         pincode: '',
         landmark: ''
     };
-    
-    
-    $ionicModal.fromTemplateUrl('modules/home/terms_conditions_modal.html', {
-        scope: $scope,
-        animation: 'slide-in-up',
-        preserveScope: true
-    }).then(function(modal) {
-        $scope.terms_conditions_modal = modal;
-    });
-    $scope.openTermsConditions = function() {
-       //  alert('hel');
-        $scope.pagesInfo();
-        $scope.terms_conditions_modal.show();
-    };
-    
-    
-    
-    $scope.pagesInfo = function() {
-        $ionicLoading.show();
-     //   alert('show ke bad');
-        Services.webServiceCallPost('', appConst.services.pages).then(function(response) {
-            $ionicLoading.hide();
-           // alert('hide ke bad');
-            if (response[1].response.status == 1) {
-                if (response[0].data.length > 0) {
-                    $rootScope.pages = response[0].data;
-                }
-            }
-        });
-    }
-    
-     $scope.closeTermsConditions = function() {
-        $scope.terms_conditions_modal.hide();
-    }
-    $scope.home = function() {
-        $ionicHistory.nextViewOptions({
-            disableBack: true
-        });
-        $location.path(appConst.path.dashboard);
-    };
-    
-    
     $scope.openEditProfile = function() {
         if (globalMethods.checkUserLogin()) {
             $location.path(appConst.path.editProfile);
@@ -1352,7 +1312,7 @@ app.controller('menuCtrl', function($scope, $ionicModal,$location, appConst, glo
            if (globalMethods.checkUserLogin()) {
                $location.path('/app/viewProfile');
            } else {
-               $location.path(appConst.path.login);
+               $location.path(appConst.path.registration);
            }
        }
 
@@ -1615,31 +1575,23 @@ app.controller('profileCtrl', function($scope, $location, appConst, globalMethod
         });
     }
 });
-
-
-
-
 app.controller('aboutUsCtrl', function($scope, $location, appConst, uiGmapGoogleMapApi, $ionicLoading, Services, $rootScope) {
-   
     $scope.home = function() {
         $location.path(appConst.path.dashboard);
     };
     $scope.aboutUs = function() {
-       
         if ($rootScope.appVersion == '') {
-       // alert('about us function callign');
             cordova.getAppVersion.getVersionNumber().then(function(version) {
                 $rootScope.appVersion = version;
             });
         }
         uiGmapGoogleMapApi.then(function(maps) {
-        alert('hello');
             $scope.map = {
                 zoom: 18,
                 bounds: {},
                 center: {
                     latitude: $rootScope.siteSettings.latitude,
-                    longitude:$rootScope.siteSettings.longitude
+                    longitude: $rootScope.siteSettings.longitude
                 }
             };
             $scope.markers = [{
@@ -1681,9 +1633,6 @@ app.controller('aboutUsCtrl', function($scope, $location, appConst, uiGmapGoogle
     }
     
 });
-
-
-
 app.controller('ratings', function($scope){
         $scope.rating = {};
         $scope.rating.max = 5;
@@ -1774,51 +1723,117 @@ app.controller('ratings', function($scope){
   })
 });
     app.controller('infotainmentcategary', function($scope,Services,appConst,$rootScope,$state,$stateParams){
-        var parent; var sub;        
-      $scope.fetch = function() {
+        var parent; var sub;    $scope.initial = 1;    
+      $scope.fetch = function() { 
         Services.webServiceCallPost('','fetch_categary').then(function(response) {
             $scope.parent_categary = response['parent_categary'];
-            $scope.sub_categary = response['sub_categary'];
-        });} 
+           
+        });}
+        $scope.listInfotainment = function(mId)
+       {
+            var id = {media_id:mId};
+       Services.webServiceCallPost(id,'fetch_media').then(function(response) {
+            $scope.result = response['media'];
+            $scope.url = appConst.serviceUrl.infotainment_url; 
+        });
+       }
+      
+        //  $scope.assignparent=function(selectvalue){
+        //    parent = selectvalue;
+        //    // $state.go('app.infotainment');
+        // };
 
-         $scope.assignparent=function(selectvalue){
-           parent = selectvalue;
-           // $state.go('app.infotainment');
-        };
-
-        $scope.assignsub=function(selectvalue){
-           sub = selectvalue;
-           //alert(parent+sub);
+        // $scope.assignsub=function(selectvalue){
+        //    sub = selectvalue;
+        //    //alert(parent+sub);
          
-        };
+        // };
 
 
-        $scope.gotonext=function(){
-           $state.go('app.infotainment',{pid:parent,sid:sub});
-        };
+        // $scope.gotonext=function(){
+        //    $state.go('app.infotainment',{pid:parent,sid:sub});
+        // };
         
         
 });
     app.controller('infotainment', function($state,$scope,Services,appConst,$rootScope,$stateParams){
-        var data = {pid:$stateParams.pid,sid:$stateParams.sid};
-       Services.webServiceCallPost(data,'fetch_media').then(function(response) {
+         var id = {media_id:$stateParams.mediaId};
+       Services.webServiceCallPost(id,'fetch_media').then(function(response) {
             $scope.result = response['media'];
-
             $scope.url = appConst.serviceUrl.infotainment_url;
         });
-       $scope.singleInfotainment = function(mId)
-       {
-            $state.go('app.singleInfotainment',{mediaId:mId});
-       }
+       $scope.fetch = function() {
+        Services.webServiceCallPost('','fetch_categary').then(function(response) {
+            $scope.parent_categary = response['parent_categary'];
+            $scope.sub_categary = response['sub_categary'];
+
+        });}
+       
     }); 
     app.controller('singleInfotainment', function($scope,Services,appConst,$rootScope,$stateParams){
         var id = {media_id:$stateParams.mediaId};
         $scope.result={};
         $scope.url = appConst.serviceUrl.infotainment_url;
          Services.webServiceCallPost(id,'fetch_media_by_id').then(function(response) {
+            $scope.url = appConst.serviceUrl.infotainment_url;
             $scope.result = response['media'][0];
-           var file_name = result['file_name'];
-           $scope.file_name = file_name.split('.');
           //  alert(JSON.stringify($scope.result));
         });
     }); 
+    app.controller('menuCtrl', function($scope, $ionicModal,$location, appConst, globalMethods, $localStorage, $rootScope, $translate,$ionicHistory,$ionicLoading,Services) {
+    $scope.editProfile = {
+        first_name: '',
+        last_name: '',
+        identity: '',
+        phone: '',
+        address: '',
+        city: '',
+        state: '',
+        pincode: '',
+        landmark: ''
+    };
+     $ionicModal.fromTemplateUrl('modules/home/terms_conditions_modal.html', {
+        scope: $scope,
+        animation: 'slide-in-up',
+        preserveScope: true
+    }).then(function(modal) {
+        $scope.terms_conditions_modal = modal;
+    });
+    
+     $scope.openTermsConditions = function() {
+//        alert('hel');
+        $scope.pagesInfo();
+        $scope.terms_conditions_modal.show();
+    };
+    
+      
+    $scope.pagesInfo = function() {
+        $ionicLoading.show();
+        //alert('show ke bad');
+        Services.webServiceCallPost('', appConst.services.pages).then(function(response) {
+            $ionicLoading.hide();
+           // alert('hide ke bad');
+            if (response[1].response.status == 1) {
+                if (response[0].data.length > 0) {
+                    $rootScope.pages = response[0].data;
+                }
+            }
+        });
+    }
+    
+    $scope.closeTermsConditions = function() {
+        $scope.terms_conditions_modal.hide();
+    }
+    $scope.home = function() {
+        $ionicHistory.nextViewOptions({
+            disableBack: true
+        });
+        $location.path(appConst.path.dashboard);
+    };
+    
+
+    });
+    
+    
+    
+    

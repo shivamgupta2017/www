@@ -564,7 +564,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, ap
     }
   })
       .state('app.infotainment', {
-    url: '/infotainment/:pid/:sid',
+    url: '/infotainment/',
     views: {
       'menuContent': {
         templateUrl: 'modules/home/infotainment.html',

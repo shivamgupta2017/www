@@ -1,10 +1,10 @@
-<ion-view cache-view="false" view-title="{{'infotainmentcategary' | translate}}" class="loginScreen"
- ng-init="fetch()">
+
+<ion-view cache-view="false" view-title="{{'infotainmentcategary'| translate}}" class="loginScreen">
  <ion-content>
   <ion-list>
   <ion-item style="margin-top:100px">
-<video autoplay controls ng-src='http://192.168.1.113/Files/uploads/media/Chaand Tare (Yes Boss)_HIGH.mp4' type='video/mp4' style="width:60px;height:60px">
-</video>
+<img ng-if="result.file_ext == 'image'" style="width:80px;height:80px;" ng-src="{{url}}/{{result.file_name}}">
+      <video ng-if="result.file_ext == 'video'" style="width:120px;height:80px;" ng-src="{{url}}/{{result.file_name}}" class="centerme" controls="controls"></video>
    </ion-item>
    <ion-item >
    <p>Media Name</p>{{result.media_name}}{{file_name}}
