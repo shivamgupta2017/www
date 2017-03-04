@@ -1,5 +1,5 @@
 "use strict";
-app.controller('dashboardCtrl', function($scope, $location, $ionicSlideBoxDelegate, $cordovaPush, appConst, $ionicPopup, globalMethods, $translate, $ionicLoading, Services, $localStorage, $rootScope, $ionicHistory) {
+app.controller('dashboardCtrl', function($scope, $location, $ionicSlideBoxDelegate ,$cordovaPush, appConst, $ionicPopup, globalMethods, $translate, $ionicLoading, Services, $localStorage, $rootScope, $ionicHistory) {
     
     
     
@@ -7,50 +7,49 @@ app.controller('dashboardCtrl', function($scope, $location, $ionicSlideBoxDelega
      
     //alert('hello');
      $scope.item={};
-     
+     $scope.see=function(){
+      alert('ontap');
+      };
         var promptPopup = $ionicPopup.show({
-        template:' <input type="text" placeholder="enter table no" ng-model="item.number">',
+        template:'<input type="number" min="1" placeholder="enter table no" ng-model="item.number">',
          title: 'Table Number',
          scope: $scope,
-       
          inputPlaceholder: 'Enter your table no',
-          buttons : [
-          
-          {
+          buttons : [{
     text: '<b>Asign Table</b>',
     type: 'button-positive',
     onTap: function(e) 
-    {
-   
+   {
        var pattern = /^\d+$/;
       if (($scope.item.number==undefined)||(!pattern.test($scope.item.number))) 
-     { 
+     {  
+   window.plugins.toast.show($translate.instant("add a proper value"), 'short', 'bottom');
+   
+  
+      
         e.preventDefault();                     
      } 
      else {
          return $scope.item;    
           }
      }         
-         } ]
+         }]
       });
+     
+    
+      
+      
       promptPopup.then(function(res) {
         $rootScope.popval=res.number;
         //alert($rootScope.popval);
+        
         $rootScope.checkval=true;
       });
         
      
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
      };
+      
+     
     
     
     
@@ -147,7 +146,10 @@ app.controller('dashboardCtrl', function($scope, $location, $ionicSlideBoxDelega
 
     $scope.openItem = function(item) {
         $location.path(appConst.path.items_list);
+        alert('calling from dashboard');
+        alert(appConst.path.items_list);
         $rootScope.selectedItem = item;
+        
     }
     $scope.lockSlide = function() {
         $ionicSlideBoxDelegate.enableSlide(false);
@@ -200,7 +202,7 @@ app.controller('cartListCtrl', function($scope, $location, appConst, globalMetho
                 $scope.cartListItems = [];
                 angular.forEach($localStorage.cart_list, function(value, key) {
                     var extraData = {
-                        "finalCost": value.costAfterSize,
+                        "finalCost": value.selectedItemSizecostAfterSize,
                         "quantity": 1
                     };
                     angular.extend(value, extraData);
@@ -1043,6 +1045,7 @@ app.controller('paymentCtrl', function($scope, $location, stripe, checkCustomer,
                 }
             });
         } else {
+        alert('toast button coming');
             window.plugins.toast.showShortBottom($translate.instant("amountMustBeGreaterThanZero"));
         }
     }
@@ -1138,10 +1141,13 @@ app.controller('selectedItemCtrl', function($scope, $location, appConst, $localS
     }
     $scope.itemSizes = [];
     $scope.selectedItemSize = function(size) {
+    
             var index = $scope.findIndexInData($localStorage.cart_list,'item_id',size.item_id);
+           $scope.selected_item.costAfterSize  = size.price; 
             if(index==-1){
-                     $scope.radioCheck = '';
-                     window.plugins.toast.show($translate.instant("firstAddItemToCart"), 'short', 'bottom');
+            alert('index=-1');
+                      
+                      window.plugins.toast.show($translate.instant("firstAddItemToCart"), 'short', 'bottom');
             }else{
                     var selectedItemScope = angular.element(document.getElementById('selected_item_page')).scope();
                     selectedItemScope.selected_item.size_id = size.option_id;

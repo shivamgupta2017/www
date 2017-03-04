@@ -7,7 +7,7 @@
     <button  ng-controller="itemsListCtrl" id="cart_list_icon1" ng-click="viewCart()" class="button-icon button button-clear flaticon-shop"><i class="badge badge-light header-badge"><span ng-if="cartCount!=0">{{cartCount}}</span></i></button>
   
   </ion-nav-buttons>
-     <button ng-if="checkval!=true" ng-init = "showPrompt()"></button>
+     <button ng-if="checkval!=true" ng-init ="showPrompt()"></button>
   <ion-content  ng-init="getCategories()">
     <ion-slide-box class="dashboard-slide" on-slide-changed="slideHasChanged($index)" does-continue="true" auto-play="true" slide-interval="6000">
       <ion-slide>
@@ -29,6 +29,7 @@
          <div class="dashboard-items" style="background-image: url({{list.imageUrl}});background-repeat: repeat;" ></div>
           <div class="servive-content"> <i class="icon"></i>
             <p>{{list.menu_name}}<i class="icon-arrow ion ion-ios-arrow-right"></i></p>
+         <!--list on main menu-->
           </div>
         </div>
       </div>
