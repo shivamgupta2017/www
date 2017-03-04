@@ -52,15 +52,7 @@ $scope.showPrompt = function() {
         
      
      };
-      
-
-
-
-
-
-
-
-    $scope.getCategories = function() {
+      $scope.getCategories = function() {
         angular.element(document).ready(function() {
             $rootScope.cartCount = $localStorage.cart_list.length;
             if ($rootScope.categories.length == 0) {
