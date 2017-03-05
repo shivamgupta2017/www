@@ -10,21 +10,24 @@ Services, $localStorage, $rootScope, $ionicHistory) {
 $scope.showPrompt = function() {
      
     //alert('hello');
+    
      $scope.item={};
-     $scope.see=function(){
-      alert('ontap');
-      };
+         
+      
         var promptPopup = $ionicPopup.show({
-        template:'<input type="number" min="1" placeholder="enter table no" ng-model="item.number">',
+       templateUrl: 'modules/home/tablenumber.html',
          title: 'Table Number',
          scope: $scope,
          inputPlaceholder: 'Enter your table no',
           buttons : [{
     text: '<b>Asign Table</b>',
     type: 'button-positive',
+     
+    
     onTap: function(e) 
    {
        var pattern = /^\d+$/;
+       alert(e);
       if (($scope.item.number==undefined)||(!pattern.test($scope.item.number))) 
      {  
    window.plugins.toast.show($translate.instant("add a proper value"), 'short', 'bottom');
@@ -38,8 +41,11 @@ $scope.showPrompt = function() {
           }
      }         
          }]
+         
       });
-     
+     $scope.see=function(){
+           alert('ontap');
+           };
     
       
       
