@@ -21,8 +21,8 @@
 			<div class="item item-text-wrap">{{selectedItem.punch_line}} </div>
 		</div>
 		<div class="row tabs-custom item-text-wrap">
-			<div class="col" ng-repeat="itemType in itemTypes | orderBy:'item_type' track by $index ">
-				<ion-radio ng-model="data.clientSide" ng-value="itemType.value"  ng-click="chooseItemType(itemType.value)">{{ itemType.text }}</ion-radio>
+			< ng-repeat="itemType in itemTypes | orderBy:'item_type' track by $index ">
+				<ion-radio ng-model="data.clientSide" ng-value="itemType.value"  ng-click="chooseItemType(itemType.value)">item{{itemType.text }}</ion-radio>
 			</div>
 		</div>
 		<div class="list listLink filter">

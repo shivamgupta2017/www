@@ -27,7 +27,7 @@ $scope.showPrompt = function() {
     onTap: function(e) 
    {
        var pattern = /^\d+$/;
-       alert(e);
+      // alert(e);
       if (($scope.item.number==undefined)||(!pattern.test($scope.item.number))) 
      {  
    window.plugins.toast.show($translate.instant("add a proper value"), 'short', 'bottom');
@@ -43,8 +43,10 @@ $scope.showPrompt = function() {
          }]
          
       });
+      
      $scope.see=function(){
-           alert('ontap');
+           alert(e);
+           
            };
     
       
