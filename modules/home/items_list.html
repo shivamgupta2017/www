@@ -21,8 +21,8 @@
 			<div class="item item-text-wrap">{{selectedItem.punch_line}} </div>
 		</div>
 		<div class="row tabs-custom item-text-wrap">
-			< ng-repeat="itemType in itemTypes | orderBy:'item_type' track by $index ">
-				<ion-radio ng-model="data.clientSide" ng-value="itemType.value"  ng-click="chooseItemType(itemType.value)">item{{itemType.text }}</ion-radio>
+			<div class="col" ng-repeat="itemType in itemTypes | orderBy:'item_type' track by $index ">
+				<ion-radio ng-model="data.clientSide" ng-value="itemType.value"  ng-click="chooseItemType(itemType.value)">{{ itemType.text }}</ion-radio>
 			</div>
 		</div>
 		<div class="list listLink filter">
@@ -35,10 +35,12 @@
 					</div>
 				</div>
 				<div class="buttons item-buttons">
-					<!-- <button class="button button-icon ion ion-ios-gear-outline" ng-click="openSelectedItem(menuSubItem)"></button> -->
+					<button class="" ng-click="openSelectedItem(menuSubItem)"></button>
 					<!-- <button class="button button-icon button-cart flaticon-commerce item_list" ng-click="addToCart(menuSubItem)"></button> -->
 				</div>
 			</a>
+		
+		<!--
 			<ion-list class="subSubServiceList" ng-if="data.clientSide=='Addons'">
 				<p class="padding">
 					<span ng-if="cartCount>0">{{'totalCost' | translate}}:  {{totalAddonsCost}}</span>
@@ -59,6 +61,9 @@
 					</div>
 				</ion-item>
 			</ion-list>
+			-->
+			
+			
 			<p>{{noItemsAvailable}}</p>
 		</div>
 	</ion-content>

@@ -573,6 +573,10 @@ app.controller('itemsListCtrl', function($scope, $location, appConst, $ionicLoad
         $location.path(appConst.path.cart_list);
         $rootScope.cartListBack_button = true;
     }
+    $scope.fcuk=function(){
+    alert('sir');
+    }
+    
     $scope.getItemsList = function() {
         $scope.totalAddonsCost = 0;
         $ionicLoading.show();
