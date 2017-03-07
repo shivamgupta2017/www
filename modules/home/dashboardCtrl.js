@@ -574,7 +574,7 @@ app.controller('itemsListCtrl', function($scope, $location, appConst, $ionicLoad
         $rootScope.cartListBack_button = true;
     }
     $scope.fcuk=function(){
-    alert('sir');
+    alert('madarchod');
     }
     
     $scope.getItemsList = function() {
@@ -668,6 +668,9 @@ app.controller('itemsListCtrl', function($scope, $location, appConst, $ionicLoad
         }
     }
     $scope.chooseItemType = function(type) {
+   // alert(type);
+    
+    
         $scope.menuSubItems = $scope.subMenuItems;
         if (type == 'Addons') {
             $scope.menuSubItems = [];
