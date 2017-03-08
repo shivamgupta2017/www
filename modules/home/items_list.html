@@ -21,14 +21,15 @@
 			<div class="item item-text-wrap">{{selectedItem.punch_line}} </div>
 		</div>
 		
-	<!--	<tab-slide-box>
-		-->
-		
-		<!--<ion-scroll direction="x" class="tsb-hscroll">
-	-->
+	
+	
+	
 		<div class="row tabs-custom item-text-wrap">
+			
 			<div class="col" ng-repeat="itemType in itemTypes | orderBy:'item_type' track by $index ">
 				<ion-radio ng-model="data.clientSide" ng-value="itemType.value"  ng-click="chooseItemType(itemType.value)">{{ itemType.text }}</ion-radio>
+                    
+          
 
 
 			</div>
@@ -36,14 +37,16 @@
 		
 		
 	
+	     
 	
-
-	
-		<ion-slide-box  show-pager="false" ng-repeat="itemType in itemTypes | orderBy:'item_type' track by $index" on-swipe-right="chooseItemType(itemType.value)" on-swipe-left="chooseItemType(itemType.value)"  >
-	
-	<div class="list listLink filter">		
-		<ion-slide style="overflow-y: scroll;">
-		
+	<div ng-repeat="itemType in itemTypes | orderBy:'item_type' track by $index ">
+	     <ion-slide-box show-pager="false" ng-value="itemType.value" on-swipe-left="chooseItemType(itemType.value)" on-swipe-right="chooseItemType(itemType.value)">
+	    </div>      
+	         
+	         
+	          <div class="list listLink filter">			
+               
+               <ion-slide style="overflow-y: scroll;">		
 		
 			<a class="item item-button-right item-text-wrap item-thumbnail-left" ng-if="data.clientSide!='Addons'" ng-repeat="menuSubItem in menuSubItems  | orderBy:'item_name' | ItemsFilter:data.clientSide track by $index">
 		         
@@ -63,23 +66,22 @@
 					-->
 					<!-- <button class="button button-icon button-cart flaticon-commerce item_list" ng-click="addToCart(menuSubItem)"></button> -->
 				</div>
-		     </a>
+		   </a>  
+		     
+		     </ion-slide>
 
 		          
-	</ion-slide>
+
 		                   
 		
 						
 		</ion-slide-box>
 		
-		<!--</tab-slide-box>
-               -->			
 		
 		
 		
 		
-		<!--
-			<ion-list class="subSubServiceList" ng-if="data.clientSide=='Addons'">
+		<!--<ion-list class="subSubServiceList" ng-if="data.clientSide=='Addons'">
 				<p class="padding">
 					<span ng-if="cartCount>0">{{'totalCost' | translate}}:  {{totalAddonsCost}}</span>
 					<span ng-if="!cartCount>0">{{'selectMinimumOneItemThenOnlyAddonsWillApply' | translate}} </span>
@@ -98,8 +100,7 @@
 						<strong class="total-item-addon" ng-if="addonCheck" >{{siteSettings.currency_symbol}} {{item.finalCost | number:2}}</strong>
 					</div>
 				</ion-item>
-			</ion-list>
-			-->
+			</ion-list>-->
 			
 			
 			<p>{{noItemsAvailable}}</p>
