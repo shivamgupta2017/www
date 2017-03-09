@@ -4,8 +4,11 @@ app.factory('globalMethods', function($http, $rootScope, $timeout, $localStorage
     if(!$localStorage.cart_list){
         $localStorage.cart_list = [];
     }
+    if(!$localStorage.bookedAddons){
+        $localStorage.bookedAddons = [];
+    }
     $rootScope.locations = [];
-    $rootScope.bookedAddons = [];
+   // $rootScope.bookedAddons = [];
     $rootScope.bookedAddonsTEMP = [];
     $rootScope.cities = [];
     $rootScope.localities = [];

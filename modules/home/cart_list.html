@@ -23,22 +23,32 @@
             </p>
           </div>
           <div class="col col-10 col-center">X</div>
-          <button class="button-icon button button-clear button-small button-positive"  ng-click="item.quantity = subtractQuantity(item.quantity);item.finalCost=changeQuantity(item.quantity,item.costAfterSize);calculateTotalCost(cartListItems,bookedAddons,cost.totalCost);" ng-if="!editOrderVal">
+          <button class="button-icon button button-clear button-small button-positive"  ng-click="item.quantity = subtractQuantity(item.quantity);item.finalCost=changeQuantity(item.quantity,item.costAfterSize);calculateTotalCost(cartListItems,sbookedAddons,cost.totalCost);" ng-if="!editOrderVal">
           <i class="icon ion-minus-round"></i> </button>
          <div class="col col-10 col-center">
-            <input type="number" onblur="item.finalCost=changeQuantity(item.quantity,item.costAfterSize);calculateTotalCost(cartListItems,bookedAddons,cost.totalCost);" ng-disabled="true" ng-model="item.quantity">
+            <input type="number" onblur="item.finalCost=changeQuantity(item.quantity,item.costAfterSize);calculateTotalCost(cartListItems,sbookedAddons,cost.totalCost);" ng-disabled="true" ng-model="item.quantity">
           </div>
-          <button class="button-icon button button-clear button-small button-positive" ng-click="item.quantity = addQuantity(item.quantity);item.finalCost=changeQuantity(item.quantity,item.costAfterSize);calculateTotalCost(cartListItems,bookedAddons,cost.totalCost);" ng-if="!editOrderVal"> <i class="icon ion-plus-round"></i> </button>
+          <button class="button-icon button button-clear button-small button-positive" ng-click="item.quantity = addQuantity(item.quantity);item.finalCost=changeQuantity(item.quantity,item.costAfterSize);calculateTotalCost(cartListItems,sbookedAddons,cost.totalCost);" ng-if="!editOrderVal"> <i class="icon ion-plus-round"></i> </button>
           <div class="col col-10 col-center">=</div>
           <div class="col col-center last-col"><strong>{{item.finalCost | number:2 }}</strong></div>
         </div>
          <div style="color:#2FD25A;text-align:center;padding:11px;font-size:19px;" ng-if="!editOrderVal" ng-click="home()">
                 {{'addItems' | translate}}
             </div>
-            <div ng-if="bookedAddons.length>0">
+            
+            
+            
+            
+            
+            
+            <div ng-if="sbookedAddons.length>0">
                 <p>{{'addons' | translate}} </p>
-                <div class="list checkoutItems" ng-repeat="item1 in bookedAddons track by $index">
-                    <div ng-if="item.item_id == item1.item_id" class="item"><button class="button button-icon button-clear ion ion-android-close  button-assertive"  style="right: 0;float: right; " ng-if="!editOrderVal" ng-click="remove_addon_from_cart(item1)"></button>
+                
+                
+                <div class="list checkoutItems" ng-repeat="item1 in sbookedAddons track by $index">
+
+                    <div ng-if="item.item_id == item1.item_id" class="item">
+                    <button class="button button-icon button-clear ion ion-android-close  button-assertive"  style="right: 0;float: right; " ng-if="!editOrderVal" ng-click="remove_addon_from_cart(item1)"></button>
                         <h2>{{item1.addon_name}}</h2>
                         <div class="row customRow">
                             <div class="col col-center  first-col">{{'cost' | translate}}</div>
@@ -46,12 +56,12 @@
                                 <p class="itemAfterDiscount">{{item1.price | number:2}}</p>
                             </div>
                             <div class="col col-10 col-center">X</div>
-                            <button class="button-icon button button-clear button-small button-positive" ng-click="item1.quantity = subtractQuantity(item1.quantity);item1.finalCost=changeCartAddonQuantity(item1, item1.quantity,item1.price);calculateTotalCost(cartListItems,bookedAddons,cost.totalCost);" ng-if="!editOrderVal">
+                            <button class="button-icon button button-clear button-small button-positive" ng-click="item1.quantity = subtractQuantity(item1.quantity);item1.finalCost=changeCartAddonQuantity(item1, item1.quantity,item1.price);calculateTotalCost(cartListItems,sbookedAddons,cost.totalCost);" ng-if="!editOrderVal">
                                 <i class="icon ion-minus-round"></i> </button>
                             <div class="col col-10 col-center">
                                 <input type="number" ng-disabled="true" ng-model="item1.quantity">
                             </div>
-                            <button class="button-icon button button-clear button-small button-positive" ng-click="item1.quantity = addQuantity(item1.quantity);item1.finalCost=changeCartAddonQuantity(item1, item1.quantity,item1.price);calculateTotalCost(cartListItems,bookedAddons,cost.totalCost);" ng-if="!editOrderVal"> <i class="icon ion-plus-round"></i> </button>
+                            <button class="button-icon button button-clear button-small button-positive" ng-click="item1.quantity = addQuantity(item1.quantity);item1.finalCost=changeCartAddonQuantity(item1, item1.quantity,item1.price);calculateTotalCost(cartListItems,sbookedAddons,cost.totalCost);" ng-if="!editOrderVal"> <i class="icon ion-plus-round"></i> </button>
                             <div class="col col-10 col-center">=</div>
                             <div class="col col-center last-col"><strong>{{item1.finalCost | number:2 }}</strong></div>
                         </div>

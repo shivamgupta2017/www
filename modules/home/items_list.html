@@ -38,10 +38,12 @@
 		
 	
 	     
-	
+	<ion-slide-box>
 	<div ng-repeat="itemType in itemTypes | orderBy:'item_type' track by $index ">
 	     <ion-slide-box show-pager="false" ng-value="itemType.value" on-swipe-left="chooseItemType(itemType.value)" on-swipe-right="chooseItemType(itemType.value)">
-	    </div>      
+	     
+		</div>   
+		</ion-slide-box>  
 	         
 	         
 	          <div class="list listLink filter">			
@@ -76,7 +78,6 @@
 		
 						
 		</ion-slide-box>
-		
 		
 		
 		
