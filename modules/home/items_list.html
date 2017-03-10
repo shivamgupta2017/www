@@ -5,6 +5,7 @@
 	<ion-nav-buttons side="right">
 		<button  ng-controller="itemsListCtrl" id="cart_list_icon1" ng-click="viewCart()" class="button-icon button button-clear flaticon-shop"><i class="badge badge-light header-badge"><span ng-if="cartCount!=0">{{cartCount}}</span></i></button>
 	</ion-nav-buttons>
+	
 	<ion-content id="items_list_page" ng-init="getItemsList()">
 		<ion-slide-box class="dashboard-slide" on-slide-changed="slideHasChanged($index)" does-continue="true" auto-play="true" slide-interval="6000">
 			<ion-slide>
@@ -22,38 +23,38 @@
 		</div>
 		
 	
-	
-	
-		<div class="row tabs-custom item-text-wrap">
-			
-			<div class="col" ng-repeat="itemType in itemTypes | orderBy:'item_type' track by $index ">
-				<ion-radio ng-model="data.clientSide" ng-value="itemType.value"  ng-click="chooseItemType(itemType.value)">{{ itemType.text }}</ion-radio>
-                    
-          
 
 
-			</div>
+	<tab-slide-box>
+			<div class="row tabs-custom item-text-wrap">
+			<div class="col" ng-repeat="itemType in itemTypes | orderBy:'item_type' track by $index">
+				<ion-radio ng-model="data.clientSide" ng-value="itemType.value" ng-click="chooseItemType(itemType.value)">{{itemType.text }}</ion-radio>
+            </div>
+	
+	
 		</div>
+
+
+
+	
 		
 		
 	
 	     
-	<ion-slide-box>
-	<div ng-repeat="itemType in itemTypes | orderBy:'item_type' track by $index ">
-	     <ion-slide-box show-pager="false" ng-value="itemType.value" on-swipe-left="chooseItemType(itemType.value)" on-swipe-right="chooseItemType(itemType.value)">
-	     
-		</div>   
-		</ion-slide-box>  
+	
 	         
-	         
+	         <ion-slide-box show-pager="false">
+
+
+
+	    
 	          <div class="list listLink filter">			
                
-               <ion-slide style="overflow-y: scroll;">		
+
+               <ion-slide ng-repeat="itemType in itemTypes | orderBy:'item_type' track by $index" ng-model="data.clientSide" on-slide-changed="slidechooseItemType($index+1)" style="overflow-y: scroll;">		
 		
 			<a class="item item-button-right item-text-wrap item-thumbnail-left" ng-if="data.clientSide!='Addons'" ng-repeat="menuSubItem in menuSubItems  | orderBy:'item_name' | ItemsFilter:data.clientSide track by $index">
-		         
-		
-				
+		    	
 				<img ng-src="{{menuSubItem.imageUrlThumb}}" ng-click="openSelectedItem(menuSubItem)">
 				<div ng-click="openSelectedItem(menuSubItem)">
 					{{menuSubItem.item_name}}
@@ -61,13 +62,15 @@
 						<h2 class="addedAmount"><i class="">{{siteSettings.currency_symbol}}</i> {{menuSubItem.item_cost | number:2}}</h2>
 					</div>
 				</div>
-				<div class="buttons item-buttons">
+			
+			<!--	<div class="buttons item-buttons">
 					
 					<!--<button class="" ng-click="openSelectedItem(menuSubItem)"></button>
 					
-					-->
-					<!-- <button class="button button-icon button-cart flaticon-commerce item_list" ng-click="addToCart(menuSubItem)"></button> -->
+					
+					<!-- <button class="button button-icon button-cart flaticon-commerce item_list" ng-click="addToCart(menuSubItem)"></button> 
 				</div>
+		-->
 		   </a>  
 		     
 		     </ion-slide>
@@ -77,7 +80,7 @@
 		                   
 		
 						
-		</ion-slide-box>
+		
 		
 		
 		
@@ -106,5 +109,9 @@
 			
 			<p>{{noItemsAvailable}}</p>
 		</div>
+
+		</ion-slide-box>
+
+	</tab-slide-box>
 	</ion-content>
 </ion-view>

@@ -44,8 +44,9 @@ $scope.showPrompt = function() {
          
       });
       
-     $scope.see=function(){
-           alert(e);
+     $rootScope.see=function(index){
+
+           alert('on swipe right and left'+index);
            
            };
     
@@ -618,9 +619,7 @@ app.controller('itemsListCtrl', function($scope, $location, appConst, $ionicLoad
         $location.path(appConst.path.cart_list);
         $rootScope.cartListBack_button = true;
     }
-    $scope.fcuk=function(){
-    alert('madarchod');
-    }
+    
     
     $scope.getItemsList = function() {
         $scope.totalAddonsCost = 0;
@@ -633,6 +632,7 @@ app.controller('itemsListCtrl', function($scope, $location, appConst, $ionicLoad
                 $scope.menuSubItems = [];
                 $scope.itemTypes = [];
                 if (response[0].data.items.length > 0) {
+                	
                     angular.forEach(response[0].data.items, function(value, key) {
                         if ($localStorage.cart_list.length > 0) {
                             var costAfterSizeValue = 0;
@@ -681,20 +681,21 @@ app.controller('itemsListCtrl', function($scope, $location, appConst, $ionicLoad
                         }
 
                     });
-                } else {
+                } 
+                else
+                 {
                     $scope.noItemsAvailable = $translate.instant("no") + " " + $rootScope.selectedItem.menu_name + " " + $translate.instant("availableNow");
+                
                 }
                 if (response[0].data.item_types.length > 0) {
-                    $scope.itemTypes.push({
-                        text: "All",
-                        value: "All"
-                    });
+                    $scope.itemTypes.push({text: "All",value: "All"});
                     angular.forEach(response[0].data.item_types, function(value, key) {
                         var extraData = {
                             text: value.item_type,
                             value: value.item_type
                         };
                         $scope.itemTypes.push(extraData);
+                        alert(JSON.stringify(extraData));
                     });
                     $scope.data = {
                         clientSide: 'All'
@@ -713,7 +714,8 @@ app.controller('itemsListCtrl', function($scope, $location, appConst, $ionicLoad
         }
     }
     $scope.chooseItemType = function(type) {
-   // alert(type);
+    
+    alert(JSON.stringify(type));
     
     
         $scope.menuSubItems = $scope.subMenuItems;
@@ -726,6 +728,30 @@ app.controller('itemsListCtrl', function($scope, $location, appConst, $ionicLoad
             $scope.menuSubItems = $scope.subMenuItems;
         }
     }
+
+$scope.slidechooseItemType = function(type) {
+    
+    alert('type :'+JSON.stringify(type));
+    
+    
+        $scope.menuSubItems = $scope.subMenuItems;
+        alert(JSON.stringify($scope.menuSubItems));
+        if (type == 'Addons') {
+            $scope.menuSubItems = [];
+            $scope.menuSubItems = $rootScope.totalAddons;
+            $scope.data.clientSide = 'Addons';
+        } else {
+
+
+
+            $scope.data.clientSide = type;
+            $scope.menuSubItems = $scope.subMenuItems;
+        	//alert($scope.data.clientSide);
+        	//alert();
+        }
+    }
+
+
     $scope.openSelectedItem = function(item) {
         $location.path(appConst.path.selected_item);
         angular.element(document).ready(function() {
