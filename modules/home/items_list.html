@@ -25,7 +25,7 @@
 	
 
 
-	<tab-slide-box>
+	<!--<tab-slide-box>-->
 			<div class="row tabs-custom item-text-wrap">
 			<div class="col" ng-repeat="itemType in itemTypes | orderBy:'item_type' track by $index">
 				<ion-radio ng-model="data.clientSide" ng-value="itemType.value" ng-click="chooseItemType(itemType.value)">{{itemType.text }}</ion-radio>
@@ -43,17 +43,15 @@
 	     
 	
 	         
-	         <ion-slide-box show-pager="false">
-
+	        <!-- <ion-slide-box show-pager="false">
+-->
 
 
 	    
 	          <div class="list listLink filter">			
                
 
-               <ion-slide ng-repeat="itemType in itemTypes | orderBy:'item_type' track by $index" ng-model="data.clientSide" on-slide-changed="slidechooseItemType($index+1)" style="overflow-y: scroll;">		
-		
-			<a class="item item-button-right item-text-wrap item-thumbnail-left" ng-if="data.clientSide!='Addons'" ng-repeat="menuSubItem in menuSubItems  | orderBy:'item_name' | ItemsFilter:data.clientSide track by $index">
+               <a class="item item-button-right item-text-wrap item-thumbnail-left" ng-if="data.clientSide!='Addons'" ng-repeat="menuSubItem in menuSubItems  | orderBy:'item_name' | ItemsFilter:data.clientSide track by $index">
 		    	
 				<img ng-src="{{menuSubItem.imageUrlThumb}}" ng-click="openSelectedItem(menuSubItem)">
 				<div ng-click="openSelectedItem(menuSubItem)">
@@ -73,17 +71,8 @@
 		-->
 		   </a>  
 		     
-		     </ion-slide>
-
-		          
-
-		                   
-		
-						
-		
-		
-		
-		
+	<!--  </ion-slide>
+-->
 		
 		<!--<ion-list class="subSubServiceList" ng-if="data.clientSide=='Addons'">
 				<p class="padding">
@@ -110,8 +99,9 @@
 			<p>{{noItemsAvailable}}</p>
 		</div>
 
-		</ion-slide-box>
+	<!--	</ion-slide-box>
 
 	</tab-slide-box>
+	-->
 	</ion-content>
 </ion-view>

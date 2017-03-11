@@ -53,9 +53,10 @@ $scope.showPrompt = function() {
       
       
       promptPopup.then(function(res) {
-        $rootScope.popval=res.number;
+        $rootScope.tabno=res.number;
         //alert($rootScope.popval);
-        
+        $localStorage.tabno =$rootScope.tabno;
+        alert('localstorage length :'+$localStorage.tabno.length); 
         $rootScope.checkval=true;
       });
         
@@ -689,6 +690,7 @@ app.controller('itemsListCtrl', function($scope, $location, appConst, $ionicLoad
                 }
                 if (response[0].data.item_types.length > 0) {
                     $scope.itemTypes.push({text: "All",value: "All"});
+                    alert('alert: JSON.stringify(response[0].data.item_types :-'+JSON.stringify(response[0].data.item_types));
                     angular.forEach(response[0].data.item_types, function(value, key) {
                         var extraData = {
                             text: value.item_type,
@@ -697,6 +699,8 @@ app.controller('itemsListCtrl', function($scope, $location, appConst, $ionicLoad
                         $scope.itemTypes.push(extraData);
                         alert(JSON.stringify(extraData));
                     });
+
+                    //clientside
                     $scope.data = {
                         clientSide: 'All'
                     };
@@ -750,6 +754,7 @@ $scope.slidechooseItemType = function(type) {
         	//alert();
         }
     }
+
 
 
     $scope.openSelectedItem = function(item) {
