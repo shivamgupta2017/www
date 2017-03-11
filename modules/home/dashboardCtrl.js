@@ -44,19 +44,16 @@ $scope.showPrompt = function() {
          
       });
       
-     $rootScope.see=function(index){
 
-           alert('on swipe right and left'+index);
-           
-           };
-    
-      
       
       promptPopup.then(function(res) {
         $rootScope.tabno=res.number;
-        //alert($rootScope.popval);
-        $localStorage.tabno =$rootScope.tabno;
-        alert('localstorage length :'+$localStorage.tabno.length); 
+        
+       // $localStorage.tabno =$rootScope.tabno;
+        $localStorage.setItem('tabno', $rootScope.tabno);
+        $rootScope.value = $localStorage.getItem('tabno');
+         alert('fjdsfksghdfighdfig'+$rootScope.value);
+        
         $rootScope.checkval=true;
       });
         
