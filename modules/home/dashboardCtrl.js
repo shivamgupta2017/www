@@ -2,11 +2,6 @@
 app.controller('dashboardCtrl', function($scope, $location, $ionicSlideBoxDelegate, $cordovaPush, appConst, $ionicPopup, globalMethods, $translate, $ionicLoading, 
 Services, $localStorage, $rootScope, $ionicHistory) {
 
-
-
-
-
-
 $scope.showPrompt = function() {
      
     //alert('hello');
@@ -48,14 +43,15 @@ $scope.showPrompt = function() {
       
       promptPopup.then(function(res) {
         $rootScope.tabno=res.number;
-        
+        alert('$rootScope.tabno :'+$rootScope.tabno);
        // $localStorage.tabno =$rootScope.tabno;
-        $localStorage.setItem('tabno', $rootScope.tabno);
-        $rootScope.value = $localStorage.getItem('tabno');
-         alert('fjdsfksghdfighdfig'+$rootScope.value);
-        
         $rootScope.checkval=true;
-      });
+
+        $localStorage.setItem('tabno', $rootScope.tabno);
+        //$rootScope.value = $localStorage.getItem('tabno');
+        // alert('fjdsfksghdfighdfig'+$rootScope.value);
+        
+             });
         
      
      };
@@ -286,14 +282,14 @@ app.controller('cartListCtrl', function($scope, $location, appConst, globalMetho
     //removing addon from cart
     $scope.remove_addon_from_cart = function(item) {
         var index =findItemIndex.findAddonIndexInCartList($localStorage.bookedAddons, '', item.addon_id).then(function(index) {
-        	alert('removing item from cart');
-        	alert(JSON.stringify(item));
-			alert(index);        	
+        	//alert('removing item from cart');
+        	//alert(JSON.stringify(item));
+			//alert(index);        	
             if (index != -1) {
                 $localStorage.bookedAddons.splice(index, 1);
                  $scope.sbookedAddons.splice(index, 1);
                 $scope.calculateTotalCost($scope.cartListItems);
-                alert($scope.cartListItems);
+              //  alert($scope.cartListItems);
                 if ($localStorage.cart_list.length == 0) {
                     $scope.handleEditDoneIcons('', 'edit');
                     $scope.handleEditDoneIcons('', 'done');
@@ -687,14 +683,14 @@ app.controller('itemsListCtrl', function($scope, $location, appConst, $ionicLoad
                 }
                 if (response[0].data.item_types.length > 0) {
                     $scope.itemTypes.push({text: "All",value: "All"});
-                    alert('alert: JSON.stringify(response[0].data.item_types :-'+JSON.stringify(response[0].data.item_types));
+                   // alert('JSON.stringify(response[0].data.item_types :-'+JSON.stringify(response[0].data.item_types));
                     angular.forEach(response[0].data.item_types, function(value, key) {
                         var extraData = {
                             text: value.item_type,
                             value: value.item_type
                         };
                         $scope.itemTypes.push(extraData);
-                        alert(JSON.stringify(extraData));
+                       // alert(JSON.stringify(extraData));
                     });
 
                     //clientside
@@ -716,7 +712,7 @@ app.controller('itemsListCtrl', function($scope, $location, appConst, $ionicLoad
     }
     $scope.chooseItemType = function(type) {
     
-    alert(JSON.stringify(type));
+  //  alert(JSON.stringify(type));
     
     
         $scope.menuSubItems = $scope.subMenuItems;
@@ -732,11 +728,11 @@ app.controller('itemsListCtrl', function($scope, $location, appConst, $ionicLoad
 
 $scope.slidechooseItemType = function(type) {
     
-    alert('type :'+JSON.stringify(type));
+   // alert('type :'+JSON.stringify(type));
     
     
         $scope.menuSubItems = $scope.subMenuItems;
-        alert(JSON.stringify($scope.menuSubItems));
+        //alert(JSON.stringify($scope.menuSubItems));
         if (type == 'Addons') {
             $scope.menuSubItems = [];
             $scope.menuSubItems = $rootScope.totalAddons;
