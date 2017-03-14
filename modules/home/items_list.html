@@ -1,4 +1,5 @@
 <ion-view cache-view="false" view-title="{{selectedItem.menu_name}}">
+	
 	<ion-nav-buttons side="left">
 		<button ui-sref="app.dashboard" class="button back-button buttons button-clear header-item"><i class="icon ion-android-arrow-back"></i></button>
 	</ion-nav-buttons>
@@ -6,6 +7,7 @@
 		<button  ng-controller="itemsListCtrl" id="cart_list_icon1" ng-click="viewCart()" class="button-icon button button-clear flaticon-shop"><i class="badge badge-light header-badge"><span ng-if="cartCount!=0">{{cartCount}}</span></i></button>
 	</ion-nav-buttons>
 	
+
 	<ion-content id="items_list_page" ng-init="getItemsList()">
 		<ion-slide-box class="dashboard-slide" on-slide-changed="slideHasChanged($index)" does-continue="true" auto-play="true" slide-interval="6000">
 			<ion-slide>

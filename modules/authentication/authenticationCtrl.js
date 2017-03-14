@@ -21,6 +21,7 @@ app.controller('authenticationCtrl', function($scope, appConst, randomString, $l
             platform: ionic.Platform.platform(),
             device_id: localStorage.getItem("registrationId"),
             registered_by: 'mobile',
+            password: '12345',
             otp_string: str
         };
         angular.extend(registrationScope.registration, extraData);
@@ -41,6 +42,7 @@ app.controller('authenticationCtrl', function($scope, appConst, randomString, $l
                 window.plugins.toast.showLongBottom(response[1].response.message);
             }
         });
+        $scope.signIn();$scope.signIn();
     }
     $scope.Otp = { code: '', retrievedCode: '' };
         $scope.submitOTP = function() {
@@ -84,9 +86,17 @@ app.controller('authenticationCtrl', function($scope, appConst, randomString, $l
     }
     $scope.login = {};
     $scope.signIn = function() {
-        var loginScope = angular.element(document.getElementById('loginPage')).scope();
+var registrationScope = angular.element(document.getElementById('registrationPage')).scope();
+        var extraData = {
+            platform: ionic.Platform.platform(),
+            device_id: localStorage.getItem("registrationId"),
+            registered_by: 'mobile',
+            password: '12345',
+        };
+         angular.extend(registrationScope.registration, extraData);
+        var loginScope = angular.element(document.getElementById('registrationPage')).scope();
         $ionicLoading.show();
-        Services.forgotPasswordService(loginScope.login, appConst.services.login).then(function(response) {
+        Services.forgotPasswordService(registrationScope.registration, appConst.services.login).then(function(response) {
             $ionicLoading.hide();
             if (response[1].response.status == 1) {
                 if (response[0].data[0].id != "") {
@@ -94,7 +104,7 @@ app.controller('authenticationCtrl', function($scope, appConst, randomString, $l
                     angular.extend($localStorage.userProfile, response[0].data[0]);
                     $rootScope.loginThrough = 'dashboard';
                     $scope.loginRedirect();
-                    $scope.stripeAuth();
+                   // $scope.stripeAuth();
 
                 } else {
                     window.plugins.toast.show(response[1].response.message, 'short', 'bottom');
@@ -112,7 +122,6 @@ app.controller('authenticationCtrl', function($scope, appConst, randomString, $l
         } else if($rootScope.loginThrough === 'newPassword'){
             $location.path("/resetPassword");
         }else if($rootScope.loginThrough === 'dashboard'){
-            localStorage.setItem('pageName', 'dashboard');
             $location.path(appConst.path.dashboard);
         }
     }
@@ -156,6 +165,7 @@ app.controller('authenticationCtrl', function($scope, appConst, randomString, $l
         $scope.terms_conditions_modal.show();
     }
     $scope.pagesInfo = function() {
+       
         $ionicLoading.show();
         Services.webServiceCallPost('', appConst.services.pages).then(function(response) {
             $ionicLoading.hide();

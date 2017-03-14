@@ -1,8 +1,13 @@
 <ion-view cache-view="false" view-title="{{'reports' | translate}}">
   <ion-header-bar align-title="center" class="bar-positive">
 
+ </ion-header-bar>
+<ion-nav-buttons side="right">
+    <button  ng-controller="reports" id="cart_list_icon1" ng-click="viewCart()" class="button-icon button button-clear flaticon-shop"><i class="badge badge-light header-badge"><span ng-if="cartCount!=0">{{cartCount}}</span></i></button>
+  </ion-nav-buttons>
 
-  </ion-header-bar>
+
+ 
   <ion-content>
     <md-list flex="">
         <md-subheader class="md-no-sticky">3 line item (with hover)</md-subheader>

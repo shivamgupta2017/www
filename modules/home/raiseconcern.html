@@ -1,7 +1,18 @@
 <ion-view cache-view="false" view-title="{{'raiseConcern' | translate}}" class="loginScreen"
  ng-init="fetch()">
+ 
+
+<ion-nav-buttons side="right">
+    <button  ng-controller="raiseconcern" id="cart_list_icon1" ng-click="viewCart()" class="button-icon button button-clear flaticon-shop"><i class="badge badge-light header-badge"><span ng-if="cartCount!=0">{{cartCount}}</span></i></button>
+  </ion-nav-buttons>
+
+
   <div class="logo" style="margin: 70px 50px 30px 50px"> <img src="img/images/reportConcern.png" alt=""> </div> 
     
+
+
+
+
   <ion-content style="margin-top:150px;" class="centerPage" id="loginPage">
     <div class="list formList">
       <form name="SignInForm" novalidate ng-submit="SignInForm.$valid && signIn()">
