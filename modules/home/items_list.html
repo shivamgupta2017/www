@@ -25,13 +25,15 @@
 			</div>
 		</div>-->
 
-     <ion-slide-box slide-tabs-scrollable="false" show-pager="false" on-swipe-right="swipechooseItemType($index)" on-swipe-left="swipechooseItemType($index)" ion-slide-tabs >
+     <ion-slide-box slide-tabs-scrollable="false" does-continue="false" show-pager="false" ion-slide-tabs on-slide-changed="swipechooseItemType($index)" ng-model="data.clientSide" ng-value="itemType.value">
 		
 
-	<ion-slide on-swipe-right="swipechooseItemType($index)" on-swipe-left="swipechooseItemType($index)" ng-repeat="itemType in itemTypes | orderBy:'item_type'" ion-slide-tab-label="{{itemType.text}}" ng-model="data.clientSide">
+	<ion-slide  ng-model="data.clientSide" ng-value="itemType.value" ng-repeat="itemType in itemTypes | orderBy:'item_type'" ion-slide-tab-label="{{itemType.text}}" ng-model="data.clientSide">
 
 	<div class="list listLink filter" style="width: 100vw; height: 100vh; overflow-y:scroll;">			
+		
 		<a class="item item-button-right item-text-wrap item-thumbnail-left" ng-if="data.clientSide!='Addons'" ng-repeat="menuSubItem in menuSubItems  | orderBy:'item_name' | ItemsFilter:data.clientSide track by $index" >
+		
 				<img ng-src="{{menuSubItem.imageUrlThumb}}" ng-click="openSelectedItem(menuSubItem)">
 				<div ng-click="openSelectedItem(menuSubItem)">
 					{{menuSubItem.item_name}}
@@ -40,14 +42,13 @@
 					</div>
 				</div>
 				
-				<!--<div class="buttons item-buttons">
-					<button class="button button-icon ion ion-ios-gear-outline" ng-click="openSelectedItem(menuSubItem)"></button>
-					
-				</div>-->
+				
 			</a>
 			
 			<p>{{noItemsAvailable}}</p>
+			
 		</div>
+
 		</ion-slide> 
 		</ion-slide-box>
 	</ion-content>

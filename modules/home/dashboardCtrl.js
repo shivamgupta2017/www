@@ -692,22 +692,23 @@ app.controller('itemsListCtrl', function($scope, $location,$ionicSlideBoxDelegat
 
 
 
-        $scope.swipechooseItemType = function(type) {
+        $scope.swipechooseItemType = function($index) {
         
-            alert('value :'+value);
+            alert('index value :'+$index);
                   
-        
+        alert('$scope.menuSubItems :'+JSON.stringify($scope.menuSubItems));
         $scope.menuSubItems = $scope.subMenuItems;
         if (type == 'Addons') {
+            alert('if');
             $scope.menuSubItems = [];
             $scope.menuSubItems = $rootScope.totalAddons;
             $scope.data.clientSide = 'Addons';
         } else 
         {
-        
-            alert(JSON.stringify($scope.itemTypes[type++].value));
-            $scope.data.clientSide = JSON.stringify($scope.itemTypes[type+1].value);
+        alert('else');
             
+            $scope.data.clientSide = JSON.stringify($scope.itemTypes[$index].value);
+            alert(JSON.stringify($scope.data.clientSide));
             //alert('$scope.subMenuItems:'+JSON.stringify($scope.subMenuItems));
 
             $scope.menuSubItems = $scope.subMenuItems;
@@ -1927,7 +1928,7 @@ app.controller('searchCtrl', function($scope, $ionicModal,$location, appConst, g
                 alert('query'+query);
             
             }
-            
+
 
 
 
