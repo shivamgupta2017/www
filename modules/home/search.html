@@ -1,0 +1,51 @@
+<ion-view  cache-view="false" view-title="{{'search your query here...' | translate}}">
+    
+  
+
+    <ion-nav-buttons side="left">
+     <button ng-click="cartListBack()" ng-if="cartListBack_button" class="button back-button buttons button-clear header-item"><i class="icon ion-android-arrow-back"></i></button>  
+    </ion-nav-buttons> 
+    
+    
+    <div class="bar bar-subheader">
+     <form  class="" name="" ng-submit="querysubmit(searchquery)">
+     <label class="item item-input">
+           <i class="icon ion-search placeholder-icon"></i>
+           <input type="text" placeholder="Enter search query" data-ng-model="searchquery" >
+         
+         </form>  
+          
+          <!--
+          <button ng-if="searchquery.length" class="button button-icon ion-android-close input-button"
+              ng-click="clearSearch()">
+          </button>
+          -->
+         </label>
+     	</div>    
+
+    
+
+<ion-content>
+	
+<div class="list listLink filter">
+      <a class="item item-button-right item-text-wrap item-thumbnail-left" ng-if="data.clientSide!='Addons'" ng-repeat="menuSubItem in menuSubItems  | orderBy:'item_name' | ItemsFilter:data.clientSide track by $index">
+        <img ng-src="{{menuSubItem.imageUrlThumb}}" ng-click="openSelectedItem(menuSubItem)">
+        <div ng-click="openSelectedItem(menuSubItem)">
+          {{menuSubItem.item_name}}
+          <div class="amount">
+            <h2 class="addedAmount"><i class="">{{siteSettings.currency_symbol}}</i> {{menuSubItem.item_cost | number:2}}</h2>
+          </div>
+        </div>
+        
+      </a>
+      
+      <p>{{noItemsAvailable}}</p>
+</div>	
+	
+
+
+</ion-content>
+
+    
+
+	</ion-view>

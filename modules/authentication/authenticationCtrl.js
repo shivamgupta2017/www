@@ -14,6 +14,7 @@ app.controller('authenticationCtrl', function($scope, appConst, randomString, $l
         $scope.smsTab = true;
     }
     $scope.signUp = function() {
+        
      var str = randomString(5);
      $rootScope.rdmString = str;
         var registrationScope = angular.element(document.getElementById('registrationPage')).scope();

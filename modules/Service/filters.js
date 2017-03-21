@@ -1,4 +1,5 @@
 "use strict";
+
 app.filter('ItemsFilter', function() {
     return function(array, val) {
         var resultantArray = [];

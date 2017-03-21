@@ -21,7 +21,7 @@ ion-slide:nth-child(2n) {
 }
 
 .slidingTabs ul {
-    background-color: #387ef5;
+    background-color: #4B4E54;
     height: 48px;
 }
 
@@ -42,15 +42,16 @@ ion-slide:nth-child(2n) {
 }
 
 .slidingTabs ul li.tab-active {
-    color: #fff;
+    color: #FECB72;
 }
 
 .slidingTabs ul li .ink {
     display: block;
     position: absolute;
-    background: rgba(56, 147, 245, 0.8);
+    background: rgba(255, 255, 255, 0.4);
     border-radius: 100%;
     transform: scale(0);
+	opacity: 0;
 }
 
 .slidingTabs ul li .ink.animate {
@@ -75,7 +76,8 @@ ion-slide:nth-child(2n) {
 
 @-webkit-keyframes ripple {
     100% {
-        opacity: 0;
+        opacity: 1;
         transform: scale(2.5);
+		-webkit-transform:scale(2.5);
     }
 }

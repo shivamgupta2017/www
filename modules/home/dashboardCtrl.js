@@ -1,15 +1,14 @@
 "use strict";
-app.controller('dashboardCtrl', function($scope, $location, $ionicSlideBoxDelegate, $cordovaPush, appConst, $ionicPopup, globalMethods, $translate, $ionicLoading, 
+app.controller('dashboardCtrl', function($scope, $location, $ionicSlideBoxDelegate,$ionicTabsDelegate, $cordovaPush, appConst, $ionicPopup, globalMethods, $translate, $ionicLoading, 
 Services, $localStorage, $rootScope, $ionicHistory) {
+
 
 
 $scope.showPrompt = function() {
      
     //alert('hello');
      $scope.item={};
-     $scope.see=function(){
-      alert('ontap');
-      };
+     
         var promptPopup = $ionicPopup.show({
         template:'<input type="number" min="1" placeholder="enter table no" ng-model="item.number">',
          title: 'Table Number',
@@ -23,38 +22,26 @@ $scope.showPrompt = function() {
        var pattern = /^\d+$/;
       if (($scope.item.number==undefined)||(!pattern.test($scope.item.number))) 
      {  
-   window.plugins.toast.show($translate.instant("add a proper value"), 'short', 'bottom');
+    window.plugins.toast.show($translate.instant("add a proper value"), 'short', 'bottom');
    
-  
-      
         e.preventDefault();                     
      } 
      else {
          return $scope.item;    
           }
-     }         
+            }         
          }]
       });
-     
-    
-      
-      
-       promptPopup.then(function(res) {
+     promptPopup.then(function(res) {
         $rootScope.table_no=res.number;
-        $localStorage.table_no = $rootScope.table_no;
-       // $localStorage.;
-        //$rootScope.value = $localStorage.getItem('tabno');
-         //alert('fjdsfksghdfighdfig'+$rootScope.value);
+        $localStorage.table_no =$rootScope.table_no;
+        // $rootScope.value = $localStorage.table_no;
+        // alert('fjdsfksghdfighdfig'+$rootScope.value);
+       //alert('$localstorage.value'+$localStorage.table_no); 
         $rootScope.checkval=true;
-      });
         
-     
-     };
-      
-
-
-
-
+      });
+        };
 
 
 
@@ -80,6 +67,7 @@ $scope.showPrompt = function() {
                                 }
                                 angular.extend(value, extraData);
                                 categoryResponse.push(value);
+
                             });
                             $rootScope.categories = globalMethods.getDashboardGridView(categoryResponse, 2);
                         }
@@ -92,6 +80,7 @@ $scope.showPrompt = function() {
                                     imageUrl: appConst.serviceUrl.addon_image_url + value.addon_image
                                 };
                                 angular.extend(value, extraData);
+                            //    alert('value :'+JSON.stringify(value));
                                 $rootScope.totalAddons.push(value);
                             });
                         }
@@ -144,6 +133,12 @@ $scope.showPrompt = function() {
         }
     }
 
+    $scope.opensearch=function(){
+
+    $location.path(appConst.path.search);
+        $rootScope.cartListBack_button = true;
+
+    }
     $scope.viewCart = function() {
         $location.path(appConst.path.cart_list);
         $rootScope.cartListBack_button = true;
@@ -493,6 +488,7 @@ app.controller('homeDeliveryCtrl', function($scope, $location, appConst, globalM
             globalMethods.get_locations();
             $scope.search_cities_model.show();
         });
+        
     }
     $scope.close_cities_modal = function() {
         $scope.search_cities_model.hide();
@@ -567,12 +563,17 @@ app.controller('homeDeliveryCtrl', function($scope, $location, appConst, globalM
         });
     }
 });
-app.controller('itemsListCtrl', function($scope, $location, appConst, $ionicLoading, globalMethods, Services, $localStorage, $rootScope, findItemIndex, $translate) {
+
+app.controller('itemsListCtrl', function($scope, $location,$ionicSlideBoxDelegate,appConst, $ionicLoading, globalMethods, Services, $localStorage, $rootScope, findItemIndex, $translate)
+ {
     $scope.selected_item;
+
+
     $scope.viewCart = function() {
         $location.path(appConst.path.cart_list);
         $rootScope.cartListBack_button = true;
     }
+
     $scope.getItemsList = function() {
         $scope.totalAddonsCost = 0;
         $ionicLoading.show();
@@ -636,23 +637,32 @@ app.controller('itemsListCtrl', function($scope, $location, appConst, $ionicLoad
                     $scope.noItemsAvailable = $translate.instant("no") + " " + $rootScope.selectedItem.menu_name + " " + $translate.instant("availableNow");
                 }
                 if (response[0].data.item_types.length > 0) {
+                    
                     $scope.itemTypes.push({
                         text: "All",
                         value: "All"
                     });
+                   
+                    
+                                       
+
+
                     angular.forEach(response[0].data.item_types, function(value, key) {
                         var extraData = {
                             text: value.item_type,
                             value: value.item_type
+                            
+                            
                         };
-                        $scope.itemTypes.push(extraData);
+                        $scope.itemTypes.push(extraData);                   
+                      //  alert('$scope.itemTypes : '+JSON.stringify($scope.itemTypes));
+                        
+                        
                     });
                     $scope.data = {
                         clientSide: 'All'
                     };
                 }
-
-
             }
         });
     }
@@ -663,17 +673,52 @@ app.controller('itemsListCtrl', function($scope, $location, appConst, $ionicLoad
             $('#' + id).hide();
         }
     }
+
+
     $scope.chooseItemType = function(type) {
         $scope.menuSubItems = $scope.subMenuItems;
+        alert('$scope.menuSubItems'+JSON.stringify($scope.menuSubItems));
         if (type == 'Addons') {
             $scope.menuSubItems = [];
             $scope.menuSubItems = $rootScope.totalAddons;
             $scope.data.clientSide = 'Addons';
         } else {
-            $scope.data.clientSide = type;
+
+            $scope.data.clientSide =type;
+            alert('$scope.subMenuItems'+JSON.stringify($scope.subMenuItems));
             $scope.menuSubItems = $scope.subMenuItems;
         }
     }
+
+
+
+        $scope.swipechooseItemType = function(type) {
+        
+            alert('value :'+value);
+                  
+        
+        $scope.menuSubItems = $scope.subMenuItems;
+        if (type == 'Addons') {
+            $scope.menuSubItems = [];
+            $scope.menuSubItems = $rootScope.totalAddons;
+            $scope.data.clientSide = 'Addons';
+        } else 
+        {
+        
+            alert(JSON.stringify($scope.itemTypes[type++].value));
+            $scope.data.clientSide = JSON.stringify($scope.itemTypes[type+1].value);
+            
+            //alert('$scope.subMenuItems:'+JSON.stringify($scope.subMenuItems));
+
+            $scope.menuSubItems = $scope.subMenuItems;
+
+        }
+        
+    }
+
+
+
+
     $scope.openSelectedItem = function(item) {
         $location.path(appConst.path.selected_item);
         angular.element(document).ready(function() {
@@ -1655,16 +1700,15 @@ app.controller('aboutUsCtrl', function($scope, $location, appConst, uiGmapGoogle
       }
     ];
         });
+         
             app.controller('raiseconcern', function($ionicSlideBoxDelegate,$localStorage,$scope,Services,appConst,$rootScope,$state,$location,$stateParams){
 
                 $scope.viewCart = function() {
-                 $location.path(appConst.path.cart_list);
+                $location.path(appConst.path.cart_list);
                 $rootScope.cartListBack_button = true;
-         }
+            }
         
         $scope.save_concern = function(value){
-
-
             value['table_no'] = $rootScope.table_no;
             Services.webServiceCallPost(value, appConst.services.concern).then(function(response) {      
                 window.plugins.toast.show(response[1].response.message, 'short', 'bottom');  
@@ -1673,12 +1717,18 @@ app.controller('aboutUsCtrl', function($scope, $location, appConst, uiGmapGoogle
             
         };      
       });
+
+
+
+            
     app.controller('infotainmentcategary', function($ionicSlideBoxDelegate,$localStorage,$scope,Services,appConst,$rootScope,$state,$stateParams){ 
      
       $scope.fetch = function(mId) { 
         Services.webServiceCallPost('','fetch_categary').then(function(response) {
             $scope.parent_categary = response['parent_categary'];
+           
             $scope.first_category = response['parent_categary'][0];
+           
             $scope.listInfotainment($scope.first_category['category_id']);
         });
     }
@@ -1687,6 +1737,7 @@ app.controller('aboutUsCtrl', function($scope, $location, appConst, uiGmapGoogle
             var id = {media_id:mId};
             Services.webServiceCallPost(id,'fetch_media').then(function(response) {
                  $scope.result = response['media'];
+                 
                  $scope.url = appConst.serviceUrl.infotainment_url;  
                  $state.go($state.current,$scope.result,'');     
         });
@@ -1696,6 +1747,8 @@ app.controller('aboutUsCtrl', function($scope, $location, appConst, uiGmapGoogle
        }
         
 });
+
+    
     app.controller('infotainment', function($state,$scope,Services,appConst,$rootScope,$stateParams){
         var id = {media_id:$stateParams.mediaId};
         $scope.result={};
@@ -1722,7 +1775,8 @@ app.controller('aboutUsCtrl', function($scope, $location, appConst, uiGmapGoogle
         });
     }); 
 
-        app.controller('menuCtrl', function($scope, $ionicModal,$location, appConst, globalMethods, $localStorage, $rootScope, $translate,$ionicHistory,$ionicLoading,Services) {
+        app.controller('menuCtrl', function($scope, $ionicModal,$location, appConst, globalMethods, $localStorage, $rootScope, $translate,$ionicHistory,$ionicLoading,Services) 
+            {
     $scope.editProfile = {
         first_name: '',
         last_name: '',
@@ -1857,8 +1911,24 @@ app.controller('aboutUsCtrl', function($scope, $location, appConst, uiGmapGoogle
     };
     $scope.checkUserLogin = function() {
         return globalMethods.checkUserLogin();
-    }
-    
-    
-    
+    }  
 });
+
+app.controller('searchCtrl', function($scope, $ionicModal,$location, appConst, globalMethods, $localStorage, $rootScope, $translate,$ionicHistory,$ionicLoading,Services) 
+            {
+            $scope.cartListBack = function() 
+            {
+                    $ionicHistory.goBack();
+            }
+
+            $scope.querysubmit = function(query)
+            {
+
+                alert('query'+query);
+            
+            }
+            
+
+
+
+            });

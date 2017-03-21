@@ -1,13 +1,20 @@
 <ion-view cache-view="false" view-title="{{'menu' | translate}}">
+ 
   <ion-nav-buttons side="left">
     <button class="button button-icon button-clear ion-navicon" menu-toggle="left"> </button>
   </ion-nav-buttons>
-
+  
   <ion-nav-buttons  side="right" >
-    <button  ng-controller="itemsListCtrl" id="cart_list_icon1" ng-click="viewCart()" class="button-icon button button-clear flaticon-shop"><i class="badge badge-light header-badge"><span ng-if="cartCount!=0">{{cartCount}}</span></i></button>
+   
+    <div class="buttons"><button class="button button-icon ion-android-search" ng-click="opensearch()"></button></div> 
+
+      <button  ng-controller="itemsListCtrl" id="cart_list_icon1" ng-click="viewCart()" class="button-icon button button-clear flaticon-shop"><i class="badge badge-light header-badge"><span ng-if="cartCount!=0">{{cartCount}}</span></i></button>
   </ion-nav-buttons>
 
-<button ng-if="checkval!=true" ng-init ="showPrompt()"></button>
+
+
+<button ng-if="checkval!=true" ng-init ="donotshowPrompt()"></button>
+    
 
   <ion-content  ng-init="getCategories()">
     <ion-slide-box class="dashboard-slide" on-slide-changed="slideHasChanged($index)" does-continue="true" auto-play="true" slide-interval="6000">

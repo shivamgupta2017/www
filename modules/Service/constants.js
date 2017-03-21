@@ -27,6 +27,7 @@ angular.module('declarations', []).constant('appConst', {
         "dashboardHtml": "modules/home/dashboard.html",
         "items_listHtml": "modules/home/items_list.html",
         "cart_listHtml": "modules/home/cart_list.html",
+        "searchHtml":"modules/home/search.html",
         "orders_historyHtml": "modules/home/orders_history.html",
         "orderHistoryDetailsHtml": "modules/home/orderHistoryDetails.html",
         "about_usHtml": "modules/home/about_us.html",
@@ -59,6 +60,9 @@ angular.module('declarations', []).constant('appConst', {
         "dashboard": "app.dashboard",
         "items_list": "app.items_list",
         "cart_list": "app.cart_list",
+
+        "search": "app.search",
+        
         "orders_history": "app.orders_history",
         "ordersHistoryDetails": "app.ordersHistoryDetails",
         "about_us": "app.about_us",
@@ -83,6 +87,7 @@ angular.module('declarations', []).constant('appConst', {
         "dashboard": "/dashboard",
         "items_list": "/items_list",
         "cart_list": "/cart_list",
+        "search": "/search",
         "orders_history": "/orders_history",
         "ordersHistoryDetails": "/ordersHistoryDetails",
         "about_us": "/about_us",
@@ -105,6 +110,7 @@ angular.module('declarations', []).constant('appConst', {
         "selected_item": "/app/selected_item",
         "changeLanguage": "/app/changeLanguage",
         "cart_list": "/app/cart_list",
+        "search": "/app/search",
         "payment": "/app/payment",
         "payment_status": "/payment_status",
         "offerDetails": "/app/offerDetails",

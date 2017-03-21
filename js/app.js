@@ -308,6 +308,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, ap
             templateUrl: appConst.page.menuHtml,
             controller: 'menuCtrl'
         })
+
         .state(appConst.state.login, {
             url: appConst.url.login,
             views: {
@@ -398,6 +399,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, ap
                 }
             }
         })
+
         .state(appConst.state.dashboard, {
             url: appConst.url.dashboard,
             views: {
@@ -407,6 +409,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, ap
                 }
             }
         })
+
         .state(appConst.state.items_list, {
             url: appConst.url.items_list,
             views: {
@@ -417,15 +420,29 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, ap
             }
         })
 
-    .state(appConst.state.cart_list, {
-            url: appConst.url.cart_list,
+    .state(appConst.state.cart_list, {    
+            url: appConst.url.cart_list,  
             views: {
                 'menuContent': {
-                    templateUrl: appConst.page.cart_listHtml,
-                    controller: 'cartListCtrl'
+                    templateUrl: appConst.page.cart_listHtml,//url of the html file
+                    controller: 'cartListCtrl'//url of the controller file
                 }
             }
         })
+
+
+    .state(appConst.state.search, {   //:app.search
+            url: appConst.url.search,//:/search 
+            views: {
+                'menuContent': {
+                    templateUrl: appConst.page.searchHtml,    //modules/home/search.html
+                    controller: 'searchCtrl'
+                }
+            }
+        })
+
+
+
         .state(appConst.state.orders_history, {
             url: appConst.url.orders_history,
             views: {

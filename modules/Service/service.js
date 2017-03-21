@@ -3,8 +3,8 @@ app.factory('Services', function($http, $rootScope, $timeout, $localStorage, $io
     $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
     return {
         webServiceCallPost: function(data, action) {
-            alert("data 1st parameter :"+JSON.stringify(data));
-            alert("action 2st parameter :"+JSON.stringify(action));
+            //alert("data 1st parameter :"+JSON.stringify(data));
+            //alert("action 2st parameter :"+JSON.stringify(action));
             console.log("data    "+JSON.stringify(data));
             console.log("action    "+JSON.stringify(action));
             var deferred = $q.defer();
@@ -19,7 +19,7 @@ app.factory('Services', function($http, $rootScope, $timeout, $localStorage, $io
                     async: true,
                     success: function(response) {
                         console.log("response    "+JSON.stringify(response));
-                        alert("response    "+JSON.stringify(response));
+                       // alert("response    "+JSON.stringify(response));
                         deferred.resolve();
                     },
                     error: function(xhr, ajaxOptions, thrownError) {

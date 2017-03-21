@@ -44,11 +44,13 @@ app.factory('globalMethods', function($http, $rootScope, $timeout, $localStorage
                 }
             });
         },
-        getDashboardGridView: function(array, columns) {
+        getDashboardGridView: function(array,columns) {
             var grid = [],
                 col, row = -1;
             if (array.length > 0) {
+                
                 angular.forEach(array, function(value, key) {
+                    
                     col = key % columns;
                     if (col === 0) {
                         grid[++row] = [];

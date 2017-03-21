@@ -30,8 +30,8 @@ var slidingTabsDirective = angular.module("ionic").directive('ionSlideTabs', ['$
                 if(options.slideTabsScrollable) {
 
                     ionicScrollDelegateID = "ion-slide-tabs-handle-" + Math.floor((Math.random() * 10000) + 1);
-                    tabsBar = angular.element('<ion-scroll delegate-handle="' + ionicScrollDelegateID + '" class="slidingTabs" direction="x" scrollbar-x="false"><ul>' + tabItems + '</ul> <div class="tab-indicator-wrapper"><div class="tab-indicator"></div></div> </ion-scroll>');
-
+					//alert(ionicScrollDelegateID);
+                  tabsBar = angular.element('<ion-scroll has-bouncing ="false" overflow-scroll="false" delegate-handle="' + ionicScrollDelegateID + '" class="slidingTabs" direction="x" ><ul>' + tabItems + '</ul> <div class="tab-indicator-wrapper"><div class="tab-indicator"></div></div> </ion-scroll>');
                 }
                 else {
 
@@ -99,7 +99,7 @@ var slidingTabsDirective = angular.module("ionic").directive('ionSlideTabs', ['$
 
                 if(options.slideTabsScrollable) {
 
-                    angular.element(tabsBar[0].querySelector(".scroll")).css("width", tabsWidth + 50 + "px");
+                    angular.element(tabsBar[0].querySelector(".scroll")).css("width", tabsWidth + 1 + "px");
 
                 }
                 else {
@@ -111,9 +111,10 @@ var slidingTabsDirective = angular.module("ionic").directive('ionSlideTabs', ['$
 
             };
 
-            var addTabTouchAnimation = function(event,currentElement,value) {
+            var addTabTouchAnimation = function(event,currentElement) {
 
                 var ink = angular.element(currentElement[0].querySelector(".ink"));
+
                 if( !angular.isDefined(ink) || ink.length == 0 ) {
                     ink = angular.element("<span class='ink'></span>");
                     currentElement.prepend(ink);
@@ -206,7 +207,8 @@ var slidingTabsDirective = angular.module("ionic").directive('ionSlideTabs', ['$
 
                 }
 
-
+				
+				
                 indicator.css({
                     "-webkit-transition-duration":"0ms",
                     "-webkit-transform":"translate(" + indicatorPos + "px,0px)",
