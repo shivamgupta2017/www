@@ -599,7 +599,7 @@ app.controller('homeDeliveryCtrl', function($scope, $location, appConst, globalM
     }
 });
 
-app.controller('itemsListCtrl', function($state,$scope, $location,$ionicSlideBoxDelegate,appConst, $ionicLoading, globalMethods, Services, $localStorage, $rootScope, findItemIndex, $translate)
+app.controller('itemsListCtrl', function($state,$scope, $location,appConst, $ionicLoading, globalMethods, Services, $localStorage, $rootScope, findItemIndex, $translate)
  {
     $scope.selected_item;
 
@@ -722,6 +722,7 @@ app.controller('itemsListCtrl', function($state,$scope, $location,$ionicSlideBox
             $scope.data.clientSide =type;
             alert('$scope.subMenuItems'+JSON.stringify($scope.subMenuItems));
             $scope.menuSubItems = $scope.subMenuItems;
+
         }
     }
 
@@ -729,28 +730,27 @@ app.controller('itemsListCtrl', function($state,$scope, $location,$ionicSlideBox
 
         $scope.swipechooseItemType = function($index) {
         
-            alert('index value :'+$index);
+           // alert('index value :'+$index);
                   
-        alert('$scope.menuSubItems :'+JSON.stringify($scope.menuSubItems));
+        //alert('$scope.menuSubItems :'+JSON.stringify($scope.menuSubItems));
         $scope.menuSubItems = $scope.subMenuItems;
         if ($index == 'Addons') {
-            alert('if');
             $scope.menuSubItems = [];
             $scope.menuSubItems = $rootScope.totalAddons;
             $scope.data.clientSide = 'Addons';
-        
-        } else 
-        
+        } 
+        else 
         {
           
-            $scope.data.clientSide = JSON.stringify($scope.itemTypes[$index].value);
-           // alert();//all/veg/nonveg
+            $scope.data.clientSide = $scope.itemTypes[$index].value;
+           
             //alert('$scope.subMenuItems:'+JSON.stringify($scope.subMenuItems));
-            alert($scope.data.clientSide);
             
-            $scope.menuSubItems = $scope.subMenuItems;
-          //  $state.go('app.items_list',{reload: '$scope.data.clientSide' });
-            //$state.reload(); 
+           // alert(' :'+$scope.data.clientSide);
+            
+            //$scope.menuSubItems = $scope.subMenuItems;
+          
+
 
         }
         

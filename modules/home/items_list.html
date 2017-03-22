@@ -29,7 +29,7 @@
 		
 
 	<ion-slide  ng-model="data.clientSide" ng-value="itemType.value" ng-repeat="itemType in itemTypes | orderBy:'item_type'" ion-slide-tab-label="{{itemType.text}}" ng-model="data.clientSide">
-
+		
 	<div class="list listLink filter" style="width: 100vw; height: 100vh; overflow-y:scroll;">			
 		
 		<a class="item item-button-right item-text-wrap item-thumbnail-left" ng-if="data.clientSide!='Addons'" ng-repeat="menuSubItem in menuSubItems  | orderBy:'item_name' | ItemsFilter:data.clientSide track by $index" >

@@ -1,10 +1,15 @@
 "use strict";
 
 app.filter('ItemsFilter', function() {
+
+
+    
     return function(array, val) {
         var resultantArray = [];
         if (val == 'All') {
+            //alert('yes !... i was right');
             resultantArray = array;
+            //alert('resultantArray :'+JSON.stringify(resultantArray));
         } else if (val != 'All') {
             angular.forEach(array, function(value, key) {
                 if (value.item_type == val) {
@@ -15,6 +20,7 @@ app.filter('ItemsFilter', function() {
         return resultantArray;
     };
 });
+
 app.filter('getLocalities', function() {
     return function(array, val) {
         var resultantArray = [];
