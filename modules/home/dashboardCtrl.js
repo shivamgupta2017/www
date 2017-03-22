@@ -172,6 +172,7 @@ app.controller('cartListCtrl', function($scope, $location, appConst, globalMetho
     $scope.cartListItems = [];
     $rootScope.orderDetails = [];
 
+    $scope.sbookedAddons = [];
     $scope.cartListBack = function() {
         $ionicHistory.goBack();
     }
@@ -207,10 +208,34 @@ app.controller('cartListCtrl', function($scope, $location, appConst, globalMetho
                 });
                 $scope.calculateTotalCost($scope.cartListItems);
             } else {
+
                 $scope.noItemsInCart = $translate.instant("noItemsInYourCart");
             }
+
+ if ($localStorage.bookedAddons.length > 0) {
+    $scope.sbookedAddons = [];
+    angular.forEach($localStorage.bookedAddons, function(value, key) {
+        var extraData = {
+                    
+                    "addon_name":value.addon_name,
+                     "quantity": parseInt(value.quantity),
+                     "finalCost":parseInt(value.finalCost)
+                    };
+        angular.extend(value, extraData);
+        $scope.sbookedAddons.push(value);
+         });
+                $scope.calculateTotalCost($scope.cartListItems);
+            } else {
+                $scope.noItemsInCart = $translate.instant("noItemsInYourCart");
+            }
+        
         });
-    }
+     
+     }
+
+
+
+
     $scope.removeItem = function(array, id) {
         findItemIndex.findItemIndexInAddons(array, '', id).then(function(index) {
             if (index != -1) {
@@ -222,9 +247,13 @@ app.controller('cartListCtrl', function($scope, $location, appConst, globalMetho
     $scope.remove_item_from_cart = function(item) {
         var index = findItemIndex.findItemIndexInCartList($localStorage.cart_list, '', item.item_id);
         if (index != -1) {
-            if ($rootScope.bookedAddons.length > 0) {
-                $scope.removeItem($rootScope.bookedAddons, item.item_id);
+            if ($localStorage.bookedAddons.length > 0) {
+                $scope.removeItem($localStorage.bookedAddons, item.item_id);
+                $scope.sbookedAddons = [];
+            //if you face problem regarding above line you may delete it .
+
             }
+
             $localStorage.cart_list.splice(index, 1);
             $scope.cartListItems.splice(index, 1);
             $scope.calculateTotalCost($scope.cartListItems);
@@ -234,20 +263,26 @@ app.controller('cartListCtrl', function($scope, $location, appConst, globalMetho
                 $scope.handleEditDoneIcons('', 'done');
                 $scope.noItemsInCart = $translate.instant("noItemsInYourCart");
                 $scope.editOrderVal = false;
-                $rootScope.bookedAddons = [];
+                $localStorage.bookedAddons = [];
             }
         }
     }
     $scope.remove_addon_from_cart = function(item) {
-        findItemIndex.findAddonIndexInCartList($rootScope.bookedAddons, '', item.addon_id).then(function(index) {
+        var index=findItemIndex.findAddonIndexInCartList($localStorage.bookedAddons, '', item.addon_id).then(function(index) {
             if (index != -1) {
-                $rootScope.bookedAddons.splice(index, 1);
+
+                
+
+                $localStorage.bookedAddons.splice(index, 1);
+                $scope.sbookedAddons.splice(index, 1);
+
                 $scope.calculateTotalCost($scope.cartListItems);
                 if ($localStorage.cart_list.length == 0) {
                     $scope.handleEditDoneIcons('', 'edit');
                     $scope.handleEditDoneIcons('', 'done');
                     $scope.noItemsInCart = $translate.instant("noItemsInYourCart");
                     $scope.editOrderVal = false;
+                
                     $rootScope.bookedAddons = [];
                 }
             }
@@ -266,10 +301,10 @@ app.controller('cartListCtrl', function($scope, $location, appConst, globalMetho
     }
 
     $scope.changeCartAddonQuantity = function(item,quantity, unitCost) {
-            angular.forEach($rootScope.bookedAddons,function(value,key){
+            angular.forEach($localStorage.bookedAddons,function(value,key){
                 if(value.addon_id == item.addon_id){
-                    $rootScope.bookedAddons[key].quantity = quantity;
-                    $rootScope.bookedAddons[key].finalCost = parseInt(quantity) * parseInt(unitCost);
+                    $localStorage.bookedAddons[key].quantity = quantity;
+                    $localStorage.bookedAddons[key].finalCost = parseInt(quantity) * parseInt(unitCost);
 
                 }
             });
@@ -283,8 +318,8 @@ app.controller('cartListCtrl', function($scope, $location, appConst, globalMetho
         angular.forEach(items, function(value, key) {
             $scope.cost.totalCost = parseInt(value.finalCost) + parseInt($scope.cost.totalCost);
         });
-        if ($rootScope.bookedAddons.length > 0) {
-            angular.forEach($rootScope.bookedAddons, function(value, key) {
+        if ($localStorage.bookedAddons.length > 0) {
+            angular.forEach($localStorage.bookedAddons, function(value, key) {
                 $scope.cost.totalCost = parseInt(value.finalCost) + parseInt($scope.cost.totalCost);
             });
         }
@@ -435,8 +470,8 @@ app.controller('homeDeliveryCtrl', function($scope, $location, appConst, globalM
             payment_gateway:'Cash',
             no_of_items: $rootScope.orderDetails.length,
             order_summary: JSON.stringify($rootScope.orderDetails),
-            isAddons: $rootScope.bookedAddons.length > 0 ? 1 : 0,
-            addons_summary: JSON.stringify($rootScope.bookedAddons),
+            isAddons: $localStorage.bookedAddons.length > 0 ? 1 : 0,
+            addons_summary: JSON.stringify($localStorage.bookedAddons),
             order_by_device_id: localStorage.getItem("registrationId")
         }
     }
@@ -554,7 +589,7 @@ app.controller('homeDeliveryCtrl', function($scope, $location, appConst, globalM
             $ionicLoading.hide();
             if (response[1].response.status == 1) {
                 $localStorage.cart_list = [];
-                $rootScope.bookedAddons = [];
+                $localStorage.bookedAddons = [];
                 $rootScope.orderDetails = [];
                 $rootScope.saveOrderParams = {};
                 $location.path(appConst.path.payment_status);
@@ -564,7 +599,7 @@ app.controller('homeDeliveryCtrl', function($scope, $location, appConst, globalM
     }
 });
 
-app.controller('itemsListCtrl', function($scope, $location,$ionicSlideBoxDelegate,appConst, $ionicLoading, globalMethods, Services, $localStorage, $rootScope, findItemIndex, $translate)
+app.controller('itemsListCtrl', function($state,$scope, $location,$ionicSlideBoxDelegate,appConst, $ionicLoading, globalMethods, Services, $localStorage, $rootScope, findItemIndex, $translate)
  {
     $scope.selected_item;
 
@@ -698,20 +733,24 @@ app.controller('itemsListCtrl', function($scope, $location,$ionicSlideBoxDelegat
                   
         alert('$scope.menuSubItems :'+JSON.stringify($scope.menuSubItems));
         $scope.menuSubItems = $scope.subMenuItems;
-        if (type == 'Addons') {
+        if ($index == 'Addons') {
             alert('if');
             $scope.menuSubItems = [];
             $scope.menuSubItems = $rootScope.totalAddons;
             $scope.data.clientSide = 'Addons';
+        
         } else 
+        
         {
-        alert('else');
-            
+          
             $scope.data.clientSide = JSON.stringify($scope.itemTypes[$index].value);
-            alert(JSON.stringify($scope.data.clientSide));
+           // alert();//all/veg/nonveg
             //alert('$scope.subMenuItems:'+JSON.stringify($scope.subMenuItems));
-
+            alert($scope.data.clientSide);
+            
             $scope.menuSubItems = $scope.subMenuItems;
+          //  $state.go('app.items_list',{reload: '$scope.data.clientSide' });
+            //$state.reload(); 
 
         }
         
@@ -961,7 +1000,7 @@ app.controller('paymentCtrl', function($scope, $location, stripe, checkCustomer,
                 if (event.url == "http://conquerorslabs.com/crunchyv5/payuMobile/success") {
                     browser.close();
                     $localStorage.cart_list = [];
-                    $rootScope.bookedAddons = [];
+                    $localStorage.bookedAddons = [];
                     $rootScope.orderDetails = [];
                     $rootScope.saveOrderParams = {};
                     $rootScope.cartCount = $localStorage.cart_list.length;
@@ -1107,7 +1146,7 @@ app.controller('paymentCtrl', function($scope, $location, stripe, checkCustomer,
             $ionicLoading.hide();
             if (response[1].response.status == 1) {
                 $localStorage.cart_list = [];
-                $rootScope.bookedAddons = [];
+                $localStorage.bookedAddons = [];
                 $rootScope.orderDetails = [];
                 $rootScope.saveOrderParams = {};
                 $rootScope.cartCount = $localStorage.cart_list.length;
@@ -1239,7 +1278,7 @@ app.controller('selectedItemCtrl', function($scope, $location, appConst, $localS
         }
     }
     $scope.changeAddonQuantity = function(item, quantity, unitCost) {
-        angular.forEach($rootScope.bookedAddons,function(value,key){
+        angular.forEach($localStorage.bookedAddons,function(value,key){
                 if(value.addon_id == item.addon_id){
                     $rootScope.bookedAddons[key].quantity = quantity;
                     $rootScope.bookedAddons[key].finalCost = parseInt(quantity) * parseInt(unitCost);
@@ -1265,21 +1304,30 @@ app.controller('selectedItemCtrl', function($scope, $location, appConst, $localS
     }
     $scope.open_addons_model = function(item) {
 
+
         $ionicModal.fromTemplateUrl('modules/home/addons.html', {
+
             scope: $scope,
             animation: 'slide-in-up',
             preserveScope: true
         }).then(function(modal) {
+            
             $scope.addons_model = modal;
+
             if (item.addons.length > 0) {
+                $rootScope.bookedAddons=[];
                 $scope.itemAddons = [];
                 $rootScope.totalAddons = [];
                 angular.forEach(item.addons, function(value, key) {
 
                     var setInterest = false;
                     var quantity = 1;
-                    if ($rootScope.bookedAddons.length > 0) {
-                        angular.forEach($rootScope.bookedAddons, function(interestValue, interestKey) {
+                    alert('hello  i think length is undefined');
+                    alert('length :'+$localStorage.bookedAddons.length);
+                    
+                    if ($localStorage.bookedAddons.length > 0) {
+
+                        angular.forEach($localStorage.bookedAddons, function(interestValue, interestKey) {
                             if (value.addon_id == interestValue.addon_id) {
                                 setInterest = true;
                                 quantity = interestValue.quantity;
@@ -1297,6 +1345,7 @@ app.controller('selectedItemCtrl', function($scope, $location, appConst, $localS
                     $scope.itemAddons.push(value);
                 });
             }
+
             $scope.addons_model.show();
         });
     }
@@ -1304,10 +1353,12 @@ app.controller('selectedItemCtrl', function($scope, $location, appConst, $localS
         $scope.addons_model.hide();
     }
     $scope.done_addons_model = function(){
-      $rootScope.bookedAddons= [];
+    
+      $localStorage.bookedAddons= [];
+      
        if($rootScope.bookedAddonsTEMP.length>0){
           angular.forEach($rootScope.bookedAddonsTEMP,function(value,key){
-                $rootScope.bookedAddons.push(value);
+                $localStorage.bookedAddons.push(value);
           });
        }
        $scope.addons_model.hide();
@@ -1887,6 +1938,7 @@ app.controller('aboutUsCtrl', function($scope, $location, appConst, uiGmapGoogle
         angular.element(document).ready(function() {
             var changeLanguageScope = angular.element(document.getElementById('changeLanguage')).scope();
             changeLanguageScope.language.name = localStorage.getItemsList('defaultLanguage');
+
         });
     }
     $scope.shareToFriends = function() {

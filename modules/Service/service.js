@@ -18,7 +18,7 @@ app.factory('Services', function($http, $rootScope, $timeout, $localStorage, $io
                     timeout: 2000000,
                     async: true,
                     success: function(response) {
-                        console.log("response    "+JSON.stringify(response));
+                        console.log("response  :  "+JSON.stringify(response));
                        // alert("response    "+JSON.stringify(response));
                         deferred.resolve();
                     },
