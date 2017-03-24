@@ -9,9 +9,9 @@
 	</ion-nav-buttons>
 	
 
-	<ion-content id="items_list_page" ng-init="getItemsList()" scroll="true">
+	<ion-content id="items_list_page" has-header="true" ng-init="getItemsList()" scroll="true" >
 		
-
+	{{data.clientSide}}
 				
 
 			<div class="list card pageNote">
@@ -25,18 +25,20 @@
 			</div>
 		</div>-->
 
-     <ion-slide-box slide-tabs-scrollable="false" does-continue="false" show-pager="false" ion-slide-tabs on-slide-changed="swipechooseItemType($index)" ng-model="data.clientSide" ng-value="itemType.value">
-		
+     <ion-slide-box slide-tabs-scrollable="false" does-continue="false" show-pager="false" ion-slide-tabs on-slide-changed="swipechooseItemType($index)">
 
-	<ion-slide  ng-model="data.clientSide" ng-value="itemType.value" ng-repeat="itemType in itemTypes | orderBy:'item_type'" ion-slide-tab-label="{{itemType.text}}" ng-model="data.clientSide">
+     <!--ng-model="data.clientSide" ng-value="itemType.value"-->
 		
-	<div class="list listLink filter" style="width: 100vw; height: 100vh; overflow-y:scroll;">			
+		<!--ng-model="data.clientSide" ng-value="itemType.value"-->
+	
+		<ion-slide disable-scroll="false" ng-repeat="itemType in itemTypes | orderBy:'item_type'" ion-slide-tab-label="{{itemType.text}}">
+		
+	<div class="list listLink filter" style="width: 100vw; height: 100vh;">			
 		
 		<a class="item item-button-right item-text-wrap item-thumbnail-left" ng-if="data.clientSide!='Addons'" ng-repeat="menuSubItem in menuSubItems  | orderBy:'item_name' | ItemsFilter:data.clientSide track by $index" >
 		
 				<img ng-src="{{menuSubItem.imageUrlThumb}}" ng-click="openSelectedItem(menuSubItem)">
-				<div ng-click="openSelectedItem(menuSubItem)">
-					{{menuSubItem.item_name}}
+				<div ng-click="openSelectedItem(menuSubItem)">{{menuSubItem.item_name}}
 					<div class="amount">
 						<h2 class="addedAmount"><i class="">{{siteSettings.currency_symbol}}</i> {{menuSubItem.item_cost | number:2}}</h2>
 					</div>

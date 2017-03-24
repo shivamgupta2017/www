@@ -119,6 +119,7 @@ angular.module('declarations', []).constant('appConst', {
     },
     'services': {
         "edit_profile": "edit_profile",
+        "search": "search",
         "get_menu_card": "get_menu_card",
         "get_items": "get_items",
         "save_order": "save_order",

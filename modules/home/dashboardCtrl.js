@@ -52,6 +52,7 @@ $scope.showPrompt = function() {
                 $ionicLoading.show();
                 Services.webServiceCallPost('', appConst.services.get_menu_card).then(function(response) {
                     $ionicLoading.hide();
+
                     if (response[1].response.status == 1) {
                         if (response[0].data.menu.length > 0) {
                             var categoryResponse = [];
@@ -612,13 +613,19 @@ app.controller('itemsListCtrl', function($state,$scope, $location,appConst, $ion
     $scope.getItemsList = function() {
         $scope.totalAddonsCost = 0;
         $ionicLoading.show();
-        Services.webServiceCallPost($rootScope.selectedItem, appConst.services.get_items).then(function(response) {
+
+        Services.webServiceCallPost($rootScope.selectedItem, appConst.services.get_items).then(function(response) 
+        {
+        
             $ionicLoading.hide();
             $scope.handleCartListIcon('cart_list_icon2');
+            //alert('$rootScope.selectedItem :'+JSON.stringify($rootScope.selectedItem));
+            
             if (response[1].response.status == 1) {
                 $scope.subMenuItems = [];
                 $scope.menuSubItems = [];
                 $scope.itemTypes = [];
+                
                 if (response[0].data.items.length > 0) {
                     angular.forEach(response[0].data.items, function(value, key) {
                         if ($localStorage.cart_list.length > 0) {
@@ -694,9 +701,9 @@ app.controller('itemsListCtrl', function($state,$scope, $location,appConst, $ion
                         
                         
                     });
-                    $scope.data = {
-                        clientSide: 'All'
-                    };
+
+                    $scope.data = { clientSide: 'All' };
+                    //alert(JSON.stringify($scope.data));
                 }
             }
         });
@@ -712,7 +719,7 @@ app.controller('itemsListCtrl', function($state,$scope, $location,appConst, $ion
 
     $scope.chooseItemType = function(type) {
         $scope.menuSubItems = $scope.subMenuItems;
-        alert('$scope.menuSubItems'+JSON.stringify($scope.menuSubItems));
+       // alert('$scope.menuSubItems'+JSON.stringify($scope.menuSubItems));
         if (type == 'Addons') {
             $scope.menuSubItems = [];
             $scope.menuSubItems = $rootScope.totalAddons;
@@ -720,7 +727,7 @@ app.controller('itemsListCtrl', function($state,$scope, $location,appConst, $ion
         } else {
 
             $scope.data.clientSide =type;
-            alert('$scope.subMenuItems'+JSON.stringify($scope.subMenuItems));
+           // alert('$scope.subMenuItems'+JSON.stringify($scope.subMenuItems));
             $scope.menuSubItems = $scope.subMenuItems;
 
         }
@@ -742,18 +749,8 @@ app.controller('itemsListCtrl', function($state,$scope, $location,appConst, $ion
         else 
         {
           
-            $scope.data.clientSide = $scope.itemTypes[$index].value;
-           
-            //alert('$scope.subMenuItems:'+JSON.stringify($scope.subMenuItems));
-            
-           // alert(' :'+$scope.data.clientSide);
-            
-            //$scope.menuSubItems = $scope.subMenuItems;
-          
-
-
+            $scope.data.clientSide = $scope.itemTypes[$index].value;        
         }
-        
     }
 
 
@@ -1308,7 +1305,8 @@ app.controller('selectedItemCtrl', function($scope, $location, appConst, $localS
         $ionicModal.fromTemplateUrl('modules/home/addons.html', {
 
             scope: $scope,
-            animation: 'slide-in-up',
+           // animation: 'slide-in-up',
+            animation: 'fade-in',
             preserveScope: true
         }).then(function(modal) {
             
@@ -1322,8 +1320,8 @@ app.controller('selectedItemCtrl', function($scope, $location, appConst, $localS
 
                     var setInterest = false;
                     var quantity = 1;
-                    alert('hello  i think length is undefined');
-                    alert('length :'+$localStorage.bookedAddons.length);
+                    //alert('hello  i think length is undefined');
+                    //alert('length :'+$localStorage.bookedAddons.length);
                     
                     if ($localStorage.bookedAddons.length > 0) {
 
@@ -1367,6 +1365,7 @@ app.controller('selectedItemCtrl', function($scope, $location, appConst, $localS
         $location.path(appConst.path.cart_list);
         $rootScope.cartListBack_button = true;
     }
+    
     $scope.handleCartListIcon = function(id) {
         if ($localStorage.cart_list.length > 0) {
             $('#' + id).show();
@@ -1374,6 +1373,8 @@ app.controller('selectedItemCtrl', function($scope, $location, appConst, $localS
             $('#' + id).hide();
         }
     }
+
+
 });
 
 // app.controller('menuCtrl', function($scope, $location, appConst, globalMethods, $localStorage, $rootScope, $translate) {
@@ -1773,29 +1774,105 @@ app.controller('aboutUsCtrl', function($scope, $location, appConst, uiGmapGoogle
 
 
             
-    app.controller('infotainmentcategary', function($ionicSlideBoxDelegate,$localStorage,$scope,Services,appConst,$rootScope,$state,$stateParams){ 
+    app.controller('infotainmentcategary', function($ionicLoading,$ionicSlideBoxDelegate,$localStorage,$scope,Services,appConst,$rootScope,$state,$stateParams){ 
      
-      $scope.fetch = function(mId) { 
-        Services.webServiceCallPost('','fetch_categary').then(function(response) {
-            $scope.parent_categary = response['parent_categary'];
-           
-            $scope.first_category = response['parent_categary'][0];
-           
-            $scope.listInfotainment($scope.first_category['category_id']);
-        });
-    }
-        $scope.listInfotainment = function(mId)
+      $scope.fetchInfotainment = function() { 
+
+        $scope.infocatname=[];
+        $scope.infodata=[];
+
+        $ionicLoading.show();
+        Services.webServiceCallPost('','fetch_categary').then(function(response)
+         {
+        $ionicLoading.hide();               
+            if(response['parent_categary'].length>0) 
+              {   
+
+                        angular.forEach(response['parent_categary'], function(value, key) {
+                        var extraData = {
+                            category_id: value.category_id,
+                            category_name: value.category_name,
+                            sub_category: value.sub_category,
+                            parent_category: value.parent_category,
+                            description: value.description
+                         };
+
+                         $scope.infocatname.push(extraData);
+
+
+                     });  
+             }
+    		$scope.slider = { slidermodel: $scope.infocatname[0].category_id};
+                          
+            });
+
+            $ionicLoading.show();
+            Services.webServiceCallPost('','fetch_media').then(function(response){
+            $ionicLoading.hide();
+            //alert('response :'+JSON.stringify(response['media']));
+
+            if(response['media'].length>0){
+
+                angular.forEach(response['media'],function(value,key){
+
+
+                        var extraData = {
+                            media_id: value.media_id,
+                            file_name: value.file_name,
+                            media_name: value.media_name,
+                            category: value.category,
+                            description: value.description,
+                            img_url: appConst.serviceUrl.infotainment_url+value.file_name,
+                            file_ext: value.file_ext
+                                   };
+
+                            $scope.infodata.push(extraData);
+                            //alert('values :'+JSON.stringify($scope.infodata)); 
+                            
+                            
+                              
+                });
+
+            }
+
+
+           // alert(JSON.stringify($scope.infotainmentdata.length)) ;
+           // alert(JSON.stringify($scope.infotainmentdata));
+            });
+
+              
+
+//            alert(' infotainmentdata :'+$scope.infotainmentdata);
+          //  $scope.itemTypes[$index].value
+        
+       
+
+        }
+
+        $scope.listInfotainment = function($index)
+
        {
-            var id = {media_id:mId};
-            Services.webServiceCallPost(id,'fetch_media').then(function(response) {
+      
+
+      	$scope.slider.slidermodel=$index;
+      	
+
+      		//alert('GHANTA :'+$scope.slider.slidermodel);
+            
+
+            
+            /*Services.webServiceCallPost(id,'fetch_media').then(function(response) {
                  $scope.result = response['media'];
                  
                  $scope.url = appConst.serviceUrl.infotainment_url;  
                  $state.go($state.current,$scope.result,'');     
-        });
+        });*/
+
        }
+
          $scope.singleInfotainment = function(mId)
        {            $state.go('app.infotainment',{mediaId:mId});
+
        }
         
 });
@@ -1861,6 +1938,7 @@ app.controller('aboutUsCtrl', function($scope, $location, appConst, uiGmapGoogle
         Services.webServiceCallPost('', appConst.services.pages).then(function(response) {
             $ionicLoading.hide();
            // alert('hide ke bad');
+
             if (response[1].response.status == 1) {
                 if (response[0].data.length > 0) {
                     $rootScope.pages = response[0].data;
@@ -1945,7 +2023,14 @@ app.controller('aboutUsCtrl', function($scope, $location, appConst, uiGmapGoogle
         window.plugins.socialsharing.share($translate.instant("crunchy"), $translate.instant("crunchyAppForRestaurant"), '', 'url Here');
     }
     $scope.setCartListBack_button = function() {
-        $rootScope.cartListBack_button = false;
+        //1950
+
+        $rootScope.cartListBack_button = true;
+        $location.path(appConst.path.cart_list);
+        alert($rootScope.cartListBack_button);
+        
+
+
     }
     $scope.openPlaystore = function() {
         cordova.getAppVersion.getPackageName().then(function(name) {
@@ -1978,7 +2063,24 @@ app.controller('searchCtrl', function($scope, $ionicModal,$location, appConst, g
             {
 
                 alert('query'+query);
-            
+                
+                $scope.searchinput={"search": "1"};
+                
+                alert('searchquery :'+JSON.stringify($scope.searchinput));
+                $ionicLoading.show();		//
+                Services.webServiceCallPost($scope.searchinput,'search').then(function(response) { 
+                $ionicLoading.hide();
+
+                alert(response['parent_categary']);
+
+              
+
+
+          	
+
+
+
+          		});  
             }
 
 

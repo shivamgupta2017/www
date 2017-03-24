@@ -5,10 +5,10 @@ app.factory('Services', function($http, $rootScope, $timeout, $localStorage, $io
         webServiceCallPost: function(data, action) {
             //alert("data 1st parameter :"+JSON.stringify(data));
             //alert("action 2st parameter :"+JSON.stringify(action));
-            console.log("data    "+JSON.stringify(data));
+            console.log("data:   "+JSON.stringify(data));
             console.log("action    "+JSON.stringify(action));
             var deferred = $q.defer();
-                       //if (navigator.connection.type != "none") {
+                       // 
                 return $.ajax({
                     type: "POST",
                     url: appConst.serviceUrl.service + action,

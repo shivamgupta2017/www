@@ -3,12 +3,16 @@
 app.filter('ItemsFilter', function() {
 
 
+
     
     return function(array, val) {
+       
         var resultantArray = [];
+        
         if (val == 'All') {
-            //alert('yes !... i was right');
+            
             resultantArray = array;
+            
             //alert('resultantArray :'+JSON.stringify(resultantArray));
         } else if (val != 'All') {
             angular.forEach(array, function(value, key) {
@@ -17,6 +21,36 @@ app.filter('ItemsFilter', function() {
                 }
             });
         }
+        
+        return resultantArray;
+               
+
+    };
+});
+
+
+app.filter('Infotainmentfilter', function() {
+
+    
+    
+    return function(array, val) {
+        
+
+        var resultantArray = [];
+
+            
+        
+            angular.forEach(array, function(value, key) {
+               
+                
+                if (value.media_id == val) {
+                    
+                    resultantArray.push(value);
+                }
+                
+            });
+        
+        
         return resultantArray;
     };
 });

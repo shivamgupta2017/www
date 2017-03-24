@@ -1,42 +1,48 @@
-<ion-view cache-view="false" view-title="{{'infotainmentcategary' | translate}}" class="loginScreen"
- ng-init="fetch();listInfotainment(1)">
-        <ion-content scroll="true">
-           
-            <ion-slide-box slide-tabs-scrollable="false"  does-continue="false" show-pager="false" ion-slide-tabs on-slide-changed="listInfotainment($index+1)">
-             <ion-slide ng-repeat="parent in parent_categary" ion-slide-tab-label="{{parent.category_name}}">
-               <!--  <ion-slide ng-repeat="parent in parent_categary" ion-slide-tab-label="{{parent.category_name}}"  on-tap="listInfotainment(1)" on-swipe-left="listInfotainment({{parent.category_id}}+1)" on-swipe-right="listInfotainment({{parent.category_id}}-1)"> -->
-                 <ion-list style="width:100vw;height:100vh;">
-                 <div style="width:100vw;height:100vh;">
-       <ion-item ng-if="file != ''" style="width:100vw;height:auto;" ng-click="singleInfotainment({{file.media_id}})" ng-repeat="file in result">
+<ion-view cache-view="false" view-title="{{'infotainmentcategary' | translate}}"
+ class="loginScreen">
 
-       <img ng-if="file.file_ext == 'image'" style="width:80px;height:80px;" ng-src='{{url}}/{{file.file_name}}'>
 
-      <video  ng-if="file.file_ext == 'video'" style="width:120px;height:80px;" ng-src="http://192.168.1.113/Files/uploads/media/media_1.mp4" controls="true">
-      </video>
 
-        <div ng-click="singleInfotainment({{file.media_id}})">
-          {{file.file_ext}}
-          <div class="amount">
-            <h2 class="addedAmount">{{file.media_name}}</h2>
-          </div>
-          <div class="amount">
-            <h2 class="addedAmount">{{file.description}}</h2>
-          </div>              
-        </div></ion-item>
-        <a ng-if="file == ''" style="width:100vw;height:auto;" class="item item-button-right" ng-repeat="file in result"><ion-item >There is not item in this category</ion-item> </a> 
-        </div>  
-      </ion-list>
-      </ion-slide>
-            </ion-slide-box>
-        </ion-content>
+        <ion-content id=items_list_page has-header="true" ng-init="fetchInfotainment()" 
+        scroll="true">
+          
 
- <!-- <div class="bar bar-subheader">
-  <div class="tabs-striped tabs-color-assertive" >
-    <div class="tabs">
-  <a class="tab-item"  ng-repeat="parent in parent_categary" ng-click="listInfotainment({{parent.category_id}})" active="{{parent.category_name}}" >  
-        {{parent.category_name}}
+
+        <ion-slide-box slide-tabs-scrollable="false" does-continue="false" show-pager="false" ion-slide-tabs on-slide-changed="listInfotainment($index+1)">
+        
+        <ion-slide disable-scroll="false" ng-repeat="parent in infocatname"
+         ion-slide-tab-label="{{parent.category_name}}">
+        
+        <div class="list listLink filter" style="width: 100vw; height: 100vh;"> 
+          <!--andar waala content yahaa h-->
+
+
+        <a class="item item-button-right item-text-wrap item-thumbnail-left" ng-repeat="file in infodata | Infotainmentfilter:slider.slidermodel track by $index">
+      {{slider.slidermodel}}
+    
+        <img ng-if="file.file_ext == 'image'" ng-src="{{file.img_url}}" ng-click="">{{file.description}}
+        </img>
+              
+        <!--
+        <div ng-if="file.file_ext=='image'||file.file_ext=='video'" ng-click="openSelectedItem(menuSubItem)">
+        
+        </div>
+       -->
+
+        
       </a>
-    </div>
-  </div>
-</div> -->
+
+
+
+
+        </div>
+        </ion-slide>
+
+
+      </ion-slide-box>
+      </ion-content>
+
+
+
+
 </ion-view>

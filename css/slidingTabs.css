@@ -1,5 +1,5 @@
 ion-slide {
-    background-color: #f0f0f0;
+    
 }
 
 ion-slide:nth-child(2n) {
@@ -74,10 +74,3 @@ ion-slide:nth-child(2n) {
     position: relative;
 }
 
-@-webkit-keyframes ripple {
-    100% {
-        opacity: 1;
-        transform: scale(2.5);
-		-webkit-transform:scale(2.5);
-    }
-}
