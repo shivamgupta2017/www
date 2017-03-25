@@ -1,8 +1,10 @@
 <ion-modal-view cache-view="false" id="search_modal_page">
   <ion-header-bar class="bar-positive" align-title="center">
     <div class="buttons">
+
       <button class="button back-button buttons button-clear header-item" ng-click="close_addons_model()"><i class="icon ion-android-arrow-back"></i></button>
     </div>
+
     <h1 class="title">{{'itemAddons' | translate}}</h1>
     <div class="buttons" ng-disabled="itemAddons.length!=0">
       <button class="button button-clear button-icon ion ion-android-done" ng-click="done_addons_model()"></button>
@@ -31,6 +33,9 @@
             <img ng-src="{{item.imageUrl}}">
             <label class="item item-checkbox checkbox">
                 <input class="" id="{{item.addon_id}}" type="checkbox" ng-model="addonCheck" name='interests' ng-checked="item.interests" value="{{item.addon_id}}" ng-click="selectAddon(item,addonCheck, $index);item.interests=addonCheck;">
+                {{item.addon_id}}
+
+
             </label>
           <div class="row">
             <div class="col col-33">
@@ -38,12 +43,25 @@
               <p><i class="icon">{{siteSettings.currency_symbol}}</i> {{item.price}}</p>
             </div>
             <div class="col">
+
               <div class="addon-item modal-addon" ng-if="item.interests">
-                <button class="button button-circle button-outline button-small button-stable" ng-click="item.quantity = subtractQuantity(item.quantity);item.finalCost=changeAddonQuantity(item, item.quantity,item.price);calculateAddonTotal(item.price,item.quantity,'subtract');">
+                
+                <button class="button button-circle button-outline button-small button-stable"
+                 ng-click="item.quantity =  subtractQuantity(item.quantity);
+                 item.finalCost=changeAddonQuantity(item, item.quantity,item.price);
+                 calculateAddonTotal(item.price,item.quantity,'subtract');">
+                
                   <i class="icon ion-minus-round"></i> </button>
-                <span class="addon-item-quintity">{{item.quantity}}</span>
+                
+            <!--itemaddons :-->    
+             
+                
+                <span class="addon-item-quantity">{{item.quantity}}</span>
+                
                 <button class="button button-circle button-outline button-small button-stable" ng-click="item.quantity = addQuantity(item.quantity);item.finalCost=changeAddonQuantity(item, item.quantity,item.price);calculateAddonTotal(item.price,item.quantity,'add'); "> <i class="icon ion-plus-round"></i> </button>
+                
                 <strong class="total-item-addon">{{siteSettings.currency_symbol}} {{item.finalCost | number:2}}</strong>
+              
               </div>
             </div>
           </div>

@@ -144,6 +144,7 @@ app.factory('Services', function($http, $rootScope, $timeout, $localStorage, $io
         }
     }
 });
+
 app.service('findItemIndex', function($q) {
     this.findItemIndexInCartList = function(Array, property, action) {
             var result = -1;

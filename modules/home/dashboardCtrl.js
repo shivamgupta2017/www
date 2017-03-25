@@ -291,6 +291,9 @@ app.controller('cartListCtrl', function($scope, $location, appConst, globalMetho
 
     }
     $scope.subtractQuantity = function(quantity) {
+        
+
+
         if (parseInt(quantity) > 1) {
             return parseInt(quantity) - 1;
         } else {
@@ -1169,8 +1172,12 @@ app.controller('paymentCtrl', function($scope, $location, stripe, checkCustomer,
         }
     }
 });
-app.controller('selectedItemCtrl', function($scope, $location, appConst, $localStorage, $ionicPopup, $rootScope, $ionicModal, findItemIndex, $translate) {
+app.controller('selectedItemCtrl', function($scope, $location, appConst, $localStorage, $ionicPopup, $rootScope, $ionicModal, findItemIndex, $translate)
+ {
+   
     $scope.addToCart = function(item) {
+        
+
         if (findItemIndex.findItemIndexInCartList($localStorage.cart_list, '', item.item_id) == -1) {
             $localStorage.cart_list.push(item);
             $rootScope.cartCount = $localStorage.cart_list.length;
@@ -1259,6 +1266,8 @@ app.controller('selectedItemCtrl', function($scope, $location, appConst, $localS
         return parseInt(quantity) + 1;
     }
     $scope.subtractQuantity = function(quantity) {
+      
+
         if (parseInt(quantity) > 1) {
             return parseInt(quantity) - 1;
         } else {
@@ -1275,16 +1284,29 @@ app.controller('selectedItemCtrl', function($scope, $location, appConst, $localS
         }
     }
     $scope.changeAddonQuantity = function(item, quantity, unitCost) {
+
+       
         angular.forEach($localStorage.bookedAddons,function(value,key){
+                console.log($localStorage.bookedAddons);
                 if(value.addon_id == item.addon_id){
-                    $rootScope.bookedAddons[key].quantity = quantity;
-                    $rootScope.bookedAddons[key].finalCost = parseInt(quantity) * parseInt(unitCost);
+                    
+                    $localStorage.bookedAddons[key].quantity = parseInt(quantity);
+                   
+
+                    $localStorage.bookedAddons[key].finalCost = parseInt(quantity) * parseInt(unitCost);
+
                 }
         });
+
+        
         return parseInt(quantity) * parseInt(unitCost);
     }
+
+
     $scope.selectAddon = function(item, addonCheck, index) {
-        if (addonCheck) {
+            
+         if (addonCheck) {
+
             findItemIndex.findAddonIndexInCartList($rootScope.bookedAddonsTEMP, '', item.addon_id).then(function(index) {
                 if (index == -1) {
                     $rootScope.bookedAddonsTEMP.push(item);
@@ -1299,14 +1321,16 @@ app.controller('selectedItemCtrl', function($scope, $location, appConst, $localS
 
         }
     }
+
     $scope.open_addons_model = function(item) {
 
 
         $ionicModal.fromTemplateUrl('modules/home/addons.html', {
 
             scope: $scope,
-           // animation: 'slide-in-up',
-            animation: 'fade-in',
+            animation: 'slide-in-up',
+           // animation: 'fade-in',
+
             preserveScope: true
         }).then(function(modal) {
             
@@ -1314,36 +1338,49 @@ app.controller('selectedItemCtrl', function($scope, $location, appConst, $localS
 
             if (item.addons.length > 0) {
                 $rootScope.bookedAddons=[];
-                $scope.itemAddons = [];
-                $rootScope.totalAddons = [];
-                angular.forEach(item.addons, function(value, key) {
 
-                    var setInterest = false;
-                    var quantity = 1;
-                    //alert('hello  i think length is undefined');
-                    //alert('length :'+$localStorage.bookedAddons.length);
+                $scope.itemAddons = [];
+                
+                $rootScope.totalAddons = [];
+                console.log('item.addons.length :'+item.addons.length);
+                console.log('$localStorage.bookedAddons.length :'+$localStorage.bookedAddons.length);
+                console.log('item.addons :'+JSON.stringify(item.addons));
+                console.log('$localStorage.bookedAddons :'+JSON.stringify($localStorage.bookedAddons));
+                angular.forEach(item.addons, function(value, key) 
                     
+                    { //initialization of interest and quantity;
+                    var setInterest = false;
+                    var quantity = 1; 
+
                     if ($localStorage.bookedAddons.length > 0) {
 
                         angular.forEach($localStorage.bookedAddons, function(interestValue, interestKey) {
                             if (value.addon_id == interestValue.addon_id) {
+
                                 setInterest = true;
                                 quantity = interestValue.quantity;
+                                
+
                             }
                         });
+
                     }
+
+//1350
                     var extraData = {
-                        "finalCost": parseInt(value.price) * parseInt(quantity),
-                        "quantity": quantity,
+                        finalCost: parseInt(value.price) * parseInt(quantity),
+                        quantity: quantity,
                         interests: setInterest,
                         imageUrl: appConst.serviceUrl.addon_image_url + value.addon_image
                     };
-
+                    //alert(' extraData :'+JSON.stringify(extraData));
                     angular.extend(value, extraData);
+                    //the actual data which is going to view-------->itemAddons
                     $scope.itemAddons.push(value);
-                });
+                    
+                        
+                                    });
             }
-
             $scope.addons_model.show();
         });
     }
@@ -1353,13 +1390,18 @@ app.controller('selectedItemCtrl', function($scope, $location, appConst, $localS
     $scope.done_addons_model = function(){
     
       $localStorage.bookedAddons= [];
-      
+        
        if($rootScope.bookedAddonsTEMP.length>0){
+
           angular.forEach($rootScope.bookedAddonsTEMP,function(value,key){
+
+                
                 $localStorage.bookedAddons.push(value);
           });
        }
+     
        $scope.addons_model.hide();
+   
     }
     $scope.viewCart = function() {
         $location.path(appConst.path.cart_list);
