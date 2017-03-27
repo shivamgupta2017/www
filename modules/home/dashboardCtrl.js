@@ -1298,7 +1298,7 @@ app.controller('selectedItemCtrl', function($scope, $location, appConst, $localS
                 }
         });
 
-        
+
         return parseInt(quantity) * parseInt(unitCost);
     }
 
@@ -1947,6 +1947,7 @@ app.controller('aboutUsCtrl', function($scope, $location, appConst, uiGmapGoogle
     }); 
 
         app.controller('menuCtrl', function($scope, $ionicModal,$location, appConst, globalMethods, $localStorage, $rootScope, $translate,$ionicHistory,$ionicLoading,Services) 
+            
             {
     $scope.editProfile = {
         first_name: '',
@@ -1972,6 +1973,14 @@ app.controller('aboutUsCtrl', function($scope, $location, appConst, uiGmapGoogle
         $scope.pagesInfo();
         $scope.terms_conditions_modal.show();
     };
+    $scope.callhelpline=function(){
+        var tel='9993330227';
+        
+        window.location.href = 'tel:'+ tel;
+       
+
+
+    }
     
       
     $scope.pagesInfo = function() {

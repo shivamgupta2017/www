@@ -36,6 +36,7 @@
   font-smoothing: antialiased;
     }
 
+.flaticon-phone-call:before { content: "\f120"; }
     .flaticon-001-cogwheel:before { content: "\f100"; }
 .flaticon-002-pencil:before { content: "\f101"; }
 .flaticon-003-padlock:before { content: "\f102"; }
@@ -52,7 +53,7 @@
 .flaticon-014-television:before { content: "\f10d"; }
 .flaticon-015-about-us:before { content: "\f10e"; }
 .flaticon-016-star:before { content: "\f10f"; }
-    
+    $font-Flaticon-phone-call: "\f120";
     $font-Flaticon-001-cogwheel: "\f100";
     $font-Flaticon-002-pencil: "\f101";
     $font-Flaticon-003-padlock: "\f102";
