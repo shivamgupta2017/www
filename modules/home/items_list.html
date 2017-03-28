@@ -37,6 +37,7 @@
 		
 		<a class="item item-button-right item-text-wrap item-thumbnail-left" ng-if="data.clientSide!='Addons'" ng-repeat="menuSubItem in menuSubItems  | orderBy:'item_name' | ItemsFilter:data.clientSide track by $index" >
 		
+		
 				<img ng-src="{{menuSubItem.imageUrlThumb}}" ng-click="openSelectedItem(menuSubItem)">
 				<div ng-click="openSelectedItem(menuSubItem)">{{menuSubItem.item_name}}
 					<div class="amount">

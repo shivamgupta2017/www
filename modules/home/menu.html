@@ -18,26 +18,35 @@
       </a> </ion-header-bar>
     <ion-content>
       <ion-list>
-        <ion-item menu-close ui-sref="app.dashboard" class="item-icon-left"><i class="icon flaticon-interface"></i> {{'menu' | translate}} </ion-item>
-        <ion-item menu-close href="#/app/offers"  class="item-icon-left"><i class="icon flaticon-signs"></i> {{'offers' | translate}} </ion-item>
-        <ion-item menu-close href="#/app/orders_history" class="item-icon-left"><i class="icon flaticon-history"></i> {{'orderHistory' | translate}} </ion-item>
+        <ion-item menu-close ui-sref="app.dashboard" class="item-icon-left"><i class="icon ion-android-restaurant"></i> {{'menu' | translate}} </ion-item>
+        <ion-item menu-close href="#/app/offers"  class="item-icon-left"><i class="icon ion-android-document"></i> {{'offers' | translate}} </ion-item>
+        <ion-item menu-close href="#/app/orders_history" class="item-icon-left"><i class="icon ion-android-time"></i> {{'orderHistory' | translate}} </ion-item>
         
-        <ion-item menu-close href="#/app/cart_list" ng-click="setCartListBack_button()" class="item-icon-left"><i class="icon flaticon-shop"></i> {{'cartList' | translate}} </ion-item>
+        <ion-item menu-close href="#/app/cart_list" ng-click="setCartListBack_button()" class="item-icon-left"><i class="icon ion-ios-cart"></i> {{'cartList' | translate}} </ion-item>
         
         <ion-item menu-close href="#/app/infotainmentcategary" class="item-icon-left"><i class="icon flaticon-television"></i> {{'infotainment' | translate}} </ion-item>
        
-      <ion-item menu-close href="" ng-click="callhelpline()" class="item-icon-left"><i class="icon flaticon-phone-call"></i> {{'Call Helpline' | translate}} </ion-item>
+        <ion-item menu-close href="" ng-click="callhelpline()" class="item-icon-left"><i class="icon ion-ios-telephone"></i> {{'Call Helpline' | translate}} </ion-item>
        
        <!--  <ion-item menu-close href="#/app/ratings" class="item-icon-left"><i class="icon flaticon-star-1"></i> {{'ratings' | translate}} </ion-item> -->
-        <ion-item href="" ng-click="shareToFriends()" class="item-icon-left"><i class="icon flaticon-add-friend"></i> {{'shareToFriends' | translate}} </ion-item>
-        <ion-item menu-close href="#/app/raiseconcern" class="item-icon-left"><i class="icon flaticon-edit"></i> {{'raise concern' | translate}} </ion-item>
+      
+      <!--  <ion-item href="" ng-click="shareToFriends()" class="item-icon-left"><i class="icon ion-android-share-alt"></i> {{'shareToFriends' | translate}} </ion-item>
+      -->
+        
+        <ion-item menu-close href="#/app/raiseconcern" class="item-icon-left"><i class="icon ion-paper-airplane"></i> {{'raise concern' | translate}} </ion-item>
         <ion-item menu-close href="#/app/about_us" class="item-icon-left"><i class="icon flaticon-about-us"></i> {{'aboutUs' | translate}} </ion-item>
+        
         <!-- <ion-item menu-close href="#/app/reviews" class="item-icon-left"><i class="icon flaticon-heart"></i> {{'reviews' | translate}} </ion-item> -->
-        <ion-item href="" ng-click="openPlaystore()" class="item-icon-left"><i class="icon flaticon-star"></i> {{'rateUsOnThePlaystore' | translate}} </ion-item>
-         <ion-item menu-close href="" ng-click="openTermsConditions()" class="item-icon-left"><i class="icon flaticon-terms"></i> {{'Terms and Conditions' | translate}} </ion-item>
-        <ion-item menu-close href="#/app/changePassword"  ng-click="changePasswordPage()" ng-if="checkUserLogin()" class="item-icon-left"><i class="icon flaticon-padlock"></i> {{'changePassword' | translate}} </ion-item>
-        <ion-item menu-close href=""  ng-click="settings()" class="item-icon-left"><i class="icon flaticon-language"></i>{{'changeLanguage' | translate}}</ion-item>
-        <ion-item menu-close href="#/app/login" ng-click="logout()" ng-show="checkUserLogin()" class="item-icon-left"><i class="icon flaticon-login"></i> {{'signOut' | translate}} </ion-item>
+        <!--
+        <ion-item href="" ng-click="openPlaystore()" class="item-icon-left"><i class="icon ion-android-playstore"></i> {{'rateUsOnThePlaystore' | translate}} </ion-item>
+        -->
+         <ion-item menu-close href="" ng-click="openTermsConditions()" class="item-icon-left"><i class="icon ion-android-clipboard"></i> {{'Terms and Conditions' | translate}} </ion-item>
+        
+        <ion-item menu-close href="#/app/changePassword"  ng-click="changePasswordPage()" ng-if="checkUserLogin()" class="item-icon-left"><i class="icon ion-android-settings"></i> {{'changePassword' | translate}} </ion-item>
+
+        <!--<ion-item menu-close href=""  ng-click="settings()" class="item-icon-left"><i class="icon ion-android-settings"></i>{{'changeLanguage' | translate}}</ion-item>-->
+        
+        <ion-item menu-close href="#/app/login" ng-click="logout()" ng-show="checkUserLogin()" class="item-icon-left"><i class="icon ion-log-out"></i> {{'signOut' | translate}} </ion-item>
         <!-- <ion-item menu-close href="#/app/login" ng-click="setLogin()" ng-if="!checkUserLogin()" class="item-icon-left"><i class="icon flaticon-login"></i> {{'login' | translate}} </ion-item > -->
         <ion-item menu-close href="#/app/login" ui-sref="registration" ng-if="!checkUserLogin()" class="item-icon-left"><i class="icon flaticon-login"></i> {{'login' | translate}} </ion-item>
       </ion-list>

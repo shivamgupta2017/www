@@ -1,5 +1,6 @@
 "use strict";
 var app = angular.module('starter', ['ionic','ionic.rating', 'ngStorage', 'ngAnimate', 'declarations', 'socialLogins', 'ngCordovaOauth', 'uiGmapgoogle-maps', 'pascalprecht.translate','angularRandomString','ngCordova'], function($httpProvider) {
+     
     var param = function(obj) {
         var query = '',
             name, value, fullSubName, subName, subValue, innerObj, i;
@@ -30,8 +31,11 @@ var app = angular.module('starter', ['ionic','ionic.rating', 'ngStorage', 'ngAni
         return angular.isObject(data) && String(data) !== '[object File]' ? param(data) : data;
     }];
 });
-app.run(function($ionicPlatform, $rootScope, $translate,$cordovaPush) {
+app.run(function($ionicPlatform, $rootScope, $cordovaNetwork,$translate,$cordovaPush) {
+ 
     $ionicPlatform.ready(function() {
+        
+
         if (window.cordova && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
             cordova.plugins.Keyboard.disableScroll(true);
@@ -47,8 +51,40 @@ app.run(function($ionicPlatform, $rootScope, $translate,$cordovaPush) {
             $translate.use(localStorage.getItem('defaultLanguage'));
         }
 
-       document.addEventListener('deviceready', function () {
-           window.plugins.OneSignal
+          console.log("having problems :");
+
+       document.addEventListener("deviceready", onDeviceReady(),false);
+
+function onDeviceReady(){
+
+console.log("oh yes abhi...!");          
+
+
+var networkState = navigator.connection.type;
+ var states = {};
+    states[Connection.UNKNOWN]  = 'Unknown connection';
+   states[Connection.ETHERNET] = 'Ethernet connection';
+   states[Connection.WIFI]     = 'WiFi connection';
+   states[Connection.CELL_2G]  = 'Cell 2G connection';
+   states[Connection.CELL_3G]  = 'Cell 3G connection';
+   states[Connection.CELL_4G]  = 'Cell 4G connection';
+   states[Connection.CELL]     = 'Cell generic connection';
+   states[Connection.NONE]     = 'No network connection';
+
+   //alert('Connection type: ' + states[networkState]);
+
+if((networkState==Connection.NONE)||(networkState==Connection.UNKNOWN))
+{
+window.plugins.toast.show($translate.instant("makesureyouhaveinternetconnection"), 'short', 'bottom');
+}
+
+
+}
+
+
+
+
+window.plugins.OneSignal
                .startInit("da39217b-0184-4b26-8ef2-e5704cda9eb1", "707332932771")         // if IOS, Google_App_ID  not required
                .handleNotificationReceived(function(data) {})
                .inFocusDisplaying(window.plugins.OneSignal.OSInFocusDisplayOption.Notification)
@@ -58,7 +94,9 @@ app.run(function($ionicPlatform, $rootScope, $translate,$cordovaPush) {
            window.plugins.OneSignal.getIds(function(ids) {
                localStorage.setItem("registrationId",ids.userId);
            });
-       }, false);
+
+
+
     });
 });
 
@@ -67,6 +105,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, ap
     $ionicConfigProvider.views.transition('android');
     $ionicConfigProvider.tabs.position('top');
     $translateProvider.translations('en', {
+        "makesureyouhaveinternetconnection": "Make Sure You Have Internet Connection !",
          "changePassword": "Change Password",
            "menu": "Menu",
            "login": "Login",
@@ -213,6 +252,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, ap
            "deleted": "Deleted",
            "selectMinimumOneItemThenOnlyAddonsWillApply": "Select Minimum One Item Then Only Addons Will Apply",
            "items": "Items",
+
            "addAddress": "Add Address",
            "editAddress": "Edit Address",
            "crunchyRestaurantNotAvailableOnSelectedTime": "Crunchy Restaurant Not Available On Selected Time",
@@ -499,6 +539,22 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, ap
                 }
             }
         })
+    
+         .state('app.singleInfotainment', 
+          {url: '/singleInfotainment',views: {
+                'menuContent': {
+                    templateUrl: 'modules/home/singleInfotainment.html',
+                    controller: 'singleInfotainmentctrl'
+                }
+            }
+        })
+
+
+
+
+
+
+
         .state(appConst.state.home_delivery, {
             url: appConst.url.home_delivery,
             views: {
@@ -571,15 +627,25 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, ap
                 }
             }
         })
-        .state('app.review', {
-    url: '/review/:id/:user',
+        
+      
+
+.state('app.infotainmentcategary', {
+    url: '/infotainmentcategary',
     views: {
       'menuContent': {
-        templateUrl: 'modules/home/review.html',
-        controller: 'review'
+        templateUrl: 'modules/home/infotainmentcategary.html',
+        controller: 'infotainmentcategaryctrl'
       }
     }
   })
+
+
+
+
+
+
+
       .state('app.infotainment', {
     url: '/infotainment/',
     views: {
@@ -589,23 +655,8 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, ap
       }
     }
   })
-      .state('app.infotainmentcategary', {
-    url: '/infotainmentcategary',
-    views: {
-      'menuContent': {
-        templateUrl: 'modules/home/infotainmentcategary.html',
-        controller: 'infotainmentcategary'
-      }
-    }
-  })
-      .state('app.singleInfotainment', {
-    url: '/singleInfotainment/:mediaId',
-    views: {
-      'menuContent': {
-        templateUrl: 'modules/home/singleInfotainment.html',
-        controller: 'singleInfotainment'
-      }
-    }
-  });
+      
+
+
     $urlRouterProvider.otherwise('/app/dashboard');
 });

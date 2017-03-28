@@ -18,13 +18,15 @@ app.factory('Services', function($http, $rootScope, $timeout, $localStorage, $io
                     timeout: 2000000,
                     async: true,
                     success: function(response) {
-                        console.log("response  :  "+JSON.stringify(response));
+                        console.log("response \n:"+JSON.stringify(response));
                        // alert("response    "+JSON.stringify(response));
                         deferred.resolve();
                     },
                     error: function(xhr, ajaxOptions, thrownError) {
                         $ionicLoading.hide();
+                       // alert("status   :"+xhr.status);
                         if (xhr.status == 0) {
+
                             window.plugins.toast.showShortBottom($translate.instant("timedOutError"));
                         } else if (xhr.status == 404) {
                             window.plugins.toast.showShortBottom($translate.instant("timedOutError"));

@@ -2,8 +2,15 @@
  class="loginScreen">
 
 
+<ion-nav-buttons side="right">
+  
 
-        <ion-content id=items_list_page has-header="true" ng-init="fetchInfotainment()" 
+  <button  ng-controller="infotainmentcategaryctrl" id="cart_list_icon1" ng-click="viewCart()" class="button-icon button button-clear flaticon-shop"><i class="badge badge-light header-badge"><span ng-if="cartCount!=0">{{cartCount}}</span></i></button>
+</ion-nav-buttons>
+
+
+
+        <ion-content  has-header="true" ng-init="fetchInfotainment()" 
         scroll="true">
           
 
@@ -18,22 +25,27 @@
 
 
         <a class="item item-button-right item-text-wrap item-thumbnail-left" ng-repeat="file in infodata | Infotainmentfilter:slider.slidermodel track by $index">
-      {{slider.slidermodel}}
+        
+         
     
-        <img ng-if="file.file_ext == 'image'" ng-src="{{file.img_url}}" ng-click="">{{file.description}}
-        </img>
-              
+    
+        <img ng-if="file.file_ext == 'image'" ng-src="{{file.img_url}}" ng-click="selectedInfotainment(file)">
+        
+       <img ng-if="file.file_ext=='video'" ng-src="{{file.img_thumbnail}}" ng-click="selectedInfotainment(file)">
+         
+
+       </iframe> 
+
+
+      {{file.description}}
+            
         <!--
         <div ng-if="file.file_ext=='image'||file.file_ext=='video'" ng-click="openSelectedItem(menuSubItem)">
         
         </div>
        -->
-
-        
-      </a>
-
-
-
+       
+        </a>
 
         </div>
         </ion-slide>

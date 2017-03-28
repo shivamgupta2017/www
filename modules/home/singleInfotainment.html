@@ -1,18 +1,55 @@
+<ion-view id="selectedInfotainment" cache-view="false" view-title="{{'infotainmentcategary'| translate}}" class="">
 
-<ion-view cache-view="false" view-title="{{'infotainmentcategary'| translate}}" class="loginScreen">
+<ion-nav-buttons side="left">
+
+  <button ui-sref="app.infotainmentcategary" class="button back-button buttons button-clear header-item"><i class="icon ion-android-arrow-back"></i></button>
+</ion-nav-buttons>
+
+<ion-nav-buttons side="right">
+    <button  ng-controller="itemsListCtrl" id="cart_list_icon1" ng-click="viewCart()" class="button-icon button button-clear flaticon-shop"><i class="badge badge-light header-badge"><span ng-if="cartCount!=0">{{cartCount}}</span></i></button>
+
+</ion-nav-buttons>
+
+
  <ion-content>
-  <ion-list>
-  <ion-item style="margin-top:100px">
-<img ng-if="result.file_ext == 'image'" style="width:80px;height:80px;" ng-src="{{url}}/{{result.file_name}}">
-      <video ng-if="result.file_ext == 'video'" style="width:120px;height:80px;" ng-src="{{url}}/{{result.file_name}}" class="centerme" controls="controls"></video>
-   </ion-item>
-   <ion-item >
-   <p>Media Name</p>{{result.media_name}}{{file_name}}
-   </ion-item><br>
-   <ion-item >
-   <p>Media Description</p>{{result.description}}
-   </ion-item>
-     
-</ion-list>
+  <div class="padding">
+
+<img ng-if="selected_infotainment.file_ext == 'image'" ng-src="{{selected_infotainment.img_url}}"  class="full-image" alt="image...">
+  
+  <video ng-if="selected_infotainment.file_ext == 'video'" width="400" controls poster="{{selected_infotainment.img_thumbnail}}">
+  <source src="{{selected_infotainment.img_url | trusted}}" type="video/mp4">
+  </video>
+
+  <div class="list profileDetails">
+
+<span>
+  
+{{selected_infotainment.media_name}}
+
+</span>
+
+<div class="item item-icon-left"> <i class="icon mdi mdi-map"></i> <strong>{{'description' | translate}}</strong> </div>
+
+        <div class="item item-text-wrap address">
+          <p>
+            {{selected_infotainment.description}}
+          </p>
+       </div>
+
+
+</div>
+
+
+
+  </div>
+<!--
+      <img ng-if="selected_infotainment.file_ext == 'image'" style="width:80px;height:80px;" ng-src="{{url}}/{{result.file_name}}">
+      
+      <video ng-if="selected_infotainment.file_ext == 'video'" style="width:120px;height:80px;" ng-src="{{url}}/{{result.file_name}}" class="centerme" controls="controls"></video>
+   -->
+
+
+
+
   </ion-content>
 </ion-view>

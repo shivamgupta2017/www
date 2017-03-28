@@ -1,6 +1,11 @@
 "use strict";
-app.controller('dashboardCtrl', function($scope, $location, $ionicSlideBoxDelegate,$ionicTabsDelegate, $cordovaPush, appConst, $ionicPopup, globalMethods, $translate, $ionicLoading, 
+app.controller('dashboardCtrl', function($scope,$cordovaNetwork,$location, $ionicSlideBoxDelegate,$ionicTabsDelegate, $cordovaPush, appConst, $ionicPopup, globalMethods, $translate, $ionicLoading, 
 Services, $localStorage, $rootScope, $ionicHistory) {
+
+
+
+
+
 
 
 
@@ -760,18 +765,24 @@ app.controller('itemsListCtrl', function($state,$scope, $location,appConst, $ion
 
 
     $scope.openSelectedItem = function(item) {
+        
         $location.path(appConst.path.selected_item);
         angular.element(document).ready(function() {
             var selectedItemScope = angular.element(document.getElementById('selected_item_page')).scope();
+            
             selectedItemScope.selected_item = item;
+          
+             
+
         });
     };
     $scope.addToCart = function(item) {
-        
+       
         if (findItemIndex.findItemIndexInCartList($localStorage.cart_list, '', item.item_id) == -1) {
             $localStorage.cart_list.push(item);
             $rootScope.cartCount = $localStorage.cart_list.length;
             $scope.handleCartListIcon('cart_list_icon2');
+            
             window.plugins.toast.show($translate.instant("itemAddedToCart"), 'short', 'bottom');
         } else {
             window.plugins.toast.show($translate.instant("alreadyAddedToCart"), 'short', 'bottom');
@@ -1172,17 +1183,23 @@ app.controller('paymentCtrl', function($scope, $location, stripe, checkCustomer,
         }
     }
 });
+
+
 app.controller('selectedItemCtrl', function($scope, $location, appConst, $localStorage, $ionicPopup, $rootScope, $ionicModal, findItemIndex, $translate)
  {
    
     $scope.addToCart = function(item) {
-        
+
 
         if (findItemIndex.findItemIndexInCartList($localStorage.cart_list, '', item.item_id) == -1) {
             $localStorage.cart_list.push(item);
+
             $rootScope.cartCount = $localStorage.cart_list.length;
+           
             $scope.handleCartListIcon('cart_list_icon2');
+            
             window.plugins.toast.show($translate.instant("itemAddedToCart"), 'short', 'bottom');
+
         } else {
             window.plugins.toast.show($translate.instant("alreadyAddedToCart"), 'short', 'bottom');
         }
@@ -1409,7 +1426,10 @@ app.controller('selectedItemCtrl', function($scope, $location, appConst, $localS
     }
     
     $scope.handleCartListIcon = function(id) {
+
+            
         if ($localStorage.cart_list.length > 0) {
+               
             $('#' + id).show();
         } else {
             $('#' + id).hide();
@@ -1509,6 +1529,9 @@ app.controller('selectedItemCtrl', function($scope, $location, appConst, $localS
 //         return globalMethods.checkUserLogin();
 //     }
 // });
+
+
+
 
 app.controller('profileCtrl', function($scope, $location, appConst, globalMethods, $ionicLoading, Services, $localStorage, $rootScope, $ionicModal, $translate) {
     $scope.editProfile = {
@@ -1816,12 +1839,22 @@ app.controller('aboutUsCtrl', function($scope, $location, appConst, uiGmapGoogle
 
 
             
-    app.controller('infotainmentcategary', function($ionicLoading,$ionicSlideBoxDelegate,$localStorage,$scope,Services,appConst,$rootScope,$state,$stateParams){ 
+    app.controller('infotainmentcategaryctrl', function($location,$ionicLoading,$ionicSlideBoxDelegate,$localStorage,$scope,Services,appConst,$rootScope,$state,$stateParams){ 
      
+      $scope.selected_infotainment;
+
+
+ $scope.viewCart = function() {
+        $location.path(appConst.path.cart_list);
+        $rootScope.cartListBack_button = true;
+    }
+
+
       $scope.fetchInfotainment = function() { 
 
         $scope.infocatname=[];
         $scope.infodata=[];
+        
 
         $ionicLoading.show();
         Services.webServiceCallPost('','fetch_categary').then(function(response)
@@ -1854,14 +1887,12 @@ app.controller('aboutUsCtrl', function($scope, $location, appConst, uiGmapGoogle
             //alert('response :'+JSON.stringify(response['media']));
 
             if(response['media'].length>0){
-
                 angular.forEach(response['media'],function(value,key){
-
-
                         var extraData = {
                             media_id: value.media_id,
                             file_name: value.file_name,
                             media_name: value.media_name,
+                            img_thumbnail: appConst.serviceUrl.infotainment_url+value.img_thumbnail,
                             category: value.category,
                             description: value.description,
                             img_url: appConst.serviceUrl.infotainment_url+value.file_name,
@@ -1869,17 +1900,12 @@ app.controller('aboutUsCtrl', function($scope, $location, appConst, uiGmapGoogle
                                    };
 
                             $scope.infodata.push(extraData);
-                            //alert('values :'+JSON.stringify($scope.infodata)); 
-                            
-                            
+                            alert('values :'+JSON.stringify($scope.infodata));             
                               
                 });
 
             }
 
-
-           // alert(JSON.stringify($scope.infotainmentdata.length)) ;
-           // alert(JSON.stringify($scope.infotainmentdata));
             });
 
               
@@ -1890,31 +1916,24 @@ app.controller('aboutUsCtrl', function($scope, $location, appConst, uiGmapGoogle
        
 
         }
-
+//fetch ending point
         $scope.listInfotainment = function($index)
-
-       {
-      
-
+ {
       	$scope.slider.slidermodel=$index;
-      	
-
-      		//alert('GHANTA :'+$scope.slider.slidermodel);
-            
-
-            
-            /*Services.webServiceCallPost(id,'fetch_media').then(function(response) {
-                 $scope.result = response['media'];
-                 
-                 $scope.url = appConst.serviceUrl.infotainment_url;  
-                 $state.go($state.current,$scope.result,'');     
-        });*/
 
        }
 
-         $scope.singleInfotainment = function(mId)
-       {            $state.go('app.infotainment',{mediaId:mId});
+         $scope.selectedInfotainment = function(infodata)
+       {
+        console.log('infodata :'+JSON.stringify(infodata));
+        //alert(JSON.stringify(infodata));
 
+        $location.path('/app/singleInfotainment');
+        angular.element(document).ready(function() {
+            var selectedInfotainmentScope = angular.element(document.getElementById('selectedInfotainment')).scope();
+        
+            selectedInfotainmentScope.selected_infotainment = infodata;
+        });
        }
         
 });
@@ -1934,8 +1953,13 @@ app.controller('aboutUsCtrl', function($scope, $location, appConst, uiGmapGoogle
        
     }); 
     
-    app.controller('singleInfotainment', function($scope,Services,appConst,$rootScope,$stateParams){
-        var id = {media_id:$stateParams.mediaId};
+    app.controller('singleInfotainmentctrl', function($scope,Services,appConst,$rootScope,$stateParams){
+        //var id = {media_id:$stateParams.mediaId};
+
+        
+        
+
+/*
         $scope.result={};
         $scope.url = appConst.serviceUrl.infotainment_url;
          Services.webServiceCallPost(id,'fetch_media_by_id').then(function(response) {
@@ -1943,8 +1967,13 @@ app.controller('aboutUsCtrl', function($scope, $location, appConst, uiGmapGoogle
            var file_name = result['file_name'];
            $scope.file_name = file_name.split('.');
           //  alert(JSON.stringify($scope.result));
+
         });
+*/
     }); 
+
+
+
 
         app.controller('menuCtrl', function($scope, $ionicModal,$location, appConst, globalMethods, $localStorage, $rootScope, $translate,$ionicHistory,$ionicLoading,Services) 
             

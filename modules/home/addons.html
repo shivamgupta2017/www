@@ -7,6 +7,7 @@
 
     <h1 class="title">{{'itemAddons' | translate}}</h1>
     <div class="buttons" ng-disabled="itemAddons.length!=0">
+      
       <button class="button button-clear button-icon ion ion-android-done" ng-click="done_addons_model()"></button>
     </div>
 
@@ -30,10 +31,12 @@
       <div ng-if="itemAddons.length!=0">
       <ion-list class="subSubServiceList">
         <ion-item ng-repeat="item in itemAddons track by $index" class="item-thumbnail-right item-checkbox-left item-checkbox-custom item-text-wrap">
+            
             <img ng-src="{{item.imageUrl}}">
+
             <label class="item item-checkbox checkbox">
                 <input class="" id="{{item.addon_id}}" type="checkbox" ng-model="addonCheck" name='interests' ng-checked="item.interests" value="{{item.addon_id}}" ng-click="selectAddon(item,addonCheck, $index);item.interests=addonCheck;">
-                {{item.addon_id}}
+                
 
 
             </label>

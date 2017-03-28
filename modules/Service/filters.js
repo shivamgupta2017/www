@@ -1,10 +1,6 @@
 "use strict";
 
-app.filter('ItemsFilter', function() {
-
-
-
-    
+app.filter('ItemsFilter', function() {    
     return function(array, val) {
        
         var resultantArray = [];
@@ -67,8 +63,20 @@ app.filter('getLocalities', function() {
     };
 });
 app.filter('trustAsHtml', ['$sce', function($sce) {
+
     return function(val) {
         return $sce.trustAsHtml(val);
+    };
+}]);
+
+app.filter('trusted', ['$sce', function($sce) {
+  
+      return function(url) {
+          
+            alert('h');
+            alert('g:'+url);
+        
+          return $sce.trustAsResourceUrl(url);
     };
 }]);
 app.filter('capitalize', function() {

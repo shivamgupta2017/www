@@ -15,6 +15,7 @@ angular.module('declarations', []).constant('appConst', {
     },
     'page': {
         "menuHtml": "modules/home/menu.html",
+
         "loginHtml": "modules/authentication/login.html",
         "registrationHtml": "modules/authentication/registration.html",
         "forgotPasswordHtml": "modules/authentication/forgotPassword.html",
@@ -36,6 +37,7 @@ angular.module('declarations', []).constant('appConst', {
         "offersHtml": "modules/home/offers.html",
         "offerDetailsHtml": "modules/home/offerDetails.html",
         "home_deliveryHtml": "modules/home/home_delivery.html",
+        "singleInfotainmentHtml": "modules/home/singleInfotainment.html",
         "paymentHtml": "modules/home/payment.html",
         "search_cities_modalHtml": "modules/home/search_cities_modal.html",
         "search_locations_modalHtml": "modules/home/search_locations_modal.html",
@@ -51,6 +53,7 @@ angular.module('declarations', []).constant('appConst', {
         "login": "app.login",
         "registration": "registration",
         "forgetPassword": "forgetPassword",
+        "singleInfotainment": "app.singleInfotainment",
         "resetPassword": "resetPassword",
         "changePassword": "app.changePassword",
         "changeLanguage": "app.changeLanguage",
@@ -60,9 +63,7 @@ angular.module('declarations', []).constant('appConst', {
         "dashboard": "app.dashboard",
         "items_list": "app.items_list",
         "cart_list": "app.cart_list",
-
         "search": "app.search",
-        
         "orders_history": "app.orders_history",
         "ordersHistoryDetails": "app.ordersHistoryDetails",
         "about_us": "app.about_us",
@@ -75,6 +76,7 @@ angular.module('declarations', []).constant('appConst', {
     },
     'url': {
         "app": "/app",
+        "singleInfotainment": "/singleInfotainment",
         "login": "/login",
         "registration": "/registration",
         "forgetPassword": "/forgetPassword",
@@ -111,6 +113,7 @@ angular.module('declarations', []).constant('appConst', {
         "changeLanguage": "/app/changeLanguage",
         "cart_list": "/app/cart_list",
         "search": "/app/search",
+        "singleInfotainment": "/app/singleInfotainment",
         "payment": "/app/payment",
         "payment_status": "/payment_status",
         "offerDetails": "/app/offerDetails",
