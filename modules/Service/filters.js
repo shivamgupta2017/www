@@ -72,10 +72,7 @@ app.filter('trustAsHtml', ['$sce', function($sce) {
 app.filter('trusted', ['$sce', function($sce) {
   
       return function(url) {
-          
-            alert('h');
-            alert('g:'+url);
-        
+                  
           return $sce.trustAsResourceUrl(url);
     };
 }]);

@@ -388,6 +388,14 @@ app.controller('changeLanguageCtrl', function($scope, $translate) {
 
     }
 });
+app.controller('wheelCtrl', function($ionicLoading,$ionicSlideBoxDelegate,$localStorage,$scope,Services,appConst,$rootScope,$state,$stateParams){ 
+
+           
+
+
+
+
+  });
 app.controller('homeDeliveryCtrl', function($scope, $location, appConst, globalMethods, $ionicPopup, $ionicLoading, Services, $localStorage, $rootScope, $ionicModal, $filter, $translate) {
     $scope.booking = {};
     $scope.address = {};
@@ -1900,7 +1908,7 @@ app.controller('aboutUsCtrl', function($scope, $location, appConst, uiGmapGoogle
                                    };
 
                             $scope.infodata.push(extraData);
-                            alert('values :'+JSON.stringify($scope.infodata));             
+                                       
                               
                 });
 

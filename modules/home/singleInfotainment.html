@@ -4,19 +4,19 @@
 
   <button ui-sref="app.infotainmentcategary" class="button back-button buttons button-clear header-item"><i class="icon ion-android-arrow-back"></i></button>
 </ion-nav-buttons>
-
+<!--
 <ion-nav-buttons side="right">
     <button  ng-controller="itemsListCtrl" id="cart_list_icon1" ng-click="viewCart()" class="button-icon button button-clear flaticon-shop"><i class="badge badge-light header-badge"><span ng-if="cartCount!=0">{{cartCount}}</span></i></button>
 
 </ion-nav-buttons>
+-->
 
-
- <ion-content>
+ <ion-content padding="true" overflow-scroll="true">
   <div class="padding">
 
 <img ng-if="selected_infotainment.file_ext == 'image'" ng-src="{{selected_infotainment.img_url}}"  class="full-image" alt="image...">
   
-  <video ng-if="selected_infotainment.file_ext == 'video'" width="400" controls poster="{{selected_infotainment.img_thumbnail}}">
+  <video ng-if="selected_infotainment.file_ext == 'video'" height="100%" width="100%" controls="controls" preload="metadata" webkit-playsinline="webkit-playsinline" class="videoPlayer" poster="{{selected_infotainment.img_thumbnail}}" loop="loop" autoplay="autoplay">
   <source src="{{selected_infotainment.img_url | trusted}}" type="video/mp4">
   </video>
 

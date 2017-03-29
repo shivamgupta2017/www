@@ -17,7 +17,8 @@
         <div ng-if="cartListItems.length>0">
     <div class="list checkoutItems" ng-repeat="item in cartListItems track by $index">
       <div class="item"><button class="button button-icon button-clear ion ion-android-close  button-assertive"  style="right: 0;float: right; " ng-if="!editOrderVal" ng-click="remove_item_from_cart(item)"></button>
-        <h2>{{item.item_name}}</h2>
+    <!--    <h2 >{{item.item_name}}</h2>-->
+	<div class="dark" style="font-size:20px">{{item.item_name}}</div>
         <div class="row customRow">
           <div class="col col-center  first-col">{{'cost' | translate}}</div>
           <div class="col  col-center">
@@ -77,7 +78,7 @@
     <div class="list amountChecklist">
           <div class="item item-divider"> {{'totalCost' | translate}}({{siteSettings.site_currency}}) <span class="item-note"> {{cost.totalCost | number:2}} </span> </div>
     </div>
-    <button class="button-block button button-assertive" ng-disabled="!editOrderVal" ng-style="disableTagButton"
+    <button class="button-block button button-dark" ng-disabled="!editOrderVal" ng-style="disableTagButton"
             ng-click="saveAndContinue()">{{'order' | translate}}</button>
     </div>
 

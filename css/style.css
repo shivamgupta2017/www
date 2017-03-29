@@ -5,3 +5,216 @@
 .ionic_ratings .read_only {
   pointer-events:none;
 }
+
+/*wrapper*/
+.ball_wrap {
+    position: relative;
+    margin: 0 auto;
+    margin-top:170px;
+    width: 200px;
+    height: 200px;
+
+// transform: rotateX(45deg);
+// -webkit-animation: spin 2s linear;
+
+}
+@-webkit-keyframes spin {
+   // 0%  {transform: rotateX(0deg)}
+   // 100% {transform: rotateX(45deg)}   
+}
+
+/*----------------------------------------------balls---------------------------------------------------------------*/
+.green_ball {
+    background: #444444;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    border: 10px solid #ccc;
+    position: absolute;
+-webkit-box-shadow: -1px 3px 30px 2px rgba(0,0,0,1);
+-moz-box-shadow: -1px 3px 30px 2px rgba(0,0,0,1);
+box-shadow: inset -1px 3px 30px 2px rgba(0,0,0,1);
+   // animation-name: example;
+    //animation-duration: 4s;
+}
+@-webkit-keyframes example {
+    0%   {background-color: red;}
+    25%  {background-color: yellow;}
+    50%  {background-color: blue;}
+    100% {background-color: green;}
+}
+
+/* Standard syntax */
+@keyframes example {
+    0%   {background-color: red;}
+    25%  {background-color: yellow;}
+    50%  {background-color: blue;}
+    100% {background-color: green;}
+
+}
+
+.blue_ball {
+    background: #444444;
+    height: 200px;
+    width: 200px;
+    margin:0 auto;
+ z-index: 13; position:relative;
+    border-radius: 50%;
+    
+    border: 10px solid #ccc;
+box-shadow: inset -1px 3px 30px 2px rgba(0,0,0,1);
+
+}
+/*-------------------------------------------balls--------------------------------------------*/
+
+
+
+/*------------------ball 1-------------------------------------------------------------------------------------*/
+@keyframes animation1 {
+    from   {top:50px; left:-120px}
+    to{ top: 10px;    left: -185px;}
+}
+.ball_wrap div:nth-of-type(2) {
+    top: 10px;/*50*/ 
+    left: -185px;/*-200px*/
+    animation-name: animation1;
+    animation-duration: 1s;
+animation-timing-function:  cubic-bezier(0.8, 0.7, 1.0, 0.1);
+
+    
+}
+
+.ball_wrap div:nth-of-type(2):after {
+    content: "";
+    display: block;
+    border-bottom: 10px solid #ccc;
+
+
+    position: absolute;
+    width: 50px;
+    right: -55px;
+    top: 50%;
+}
+/*------------------ball 1-------------------------------------------------------------------------------------*/
+
+
+
+/*------------------ball 2-------------------------------------------------------------------------------------*/
+@keyframes animation2 {
+    from   {top:-50px; right:-80px}
+    to{ top: -50px;    right: -165px;}
+}
+
+.ball_wrap div:nth-of-type(3) {
+    top: -50px; /*-50px*/
+    right: -165px;/*-180px*/
+   
+    animation-name: animation2;
+    animation-duration: 1s;
+animation-timing-function:  cubic-bezier(0.8, 0.7, 1.0, 0.1);
+}
+
+.ball_wrap div:nth-of-type(3):after {
+    content: "";
+    display: block;
+    border-bottom: 10px solid #ccc;
+    position: absolute;
+    width: 50px;
+    left: -50px;
+    top: 90px;
+   transform: rotate(160deg);
+}
+/*------------------ball 2-------------------------------------------------------------------------------------*/
+
+
+/*------------------ball 3-------------------------------------------------------------------------------------*/
+
+@keyframes animation3 {
+    from   {right:120; bottom:-110px}
+    to{ right: 120px;    bottom: -145px;}
+}
+.ball_wrap div:nth-of-type(4) {
+    right: 120px;/*120px*/
+    bottom: -145px;/*-200px*/
+    animation-name: animation3;
+    animation-duration: 1s;
+animation-timing-function:  cubic-bezier(0.8, 0.7, 1.0, 0.1);
+}
+
+.ball_wrap div:nth-of-type(4):after {
+    content: "";
+    display: block;
+    border-left: 10px solid #ccc;
+    position: absolute;
+    height: 30px;
+    left: 90px;
+    top: -30px;
+    //-webkit-transform: rotate(18deg);
+    transform: rotate(18deg);
+}
+/*------------------ball 3-------------------------------------------------------------------------------------*/
+
+
+
+
+
+/*------------------ball 4-------------------------------------------------------------------------------------*/
+@keyframes animation4 {
+    from   {right:-100px; bottom:-50px}
+    to{ right: -120px;    bottom: -110px;}
+}
+.ball_wrap div:nth-of-type(5) {
+    right: -120px;/*-150px*/
+    bottom:-110px;/*-110px*/
+
+
+    animation-name: animation4;
+    animation-duration: 1s;
+animation-timing-function:  cubic-bezier(0.8, 0.7, 1.0, 0.1);
+}
+
+.ball_wrap div:nth-of-type(5):after {
+    content: "";
+    display: block;
+    border-left: 10px solid #ccc;
+
+    position: absolute;
+    height: 50px;
+    left: 0px;
+    top: -30px;
+    -webkit-transform: rotate(126deg);
+    transform: rotate(126deg);
+}
+/*------------------ball 4-------------------------------------------------------------------------------------*/
+
+
+
+
+/*------------------ball 5-------------------------------------------------------------------------------------*/
+@keyframes animation5 {
+    from   {right:80px; bottom:180px}
+    to{ right: 80px;    bottom: 210px;}
+}
+.ball_wrap div:nth-of-type(6) {
+    right:80px; /*110px*/
+    bottom: 210px;/*310px*/
+   animation-name: animation5;
+   animation-duration: 1s;
+animation-timing-function:  cubic-bezier(0.8, 0.7, 1.0, 0.1);
+}
+
+.ball_wrap div:nth-of-type(6):after {
+    content: "";
+    display: block;
+    border-left: 10px solid #ccc;
+    position: relative;
+    height: 30px;
+    left: 90px;
+    top: -30px;
+    -webkit-transform: rotate(-18deg);
+    transform: rotate(-18deg);
+}
+/*------------------ball 5-------------------------------------------------------------------------------------*/
+
+
+

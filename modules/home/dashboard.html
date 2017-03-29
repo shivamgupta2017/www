@@ -6,12 +6,12 @@
   
   <ion-nav-buttons  side="right" >
    
-    <div class="buttons"><button class="button button-icon ion-android-search" ng-click="opensearch()"></button></div> 
-
-    <div class="buttons"><button class="button button-icon ion-android-notifications" ng-click=""><i class="badge badge-light header-badge"></i></button></div> 
+    <div class="buttons"><button class="button button-icon ion-android-search" ng-click="opensearch()"></button></div>
 
 
-       <button  ng-controller="itemsListCtrl" id="cart_list_icon1" ng-click="viewCart()" class="button-icon button button-clear flaticon-shop"><i class="badge badge-light header-badge"><span ng-if="cartCount!=0">{{cartCount}}</span></i></button>
+    <div class="buttons"><button class="button button-icon ion-android-notifications" ng-click=""><i class="badge badge-light header-badge"></i></button></div>  
+
+      <button  ng-controller="itemsListCtrl" id="cart_list_icon1" ng-click="viewCart()" class="button-icon button button-clear flaticon-shop"><i class="badge badge-light header-badge"><span ng-if="cartCount!=0">{{cartCount}}</span></i></button>
   </ion-nav-buttons>
 
 
@@ -19,8 +19,8 @@
 <button ng-if="checkval!=true" ng-init ="donotshowPrompt()"></button>
     
 
-  <ion-content  ng-init="getCategories()">
-    <ion-slide-box class="dashboard-slide" on-slide-changed="slideHasChanged($index)" does-continue="true" auto-play="true" slide-interval="6000">
+  <ion-content  ng-init="getCategories()" style="background-image:url('img/background.jpg')">
+<!--    <ion-slide-box class="dashboard-slide" on-slide-changed="slideHasChanged($index)" does-continue="true" auto-play="true" slide-interval="6000">
       <ion-slide>
         <div class="image-container"><img ng-src="img/images/slide1.jpg" alt=""></div>
       </ion-slide>
@@ -31,15 +31,20 @@
         <div class="image-container"><img ng-src="img/images/slide3.jpg" alt=""></div>
       </ion-slide>
     </ion-slide-box>
-  <div class="list card pageNote">
+-->
+
+
+
+
+  <!--<div class="list card pageNote">
       <div class="item item-text-wrap">{{'byYourMoodOrPreference' | translate}} </div>
-    </div>
-    <div class="row col-items"  ng-repeat="row in categories track by $index">
-      <div ng-repeat="list in row track by $index" ng-click="openItem(list)" class="col">
+    </div>-->
+    <div class="col-items"  ng-repeat="row in categories track by $index">
+      <div ng-repeat="list in row track by $index" ng-click="openItem(list)" class="col" style="height:20vw; width:33vw; display:inline-block; float:left">
         <div class="content-bg">
-         <div class="dashboard-items" style="background-image: url({{list.imageUrl}});background-repeat: repeat;" ></div>
-          <div class="servive-content"> <i class="icon"></i>
-            <p>{{list.menu_name}}<i class="icon-arrow ion ion-ios-arrow-right"></i></p>
+         <div class="dashboard-items" style="background-image: url({{list.imageUrl}}); background-position:center; background-repeat: no-repeat; height:100%; width:100%; margin:0 auto; background-size:contain"></div>
+          <div class="servive-content" style="opacity:1;"> <i class="icon"></i>
+            <p>{{list.menu_name}}</p>
           </div>
         </div>
       </div>

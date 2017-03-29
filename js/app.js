@@ -628,7 +628,15 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, ap
             }
         })
         
-      
+       .state('app.homeWheel', {
+    url: '/homeWheel',
+    views: {
+      'menuContent': {
+        templateUrl: 'modules/home/homeWheel.html',
+        controller: 'wheelCtrl'
+      }
+    }
+  })     
 
 .state('app.infotainmentcategary', {
     url: '/infotainmentcategary',
@@ -658,5 +666,5 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, ap
       
 
 
-    $urlRouterProvider.otherwise('/app/dashboard');
+$urlRouterProvider.otherwise('/app/homeWheel');
 });
