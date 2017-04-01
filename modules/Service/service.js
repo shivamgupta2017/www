@@ -1,5 +1,6 @@
 "use strict";
 app.factory('Services', function($http, $rootScope, $timeout, $localStorage, $ionicLoading, $q, appConst, $translate) {
+  
     $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
     return {
         webServiceCallPost: function(data, action) {

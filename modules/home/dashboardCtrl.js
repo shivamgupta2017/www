@@ -1,13 +1,12 @@
 "use strict";
-app.controller('dashboardCtrl', function($scope,$cordovaNetwork,$location, $ionicSlideBoxDelegate,$ionicTabsDelegate, $cordovaPush, appConst, $ionicPopup, globalMethods, $translate, $ionicLoading, 
+app.controller('dashboardCtrl', function($scope,$ionicPush,$cordovaNetwork,$location, $ionicSlideBoxDelegate,$ionicTabsDelegate, $cordovaPush, appConst, $ionicPopup, globalMethods, $translate, $ionicLoading, 
 Services, $localStorage, $rootScope, $ionicHistory) {
 
+$rootScope.notificationCount;
 
+$scope.shownotification=function(){
 
-
-
-
-
+}
 
 $scope.showPrompt = function() {
      
@@ -54,7 +53,13 @@ $scope.showPrompt = function() {
         angular.element(document).ready(function() {
             $rootScope.cartCount = $localStorage.cart_list.length;
             if ($rootScope.categories.length == 0) {
-                $ionicLoading.show();
+                $ionicLoading.show({
+
+                	template: '<ion-spinner icon="bubbles"></ion-spinner>',
+                	animation: 'fade-in',
+					maxWidth: 200,
+        			showDelay: 0
+                });
                 Services.webServiceCallPost('', appConst.services.get_menu_card).then(function(response) {
                     $ionicLoading.hide();
 
@@ -180,15 +185,22 @@ app.controller('cartListCtrl', function($scope, $location, appConst, globalMetho
 
     $scope.sbookedAddons = [];
     $scope.cartListBack = function() {
+       
         $ionicHistory.goBack();
     }
     $scope.edit_order = function(val) {
+
         if ($localStorage.cart_list.length > 0) {
             if (val == 'true') {
+
                 $scope.handleEditDoneIcons('edit', 'done');
+
                 $scope.editOrderVal = true;
+
             } else {
                 $scope.handleEditDoneIcons('done', 'edit');
+                
+
                 $scope.editOrderVal = false;
             }
         } else {
@@ -202,6 +214,7 @@ app.controller('cartListCtrl', function($scope, $location, appConst, globalMetho
             $scope.handleEditDoneIcons('edit', 'done');
             $scope.editOrderVal = true;
             $scope.noItemsInCart = "";
+
             if ($localStorage.cart_list.length > 0) {
                 $scope.cartListItems = [];
                 angular.forEach($localStorage.cart_list, function(value, key) {
@@ -218,19 +231,29 @@ app.controller('cartListCtrl', function($scope, $location, appConst, globalMetho
                 $scope.noItemsInCart = $translate.instant("noItemsInYourCart");
             }
 
- if ($localStorage.bookedAddons.length > 0) {
-    $scope.sbookedAddons = [];
-    angular.forEach($localStorage.bookedAddons, function(value, key) {
+ 		if ($localStorage.bookedAddons.length > 0) {
+
+
+    	$scope.sbookedAddons = [];
+   		 angular.forEach($localStorage.bookedAddons, function(value, key) {
         var extraData = {
                     
                     "addon_name":value.addon_name,
                      "quantity": parseInt(value.quantity),
                      "finalCost":parseInt(value.finalCost)
                     };
-        angular.extend(value, extraData);
-        $scope.sbookedAddons.push(value);
-         });
+       		 angular.extend(value, extraData);
+
+        	$scope.sbookedAddons.push(value);
+
+        	
+            });
+
+   		 	
+
                 $scope.calculateTotalCost($scope.cartListItems);
+
+
             } else {
                 $scope.noItemsInCart = $translate.instant("noItemsInYourCart");
             }
@@ -366,7 +389,7 @@ app.controller('cartListCtrl', function($scope, $location, appConst, globalMetho
             $rootScope.loginThrough = "order";
             $location.path(appConst.path.registration);
         }
-    }
+    }		//done//edit
     $scope.handleEditDoneIcons = function(idShow, idHide) {
         if ($localStorage.cart_list.length > 0) {
             $('#' + idShow).show();
@@ -413,7 +436,14 @@ app.controller('homeDeliveryCtrl', function($scope, $location, appConst, globalM
             email: $localStorage.userProfile.email,
             password: $localStorage.userProfile.password
         };
-        $ionicLoading.show();
+        $ionicLoading.show({
+
+                	template: '<ion-spinner icon="bubbles"></ion-spinner>',
+                	animation: 'fade-in',
+                	maxWidth: 200,
+       				showDelay: 0
+                	
+                });
         Services.webServiceCallPost(params, 'get_user_address').then(function(response) {
             $ionicLoading.hide();
             if (response[1].response.status == 1) {
@@ -439,7 +469,14 @@ app.controller('homeDeliveryCtrl', function($scope, $location, appConst, globalM
             window.plugins.toast.show($translate.instant("selectLandmark"), 'short', 'bottom');
         } else {
 
-            $ionicLoading.show();
+            $ionicLoading.show({
+
+                	template: '<ion-spinner icon="bubbles"></ion-spinner>',
+                	animation: 'fade-in',
+                	maxWidth: 200,
+        			showDelay: 0
+                	
+                });
             Services.webServiceCallPost(params, 'add_user_address').then(function(response) {
                 $ionicLoading.hide();
                 if (response[1].response.status == 1) {
@@ -448,7 +485,14 @@ app.controller('homeDeliveryCtrl', function($scope, $location, appConst, globalM
                         email: $localStorage.userProfile.email,
                         password: $localStorage.userProfile.password
                     };
-                    $ionicLoading.show();
+                    $ionicLoading.show({
+                    	animation: 'fade-in',
+                		template: '<ion-spinner icon="bubbles"></ion-spinner>',
+                		
+                		maxWidth: 200,
+        				showDelay: 0
+                	
+                });
                     Services.webServiceCallPost(params, 'get_user_address').then(function(response) {
                         $ionicLoading.hide();
                         if (response[1].response.status == 1) {
@@ -601,7 +645,14 @@ app.controller('homeDeliveryCtrl', function($scope, $location, appConst, globalM
     $scope.saveOrder = function() {
        
         angular.extend($rootScope.saveOrderParams, $scope.transaction_details);
-        $ionicLoading.show();
+        $ionicLoading.show({
+        			animation: 'fade-in',
+                	template: '<ion-spinner icon="bubbles"></ion-spinner>',
+                
+                	maxWidth: 200,
+        			showDelay: 0
+                	
+                });
         Services.webServiceCallPost($rootScope.saveOrderParams, appConst.services.save_order).then(function(response) {
             $ionicLoading.hide();
             if (response[1].response.status == 1) {
@@ -628,48 +679,41 @@ app.controller('itemsListCtrl', function($state,$scope, $location,appConst, $ion
 
     $scope.getItemsList = function() {
         $scope.totalAddonsCost = 0;
-        $ionicLoading.show();
+        $ionicLoading.show({
+        		animation: 'fade-in',
+                	template: '<ion-spinner icon="bubbles"></ion-spinner>',
+                	
+                	maxWidth: 200,
+        			showDelay: 0
+                	
+                });
+
 
         Services.webServiceCallPost($rootScope.selectedItem, appConst.services.get_items).then(function(response) 
+        
         {
         
             $ionicLoading.hide();
             $scope.handleCartListIcon('cart_list_icon2');
             //alert('$rootScope.selectedItem :'+JSON.stringify($rootScope.selectedItem));
-            
+    	        
             if (response[1].response.status == 1) {
                 $scope.subMenuItems = [];
                 $scope.menuSubItems = [];
                 $scope.itemTypes = [];
-                
-                if (response[0].data.items.length > 0) {
-                    angular.forEach(response[0].data.items, function(value, key) {
-                        if ($localStorage.cart_list.length > 0) {
-                            var costAfterSizeValue = 0;
-                            globalMethods.getCostAfterSizeValue(value.item_id).then(function(cost) {
-                                costAfterSizeValue = cost != 0 ? cost : value.item_cost;
-                                if (value.item_image_name != '') {
-                                    var extraData = {
-                                        imageUrl: appConst.serviceUrl.item_image_url + value.item_image_name,
-                                        imageUrlThumb: appConst.serviceUrl.item_image_url_thumb + value.item_image_name,
-                                        size_id: '',
-                                        size_name: '',
-                                        item_size_id: '',
-                                        size_price: '',
-                                        costAfterSize: costAfterSizeValue
-                                    };
-                                } else {
-                                    var extraData = {
-                                        imageUrl: 'img/logo.png',
-                                        costAfterSize: value.item_cost
-                                    };
-                                }
-                                angular.extend(value, extraData);
-                                $scope.subMenuItems.push(value);
-                                $scope.menuSubItems.push(value);
-                            });
-                        } else {
-                            if (value.item_image_name != '') {
+                    
+                   
+                   
+
+
+                    /*if-start*/
+   					 if (response[0].data.items.length > 0) {
+
+
+            		angular.forEach(response[0].data.items, function(value, key) 
+            		{
+
+
                                 var extraData = {
                                     imageUrl: appConst.serviceUrl.item_image_url + value.item_image_name,
                                     imageUrlThumb: appConst.serviceUrl.item_image_url_thumb + value.item_image_name,
@@ -679,21 +723,37 @@ app.controller('itemsListCtrl', function($state,$scope, $location,appConst, $ion
                                     size_price: '',
                                     costAfterSize: value.item_cost
                                 };
-                            } else {
-                                var extraData = {
-                                    imageUrl: 'img/logo.png',
-                                    costAfterSize: value.item_cost
-                                };
-                            }
+
                             angular.extend(value, extraData);
+                            
                             $scope.subMenuItems.push(value);
                             $scope.menuSubItems.push(value);
-                        }
+                            console.log('$scope.subMenuItems.length :'+$scope.subMenuItems.length);
+                            console.log('$scope.subMenuItems:'+JSON.stringify($scope.subMenuItems));
+                		
 
                     });
-                } else {
+
+                   // alert('@730 check whether we have values or not :'+$scope.subMenuItems.length);
+            		//end of for loop
+
+                } 
+
+
+
+
+
+                /*if end*/
+                else {
                     $scope.noItemsAvailable = $translate.instant("no") + " " + $rootScope.selectedItem.menu_name + " " + $translate.instant("availableNow");
+          			
                 }
+                
+                
+
+
+
+               /*if-start*/
                 if (response[0].data.item_types.length > 0) {
                     
                     $scope.itemTypes.push({
@@ -717,13 +777,25 @@ app.controller('itemsListCtrl', function($state,$scope, $location,appConst, $ion
                         
                         
                     });
-
+                    //for end
                     $scope.data = { clientSide: 'All' };
                     //alert(JSON.stringify($scope.data));
+                
+
                 }
+                /*if-end*/
+            
             }
-        });
+
+
+        	});
+
+            
+
     }
+
+
+
     $scope.handleCartListIcon = function(id) {
         if ($localStorage.cart_list.length > 0) {
             $('#' + id).show();
@@ -732,7 +804,7 @@ app.controller('itemsListCtrl', function($state,$scope, $location,appConst, $ion
         }
     }
 
-
+/*
     $scope.chooseItemType = function(type) {
         $scope.menuSubItems = $scope.subMenuItems;
        // alert('$scope.menuSubItems'+JSON.stringify($scope.menuSubItems));
@@ -748,7 +820,7 @@ app.controller('itemsListCtrl', function($state,$scope, $location,appConst, $ion
 
         }
     }
-
+*/
 
 
         $scope.swipechooseItemType = function($index) {
@@ -834,7 +906,15 @@ app.controller('itemsListCtrl', function($state,$scope, $location,appConst, $ion
 app.controller('offersCtrl', function($scope, $location, appConst, $ionicLoading, Services, $translate) {
     $scope.bookingCoupons = [];
     $scope.offersInt = function() {
-        $ionicLoading.show();
+        $ionicLoading.show({
+        		animation: 'fade-in',
+                template: '<ion-spinner icon="bubbles"></ion-spinner>',
+                
+				
+                maxWidth: 200,
+        		showDelay: 0
+                	
+                });
         Services.webServiceCallPost('', appConst.services.get_offers).then(function(response) {
             $ionicLoading.hide();
             var offersScope = angular.element(document.getElementById('offersPage')).scope();
@@ -848,7 +928,14 @@ app.controller('offersCtrl', function($scope, $location, appConst, $ionicLoading
     $scope.offerDetails = function(offer) {
         $location.path(appConst.path.offerDetails);
         angular.element(document).ready(function() {
-            $ionicLoading.show();
+            $ionicLoading.show({
+            		animation: 'fade-in',
+                	template: '<ion-spinner icon="bubbles"></ion-spinner>',
+                
+                	maxWidth: 200,
+        			showDelay: 0
+                	
+                });
             Services.webServiceCallPost(offer, appConst.services.get_offer_details).then(function(response) {
                 $ionicLoading.hide();
                 var offerDetailsScope = angular.element(document.getElementById('offerDetailsPage')).scope();
@@ -882,7 +969,14 @@ app.controller('orderHistoryCtrl', function($scope, $location, appConst, globalM
     $scope.orders = [];
     $scope.orderHistoryInit = function() {
         if (globalMethods.checkUserLogin()) {
-            $ionicLoading.show();
+            $ionicLoading.show({
+            		animation: 'fade-in',
+                	template: '<ion-spinner icon="bubbles"></ion-spinner>',
+                	
+                	maxWidth: 200,
+        			showDelay: 0
+                	
+                });
             Services.webServiceCallPost($localStorage.userProfile, appConst.services.order_history).then(function(response) {
                 $ionicLoading.hide();
                 var orderHistoryScope = angular.element(document.getElementById('orderHistoryPage')).scope();
@@ -902,7 +996,14 @@ app.controller('orderHistoryCtrl', function($scope, $location, appConst, globalM
     $scope.openOrderHistoryDetails = function(order) {
         $location.path(appConst.path.ordersHistoryDetails);
         angular.element(document).ready(function() {
-            $ionicLoading.show();
+            $ionicLoading.show({	animation: 'fade-in',
+
+                	template: '<ion-spinner icon="bubbles"></ion-spinner>',
+                	
+                	maxWidth: 200,
+        			showDelay: 0
+                	
+                });
             Services.webServiceCallPost(order, appConst.services.order_item_details).then(function(response) {
                 $ionicLoading.hide();
                 var orderHistoryDetailsScope = angular.element(document.getElementById('orderHistoryDetailsPage')).scope();
@@ -1068,7 +1169,14 @@ app.controller('paymentCtrl', function($scope, $location, stripe, checkCustomer,
     $scope.stripePayment = function() {
         var stripePaymentScope = angular.element(document.getElementById('stripePaymentForm')).scope();
         if (parseFloat(stripePaymentScope.payment.amount) > 0) {
-            $ionicLoading.show();
+            $ionicLoading.show({
+            		animation: 'fade-in',
+                	template: '<ion-spinner icon="bubbles"></ion-spinner>',
+                	
+                	maxWidth: 200,
+        			showDelay: 0
+                	
+                });
             var cardDetails = {
                 customerId: $localStorage.stripeAccountDetails.id,
                 cardNo: stripePaymentScope.payment.cardNo,
@@ -1160,7 +1268,14 @@ app.controller('paymentCtrl', function($scope, $location, stripe, checkCustomer,
     }
     $scope.saveOrder = function() {
         angular.extend($rootScope.saveOrderParams, $scope.transaction_details);
-        $ionicLoading.show();
+        $ionicLoading.show({
+        			animation: 'fade-in',
+
+                	template: '<ion-spinner icon="bubbles"></ion-spinner>',
+                	
+                	maxWidth: 200,
+        			showDelay: 0
+                });
         Services.webServiceCallPost($rootScope.saveOrderParams, appConst.services.save_order).then(function(response) {
             $ionicLoading.hide();
             if (response[1].response.status == 1) {
@@ -1201,7 +1316,7 @@ app.controller('selectedItemCtrl', function($scope, $location, appConst, $localS
 
         if (findItemIndex.findItemIndexInCartList($localStorage.cart_list, '', item.item_id) == -1) {
             $localStorage.cart_list.push(item);
-
+               
             $rootScope.cartCount = $localStorage.cart_list.length;
            
             $scope.handleCartListIcon('cart_list_icon2');
@@ -1216,8 +1331,10 @@ app.controller('selectedItemCtrl', function($scope, $location, appConst, $localS
         $scope.itemSizes = item.options;
         $scope.data = {};
         var selectedItemScope = angular.element(document.getElementById('selected_item_page')).scope();
+   	
         $scope.radioCheck = '';
         angular.forEach($scope.itemSizes, function(value, key) {
+
             if (value.price == selectedItemScope.selected_item.costAfterSize) {
                 $scope.radioCheck = value.option_id;
             }
@@ -1290,6 +1407,7 @@ app.controller('selectedItemCtrl', function($scope, $location, appConst, $localS
     $scope.addQuantity = function(quantity) {
         return parseInt(quantity) + 1;
     }
+    
     $scope.subtractQuantity = function(quantity) {
       
 
@@ -1312,7 +1430,6 @@ app.controller('selectedItemCtrl', function($scope, $location, appConst, $localS
 
        
         angular.forEach($localStorage.bookedAddons,function(value,key){
-                console.log($localStorage.bookedAddons);
                 if(value.addon_id == item.addon_id){
                     
                     $localStorage.bookedAddons[key].quantity = parseInt(quantity);
@@ -1348,7 +1465,8 @@ app.controller('selectedItemCtrl', function($scope, $location, appConst, $localS
     }
 
     $scope.open_addons_model = function(item) {
-
+    	//and selected item is passing through that position
+//hey shivam item is coming from that function you just go to selected item page
 
         $ionicModal.fromTemplateUrl('modules/home/addons.html', {
 
@@ -1362,22 +1480,18 @@ app.controller('selectedItemCtrl', function($scope, $location, appConst, $localS
             $scope.addons_model = modal;
 
             if (item.addons.length > 0) {
-                $rootScope.bookedAddons=[];
+
 
                 $scope.itemAddons = [];
                 
                 $rootScope.totalAddons = [];
-                console.log('item.addons.length :'+item.addons.length);
-                console.log('$localStorage.bookedAddons.length :'+$localStorage.bookedAddons.length);
-                console.log('item.addons :'+JSON.stringify(item.addons));
-                console.log('$localStorage.bookedAddons :'+JSON.stringify($localStorage.bookedAddons));
                 angular.forEach(item.addons, function(value, key) 
                     
-                    { //initialization of interest and quantity;
+                    { 	
                     var setInterest = false;
                     var quantity = 1; 
 
-                    if ($localStorage.bookedAddons.length > 0) {
+                    /*if ($localStorage.bookedAddons.length > 0) {
 
                         angular.forEach($localStorage.bookedAddons, function(interestValue, interestKey) {
                             if (value.addon_id == interestValue.addon_id) {
@@ -1390,7 +1504,7 @@ app.controller('selectedItemCtrl', function($scope, $location, appConst, $localS
                         });
 
                     }
-
+*/
 //1350
                     var extraData = {
                         finalCost: parseInt(value.price) * parseInt(quantity),
@@ -1402,7 +1516,6 @@ app.controller('selectedItemCtrl', function($scope, $location, appConst, $localS
                     angular.extend(value, extraData);
                     //the actual data which is going to view-------->itemAddons
                     $scope.itemAddons.push(value);
-                    
                         
                                     });
             }
@@ -1414,9 +1527,11 @@ app.controller('selectedItemCtrl', function($scope, $location, appConst, $localS
     }
     $scope.done_addons_model = function(){
     
-      $localStorage.bookedAddons= [];
-        
+      
+        alert('temp length :'+JSON.stringify($rootScope.bookedAddonsTEMP.length));
+
        if($rootScope.bookedAddonsTEMP.length>0){
+
 
           angular.forEach($rootScope.bookedAddonsTEMP,function(value,key){
 
@@ -1583,7 +1698,14 @@ app.controller('profileCtrl', function($scope, $location, appConst, globalMethod
                 email: $localStorage.userProfile.email,
                 password: $localStorage.userProfile.password
             };
-            $ionicLoading.show();
+            $ionicLoading.show({
+            		animation: 'fade-in',
+                	template: '<ion-spinner icon="bubbles"></ion-spinner>',
+                	
+                	maxWidth: 200,
+        			showDelay: 0
+                	
+                });
             Services.webServiceCallPost(params, 'get_user_address').then(function(response) {
                 $ionicLoading.hide();
                 if (response[1].response.status == 1) {
@@ -1661,7 +1783,14 @@ app.controller('profileCtrl', function($scope, $location, appConst, globalMethod
         } else if (params.landmark == '') {
             window.plugins.toast.show($translate.instant("selectLandmark"), 'short', 'bottom');
         } else {
-            $ionicLoading.show();
+            $ionicLoading.show({
+            		animation: 'fade-in',
+                	template: '<ion-spinner icon="bubbles"></ion-spinner>',
+                	
+                	maxWidth: 200,
+        			showDelay: 0
+                	
+                });
             Services.webServiceCallPost(params, 'add_user_address').then(function(response) {
                 $ionicLoading.hide();
                 if (response[1].response.status == 1) {
@@ -1694,7 +1823,15 @@ app.controller('profileCtrl', function($scope, $location, appConst, globalMethod
             ua_id: address.ua_id
         };
         angular.extend(params, $scope.address);
-        $ionicLoading.show();
+        $ionicLoading.show(
+        	{
+        		animation: 'fade-in',
+			template: '<ion-spinner icon="bubbles"></ion-spinner>',
+			
+			maxWidth: 200,
+        	showDelay: 0
+
+        	});
         Services.webServiceCallPost(params, 'edit_user_address').then(function(response) {
             $ionicLoading.hide();
             if (response[1].response.status == 1) {
@@ -1709,7 +1846,13 @@ app.controller('profileCtrl', function($scope, $location, appConst, globalMethod
             password: $localStorage.userProfile.password,
             ua_id: address.ua_id
         };
-        $ionicLoading.show();
+        $ionicLoading.show({
+        	animation: 'fade-in',
+        	template: '<ion-spinner icon="bubbles"></ion-spinner>',
+        	
+        	maxWidth: 200,
+        	showDelay: 0
+        });
         Services.webServiceCallPost(params, 'delete_user_address').then(function(response) {
             $ionicLoading.hide();
             if (response[1].response.status == 1) {
@@ -1724,7 +1867,13 @@ app.controller('profileCtrl', function($scope, $location, appConst, globalMethod
             id: $localStorage.userProfile.id
         };
         angular.extend(editProfileScope.editProfile, extraData);
-        $ionicLoading.show();
+        $ionicLoading.show({
+        	animation: 'fade-in',
+        	template: '<ion-spinner icon="bubbles"></ion-spinner>',
+        	
+        	maxWidth: 200,
+        	showDelay: 0
+        });
         Services.webServiceCallPost(editProfileScope.editProfile, appConst.services.edit_profile).then(function(response) {
             $ionicLoading.hide();
             if (response[1].response.status == 1) {
@@ -1788,7 +1937,15 @@ app.controller('aboutUsCtrl', function($scope, $location, appConst, uiGmapGoogle
         $scope.pagesInfo();
     }
     $scope.pagesInfo = function() {
-        $ionicLoading.show();
+        $ionicLoading.show(
+        	{
+        		animation: 'fade-in',
+        		template: '<ion-spinner icon="bubbles" class="custom-icon"></ion-spinner>',
+
+        		maxWidth: 210,
+        		
+        		showDelay: 0
+        	});
         Services.webServiceCallPost('', appConst.services.pages).then(function(response) {
             $ionicLoading.hide();
             if (response[1].response.status == 1) {
@@ -1864,7 +2021,13 @@ app.controller('aboutUsCtrl', function($scope, $location, appConst, uiGmapGoogle
         $scope.infodata=[];
         
 
-        $ionicLoading.show();
+        $ionicLoading.show({
+        	animation: 'fade-in',
+        	template: '<ion-spinner icon="bubbles"></ion-spinner>',
+        	maxWidth: 210,
+       		showDelay: 0
+
+        });
         Services.webServiceCallPost('','fetch_categary').then(function(response)
          {
         $ionicLoading.hide();               
@@ -1889,7 +2052,12 @@ app.controller('aboutUsCtrl', function($scope, $location, appConst, uiGmapGoogle
                           
             });
 
-            $ionicLoading.show();
+            $ionicLoading.show({
+				animation: 'fade-in',
+            	template: '<ion-spinner icon="bubbles"></ion-spinner>',
+            	maxWidth: 210,	
+        		showDelay: 0
+            });
             Services.webServiceCallPost('','fetch_media').then(function(response){
             $ionicLoading.hide();
             //alert('response :'+JSON.stringify(response['media']));
@@ -2021,7 +2189,15 @@ app.controller('aboutUsCtrl', function($scope, $location, appConst, uiGmapGoogle
     
       
     $scope.pagesInfo = function() {
-        $ionicLoading.show();
+    	
+        $ionicLoading.show({
+        	animation: 'fade-in',
+        	template: '<ion-spinner icon="bubbles"></ion-spinner>',
+        	animation: 'fade-in',
+        	maxWidth: 300,
+   			showDelay: 0
+
+        });
         //alert('show ke bad');
         Services.webServiceCallPost('', appConst.services.pages).then(function(response) {
             $ionicLoading.hide();
@@ -2154,18 +2330,16 @@ app.controller('searchCtrl', function($scope, $ionicModal,$location, appConst, g
                 
                 $scope.searchinput={"search": "1"};
                 
-                alert('searchquery :'+JSON.stringify($scope.searchinput));
-                $ionicLoading.show();		//
+                
+                $ionicLoading.show({
+                	template: '<ion-spinner icon="bubbles" ></ion-spinner>',
+                	maxWidth: 210,
+        			showDelay: 0
+                });		//
                 Services.webServiceCallPost($scope.searchinput,'search').then(function(response) { 
                 $ionicLoading.hide();
 
                 alert(response['parent_categary']);
-
-              
-
-
-          	
-
 
 
           		});  

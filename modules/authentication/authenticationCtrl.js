@@ -1,5 +1,5 @@
 "use strict";
-app.controller('authenticationCtrl', function($scope, appConst, randomString, $location, $sce, $translate, socialLogin, checkCustomer, $ionicModal, stripe, $cordovaOauth, $ionicHistory, $rootScope, $timeout, $ionicPopup, Services, $localStorage, $ionicLoading) {
+app.controller('authenticationCtrl', function($scope,$ionicPush, appConst, randomString, $location, $sce, $translate, socialLogin, checkCustomer, $ionicModal, stripe, $cordovaOauth, $ionicHistory, $rootScope, $timeout, $ionicPopup, Services, $localStorage, $ionicLoading) {
     $scope.registration = {};
     $scope.showEmail = function() {
         $scope.actInactEmail = "active";
@@ -43,7 +43,7 @@ app.controller('authenticationCtrl', function($scope, appConst, randomString, $l
                 window.plugins.toast.showLongBottom(response[1].response.message);
             }
         });
-        $scope.signIn();$scope.signIn();
+        $scope.signIn();//$scope.signIn();
     }
     $scope.Otp = { code: '', retrievedCode: '' };
         $scope.submitOTP = function() {
@@ -86,6 +86,8 @@ app.controller('authenticationCtrl', function($scope, appConst, randomString, $l
         $location.path(appConst.path.registration);
     }
     $scope.login = {};
+
+    
     $scope.signIn = function() {
 var registrationScope = angular.element(document.getElementById('registrationPage')).scope();
         var extraData = {
@@ -114,7 +116,14 @@ var registrationScope = angular.element(document.getElementById('registrationPag
                 window.plugins.toast.show(response[1].response.message, 'short', 'bottom');
             }
         });
+
+
+
+
+
+
     }
+
     $scope.loginRedirect = function() {
         if ($rootScope.loginThrough === 'order') {
             $location.path(appConst.path.home_delivery);

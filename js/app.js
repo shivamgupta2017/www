@@ -1,6 +1,6 @@
 "use strict";
-var app = angular.module('starter', ['ionic','ionic.rating', 'ngStorage', 'ngAnimate', 'declarations', 'socialLogins', 'ngCordovaOauth', 'uiGmapgoogle-maps', 'pascalprecht.translate','angularRandomString','ngCordova'], function($httpProvider) {
-     
+var app = angular.module('starter', ['ionic','ionic.cloud','ionic.rating', 'ngStorage', 'ngAnimate', 'declarations', 'socialLogins', 'ngCordovaOauth', 'uiGmapgoogle-maps', 'pascalprecht.translate','angularRandomString','ngCordova'], function($httpProvider) {
+  
     var param = function(obj) {
         var query = '',
             name, value, fullSubName, subName, subValue, innerObj, i;
@@ -31,11 +31,48 @@ var app = angular.module('starter', ['ionic','ionic.rating', 'ngStorage', 'ngAni
         return angular.isObject(data) && String(data) !== '[object File]' ? param(data) : data;
     }];
 });
-app.run(function($ionicPlatform, $rootScope, $cordovaNetwork,$translate,$cordovaPush) {
+app.run(function($ionicPlatform, $rootScope,$cordovaNetwork,$translate,$cordovaPushV5) {
  
     $ionicPlatform.ready(function() {
-        
+	
+  /* var options = {
+  	android: {
+  	  senderID: "12345679"
+  	},
+    ios: {
+      alert: "true",
+      badge: "true",
+      sound: "true"
+    },
+    windows: {}
+  };
 
+  	$cordovaPushV5.initialize(options).then(function() {
+  		$cordovaPushV5.onNotification();
+  		// start listening for errors
+    	$cordovaPushV5.onError();
+    // register to get registrationId
+    	$cordovaPushV5.register().then(function(registrationId) {
+
+    	  // save `registrationId` somewhere;
+  })
+    	});
+
+  	$rootScope.$on('$cordovaPushV5:notificationReceived', function(event, data){
+    // data.message,
+    // data.title,
+
+    // data.count,
+    // data.sound,
+    // data.image,
+    // data.additionalData
+  });
+  	// triggered every time error occurs
+  $rootScope.$on('$cordovaPushV5:errorOcurred', function(event, e){
+    // e.message
+  });
+
+*/
         if (window.cordova && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
             cordova.plugins.Keyboard.disableScroll(true);
@@ -100,7 +137,8 @@ window.plugins.OneSignal
     });
 });
 
-app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, appConst, $translateProvider) {
+app.config(function($stateProvider,$ionicCloudProvider, $urlRouterProvider, $ionicConfigProvider, appConst, $translateProvider) {
+   
     $ionicConfigProvider.backButton.text('').previousTitleText(false);
     $ionicConfigProvider.views.transition('android');
     $ionicConfigProvider.tabs.position('top');
@@ -193,7 +231,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, ap
            "viewCart": "View Cart",
            "terms": "Terms",
            "myAccount": "My Account",
-           "timedOutError": "Timed Out Error",
+           "timedOutError": "You May Not Have Internet Connection",
            "checkNetworkConnection": "Check Network Connection",
            "validatingUser": "Validating User...",
            "passwordNotMatch": "Password Not Match",
@@ -302,6 +340,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, ap
            "home": "Home",
            "free": "Free"
     });
+
     $.ajax({
         type: "POST",
         url: appConst.serviceUrl.service + 'get_site_settings',
@@ -312,6 +351,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, ap
         async: true,
         success: function(response) {
             if (response[1].response.status == 1) {
+             
                 var translations = {};
                 localStorage.setItem('googleApiKey', response[0].data.siteDetails[0].google_api);
                 localStorage.setItem('facebookApiKey', response[0].data.siteDetails[0].facebook_api);
@@ -340,6 +380,24 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, ap
         beforeSend: function() {},
         complete: function() {}
     });
+
+ $ionicCloudProvider.init({
+"core": {
+      "app_id": "APP_ID"
+    },
+
+    "push":{
+      "sender_id": "SENDER_ID",
+      "pluginConfig": {
+ "android": {
+          "iconColor": "#343434"
+        }
+    }
+  }
+
+
+ });
+
 
     $stateProvider
         .state(appConst.state.app, {

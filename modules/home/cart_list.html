@@ -8,6 +8,7 @@
     </ion-nav-buttons>
 
     <ion-nav-buttons side="right">
+    
         <button id="edit" class="button button-icon button-clear ion ion-android-create"  ng-click="edit_order('false')"></button>
         <button id="done" class="button button-icon button-clear ion ion-android-done"   ng-click="edit_order('true')"></button>
     </ion-nav-buttons>
@@ -44,7 +45,7 @@
             
             
             
-            
+            {{sbookedAddons.length}}
             <div ng-if="sbookedAddons.length>0">
                 <p>{{'addons' | translate}} </p>
                 
@@ -86,7 +87,7 @@
       <div class="item">{{noItemsInCart}}</div>
     </div>
 
-    <div style="color:#2FD25A;text-align:center;padding:11px;font-size:19px;" ng-if="!edit_order_val && cartListItems.length==0" ng-click="home()">
+    <div style="color:#2FD25A; text-align:center;padding:11px;font-size:19px;" ng-if="!edit_order_val && cartListItems.length==0" ng-click="home()">
         {{'addItems' | translate}}
     </div>
   </ion-content>

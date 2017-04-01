@@ -3310,10 +3310,15 @@ table {
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
+
 html {
   overflow: hidden;
   -ms-touch-action: pan-y;
   touch-action: pan-y; }
+
+
+
+
 
 body,
 .ionic-body {
@@ -3565,6 +3570,12 @@ ion-infinite-scroll {
   height: 100%;
   background-color: #fff;
   overflow: hidden; }
+
+
+.spinner svg {
+  stroke: #444444;
+  fill: #444444;
+}
 
 .view-container {
   position: absolute;
@@ -10325,7 +10336,7 @@ button {
   height: 80px; }
 
 .sidebar-profile h2 {
-  color: #f34c30; font-size: 1.3em }
+  color:  ‎#808080; font-size: 1.3em }
 
 .sidebar-profile .item {
   width: 100%;
@@ -10346,7 +10357,7 @@ button {
   font-size: 1.4em; }
 
 .menu.menu-left .item-content.activated {
-  background: #f34c30; }
+  background: #0f0e0e; }
 
 .menu.menu-left .item-content {
   color: #333;
