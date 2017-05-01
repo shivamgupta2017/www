@@ -1,4 +1,5 @@
 <ion-view cache-view="false" view-title="{{'infotainmentcategary' | translate}}"
+<<<<<<< HEAD
  class="loginScreen" ng-controller="infotainmentcategaryctrl" >
 
 <!-------------------------------------------------------nav buttons------------------------------------------------------>
@@ -42,17 +43,47 @@
       </ion-slide-box>
 <!--
         <ion-slide-box slide-tabs-scrollable="true" does-continue="false" show-pager="false" ion-slide-tabs on-slide-changed="listInfotainment($index+1)" style="margin-top:10px">
+=======
+ class="loginScreen">
+
+
+<ion-nav-buttons side="right">
+  
+
+  <button  ng-controller="infotainmentcategaryctrl" id="cart_list_icon1" ng-click="viewCart()" class="button-icon button button-clear flaticon-shop"><i class="badge badge-light header-badge"><span ng-if="cartCount!=0">{{cartCount}}</span></i></button>
+</ion-nav-buttons>
+
+
+
+        <ion-content  has-header="true" ng-init="fetchInfotainment()" 
+        scroll="true">
+          
+
+
+        <ion-slide-box slide-tabs-scrollable="false" does-continue="false" show-pager="false" ion-slide-tabs on-slide-changed="listInfotainment($index+1)">
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
         
         <ion-slide disable-scroll="false" ng-repeat="parent in infocatname"
          ion-slide-tab-label="{{parent.category_name}}">
         
         <div class="list listLink filter" style="width: 100vw; height: 100vh;"> 
+<<<<<<< HEAD
  
 
 
         <a class="item item-button-right item-text-wrap item-thumbnail-left" ng-repeat="file in infodata | Infotainmentfilter:slider.slidermodel track by $index" style="background-color:transparent">
         
          
+=======
+          <!--andar waala content yahaa h-->
+
+
+        <a class="item item-button-right item-text-wrap item-thumbnail-left" ng-repeat="file in infodata | Infotainmentfilter:slider.slidermodel track by $index">
+        
+         
+    
+    
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
         <img ng-if="file.file_ext == 'image'" ng-src="{{file.img_url}}" ng-click="selectedInfotainment(file)">
         
        <img ng-if="file.file_ext=='video'" ng-src="{{file.img_thumbnail}}" ng-click="selectedInfotainment(file)">
@@ -63,7 +94,15 @@
 
       {{file.description}}
             
+<<<<<<< HEAD
 
+=======
+        <!--
+        <div ng-if="file.file_ext=='image'||file.file_ext=='video'" ng-click="openSelectedItem(menuSubItem)">
+        
+        </div>
+       -->
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
        
         </a>
 
@@ -72,7 +111,10 @@
 
 
       </ion-slide-box>
+<<<<<<< HEAD
 -->
+=======
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
       </ion-content>
 
 

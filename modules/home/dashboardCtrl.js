@@ -1,4 +1,5 @@
 "use strict";
+<<<<<<< HEAD
 app.controller('dashboardCtrl', function($scope,$cordovaNetwork,$location, $ionicSlideBoxDelegate,$ionicTabsDelegate, $cordovaPush, appConst, $ionicPopup,$state, globalMethods, $translate, $ionicLoading, 
 Services, $localStorage, $rootScope, $ionicHistory) {
 	
@@ -6,6 +7,20 @@ Services, $localStorage, $rootScope, $ionicHistory) {
 $scope.showPrompt = function() {
 
     
+=======
+app.controller('dashboardCtrl', function($scope,$ionicPush,$cordovaNetwork,$location, $ionicSlideBoxDelegate,$ionicTabsDelegate, $cordovaPush, appConst, $ionicPopup, globalMethods, $translate, $ionicLoading, 
+Services, $localStorage, $rootScope, $ionicHistory) {
+
+$rootScope.notificationCount;
+
+$scope.shownotification=function(){
+
+}
+
+$scope.showPrompt = function() {
+     
+    //alert('hello');
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
      $scope.item={};
      
         var promptPopup = $ionicPopup.show({
@@ -35,12 +50,21 @@ $scope.showPrompt = function() {
         $rootScope.table_no=res.number;
         $localStorage.table_no =$rootScope.table_no;
         // $rootScope.value = $localStorage.table_no;
+<<<<<<< HEAD
         $rootScope.checkval=true;
 });
+=======
+        // alert('fjdsfksghdfighdfig'+$rootScope.value);
+       //alert('$localstorage.value'+$localStorage.table_no); 
+        $rootScope.checkval=true;
+        
+      });
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
         };
 
 
 
+<<<<<<< HEAD
   /*  $scope.getCategories = function() {
         angular.element(document).ready(function() {
             $rootScope.cartCount = $localStorage.cart_list.length;
@@ -50,6 +74,23 @@ $scope.showPrompt = function() {
                     $ionicLoading.hide();
                     if (response[1].response.status == 1) {
 			
+=======
+    $scope.getCategories = function() {
+        angular.element(document).ready(function() {
+            $rootScope.cartCount = $localStorage.cart_list.length;
+            if ($rootScope.categories.length == 0) {
+                $ionicLoading.show({
+
+                	template: '<ion-spinner icon="bubbles"></ion-spinner>',
+                	animation: 'fade-in',
+					maxWidth: 200,
+        			showDelay: 0
+                });
+                Services.webServiceCallPost('', appConst.services.get_menu_card).then(function(response) {
+                    $ionicLoading.hide();
+
+                    if (response[1].response.status == 1) {
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
                         if (response[0].data.menu.length > 0) {
                             var categoryResponse = [];
                             angular.forEach(response[0].data.menu, function(value, key) {
@@ -66,8 +107,12 @@ $scope.showPrompt = function() {
                                 categoryResponse.push(value);
 
                             });
+<<<<<<< HEAD
                             $rootScope.categories = globalMethods.getDashboardGridView(categoryResponse, 1);
 			    //console.log("cat2"+JSON.stringify($rootScope.categories)+"cat2");
+=======
+                            $rootScope.categories = globalMethods.getDashboardGridView(categoryResponse, 2);
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
                         }
                         if (response[0].data.addons.length > 0) {
                             $rootScope.totalAddons = [];
@@ -78,11 +123,16 @@ $scope.showPrompt = function() {
                                     imageUrl: appConst.serviceUrl.addon_image_url + value.addon_image
                                 };
                                 angular.extend(value, extraData);
+<<<<<<< HEAD
                    
+=======
+                            //    alert('value :'+JSON.stringify(value));
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
                                 $rootScope.totalAddons.push(value);
                             });
                         }
                         $scope.getSiteSettings();
+<<<<<<< HEAD
 
                     }
                     $rootScope.dashboardHistoryId = $ionicHistory.currentHistoryId();
@@ -91,6 +141,14 @@ $scope.showPrompt = function() {
             }
         });
     }*/
+=======
+                    }
+                    $rootScope.dashboardHistoryId = $ionicHistory.currentHistoryId();
+                });
+            }
+        });
+    }
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
     document.addEventListener("deviceready", onDeviceReady, false);
     function onDeviceReady(){
         document.addEventListener("backbutton", function(e){
@@ -104,10 +162,13 @@ $scope.showPrompt = function() {
         }, false);
     }
 
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
     $scope.handleCartListIcon = function(id) {
         if ($localStorage.cart_list.length > 0) {
             $('#' + id).show();
@@ -118,7 +179,10 @@ $scope.showPrompt = function() {
     $scope.getSiteSettings = function() {
         var response = JSON.parse(localStorage.getItem('siteSettings'));
         $rootScope.siteSettings = response[0].data.siteDetails[0];
+<<<<<<< HEAD
 	
+=======
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
         $rootScope.languages = response[0].data.language_types;
         var fromDate = new Date(moment($rootScope.siteSettings.from_time, "HH:mm"));
         var toDate = new Date(moment($rootScope.siteSettings.to_time, "HH:mm"));
@@ -138,11 +202,14 @@ $scope.showPrompt = function() {
         }
     }
 
+<<<<<<< HEAD
      $scope.$on('$ionicView.loaded', function (viewInfo, state) {
 	//$scope.getCategories();
         $scope.getItemsList();
     });
 
+=======
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
     $scope.opensearch=function(){
 
     $location.path(appConst.path.search);
@@ -155,8 +222,13 @@ $scope.showPrompt = function() {
     }
 
     $scope.openItem = function(item) {
+<<<<<<< HEAD
         $state.go(appConst.state.items_list,{pos:item});
 
+=======
+        $location.path(appConst.path.items_list);
+        $rootScope.selectedItem = item;
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
     }
     $scope.lockSlide = function() {
         $ionicSlideBoxDelegate.enableSlide(false);
@@ -173,6 +245,7 @@ $scope.showPrompt = function() {
         $ionicSlideBoxDelegate.previous();
         $ionicSlideBoxDelegate.enableSlide(false);
     };
+<<<<<<< HEAD
 
 
 /*******************************************extra function ***********************************************/
@@ -257,6 +330,35 @@ app.controller('cartListCtrl', function($scope, $location, appConst, globalMetho
                 $scope.editOrderVal = true;
             } else {
                 $scope.handleEditDoneIcons('done', 'edit');
+=======
+});
+app.controller('cartListCtrl', function($scope, $location, appConst, globalMethods, $localStorage, $rootScope, $ionicHistory, findItemIndex, $translate) {
+    $scope.cost = {
+        totalCost: 0
+    };
+    $scope.noItemsInCart = "";
+    $scope.cartListItems = [];
+    $rootScope.orderDetails = [];
+
+    $scope.sbookedAddons = [];
+    $scope.cartListBack = function() {
+       
+        $ionicHistory.goBack();
+    }
+    $scope.edit_order = function(val) {
+
+        if ($localStorage.cart_list.length > 0) {
+            if (val == 'true') {
+
+                $scope.handleEditDoneIcons('edit', 'done');
+
+                $scope.editOrderVal = true;
+
+            } else {
+                $scope.handleEditDoneIcons('done', 'edit');
+                
+
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
                 $scope.editOrderVal = false;
             }
         } else {
@@ -270,11 +372,17 @@ app.controller('cartListCtrl', function($scope, $location, appConst, globalMetho
             $scope.handleEditDoneIcons('edit', 'done');
             $scope.editOrderVal = true;
             $scope.noItemsInCart = "";
+<<<<<<< HEAD
 	    Services.pa($localStorage.cart_list,'cartlistfull',1);
 		Services.pa($localStorage.bookedAddons,'booke3d',1);
             if ($localStorage.cart_list.length > 0) {
                 $scope.cartListItems = [];
 		console.log("wheel"+JSON.stringify($localStorage.cart_list)+"wheel");
+=======
+
+            if ($localStorage.cart_list.length > 0) {
+                $scope.cartListItems = [];
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
                 angular.forEach($localStorage.cart_list, function(value, key) {
                     var extraData = {
                         "finalCost": value.costAfterSize,
@@ -282,7 +390,10 @@ app.controller('cartListCtrl', function($scope, $location, appConst, globalMetho
                     };
                     angular.extend(value, extraData);
                     $scope.cartListItems.push(value);
+<<<<<<< HEAD
  			Services.pa(value,'s',0);
+=======
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
                 });
                 $scope.calculateTotalCost($scope.cartListItems);
             } else {
@@ -290,15 +401,25 @@ app.controller('cartListCtrl', function($scope, $location, appConst, globalMetho
                 $scope.noItemsInCart = $translate.instant("noItemsInYourCart");
             }
 
+<<<<<<< HEAD
  if ($localStorage.bookedAddons.length > 0) {
     	$scope.sbookedAddons = [];
     	angular.forEach($localStorage.bookedAddons, function(value, key) {
        		 var extraData = {
+=======
+ 		if ($localStorage.bookedAddons.length > 0) {
+
+
+    	$scope.sbookedAddons = [];
+   		 angular.forEach($localStorage.bookedAddons, function(value, key) {
+        var extraData = {
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
                     
                     "addon_name":value.addon_name,
                      "quantity": parseInt(value.quantity),
                      "finalCost":parseInt(value.finalCost)
                     };
+<<<<<<< HEAD
 		if(value.size_id==undefined || value.size_id == null || value.size_id== ''){
 			extraData.item_size_id=0;
 			extraData.size_id=0;
@@ -316,6 +437,25 @@ app.controller('cartListCtrl', function($scope, $location, appConst, globalMetho
    
         });
 	
+=======
+       		 angular.extend(value, extraData);
+
+        	$scope.sbookedAddons.push(value);
+
+        	
+            });
+
+   		 	
+
+                $scope.calculateTotalCost($scope.cartListItems);
+
+
+            } else {
+                $scope.noItemsInCart = $translate.instant("noItemsInYourCart");
+            }
+        
+        });
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
      
      }
 
@@ -323,7 +463,10 @@ app.controller('cartListCtrl', function($scope, $location, appConst, globalMetho
 
 
     $scope.removeItem = function(array, id) {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
         findItemIndex.findItemIndexInAddons(array, '', id).then(function(index) {
             if (index != -1) {
                 array.splice(index, 1);
@@ -332,7 +475,10 @@ app.controller('cartListCtrl', function($scope, $location, appConst, globalMetho
         });
     }
     $scope.remove_item_from_cart = function(item) {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
         var index = findItemIndex.findItemIndexInCartList($localStorage.cart_list, '', item.item_id);
         if (index != -1) {
             if ($localStorage.bookedAddons.length > 0) {
@@ -351,13 +497,19 @@ app.controller('cartListCtrl', function($scope, $location, appConst, globalMetho
                 $scope.handleEditDoneIcons('', 'done');
                 $scope.noItemsInCart = $translate.instant("noItemsInYourCart");
                 $scope.editOrderVal = false;
+<<<<<<< HEAD
 		//$scope.sbookedAddons=[];
+=======
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
                 $localStorage.bookedAddons = [];
             }
         }
     }
     $scope.remove_addon_from_cart = function(item) {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
         var index=findItemIndex.findAddonIndexInCartList($localStorage.bookedAddons, '', item.addon_id).then(function(index) {
             if (index != -1) {
 
@@ -365,14 +517,24 @@ app.controller('cartListCtrl', function($scope, $location, appConst, globalMetho
 
                 $localStorage.bookedAddons.splice(index, 1);
                 $scope.sbookedAddons.splice(index, 1);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
                 $scope.calculateTotalCost($scope.cartListItems);
                 if ($localStorage.cart_list.length == 0) {
                     $scope.handleEditDoneIcons('', 'edit');
                     $scope.handleEditDoneIcons('', 'done');
+<<<<<<< HEAD
 
                     $scope.noItemsInCart = $translate.instant("noItemsInYourCart");
                     $scope.editOrderVal = false;
                     //mizan
+=======
+                    $scope.noItemsInCart = $translate.instant("noItemsInYourCart");
+                    $scope.editOrderVal = false;
+                
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
                     $rootScope.bookedAddons = [];
                 }
             }
@@ -441,6 +603,7 @@ app.controller('cartListCtrl', function($scope, $location, appConst, globalMetho
                 finalCost: value.finalCost,
                 quantity: value.quantity
             }
+<<<<<<< HEAD
 	    if(itemDetails.size_id==''){
 		itemDetails.size_id=0;
 		itemDetails.size_name='Regular';
@@ -457,12 +620,23 @@ app.controller('cartListCtrl', function($scope, $location, appConst, globalMetho
 	$state.go(appConst.state.home_delivery,{cost:$scope.cost.totalCost});
 
       /*  if (globalMethods.checkUserLogin()) {
+=======
+            $rootScope.orderDetails.push(itemDetails);
+        });
+        $rootScope.totalCost = $scope.cost.totalCost;
+        if (globalMethods.checkUserLogin()) {
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
             $location.path(appConst.path.home_delivery);
         } else {
             $rootScope.loginThrough = "order";
             $location.path(appConst.path.registration);
+<<<<<<< HEAD
         }*/
     }
+=======
+        }
+    }		//done//edit
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
     $scope.handleEditDoneIcons = function(idShow, idHide) {
         if ($localStorage.cart_list.length > 0) {
             $('#' + idShow).show();
@@ -473,6 +647,7 @@ app.controller('cartListCtrl', function($scope, $location, appConst, globalMetho
         }
     }
 });
+<<<<<<< HEAD
 
 
 
@@ -480,10 +655,33 @@ app.controller('cartListCtrl', function($scope, $location, appConst, globalMetho
 *****************************************home delivery controller*****************************************************
 **********************************************************************************************************************/
 app.controller('homeDeliveryCtrl', function($scope, $location,$stateParams, appConst, globalMethods, $ionicPopup, $ionicLoading, Services, $localStorage, $rootScope, $ionicModal, $filter, $translate) {
+=======
+app.controller('changeLanguageCtrl', function($scope, $translate) {
+    $scope.language = {
+        name: localStorage.getItem('defaultLanguage')
+    };
+
+    $scope.setLanguage = function(item) {
+        localStorage.setItem('defaultLanguage', item.language_code);
+        $translate.use(localStorage.getItem('defaultLanguage'));
+
+    }
+});
+app.controller('wheelCtrl', function($ionicLoading,$ionicSlideBoxDelegate,$localStorage,$scope,Services,appConst,$rootScope,$state,$stateParams){ 
+
+           
+
+
+
+
+  });
+app.controller('homeDeliveryCtrl', function($scope, $location, appConst, globalMethods, $ionicPopup, $ionicLoading, Services, $localStorage, $rootScope, $ionicModal, $filter, $translate) {
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
     $scope.booking = {};
     $scope.address = {};
     $scope.addressCheck = {};
     $rootScope.bookingAddress = {};
+<<<<<<< HEAD
     $scope.customer=$localStorage.customerdetails;
     $scope.booking.name=$scope.customer.name;
     $scope.booking.number=$scope.customer.number;
@@ -494,6 +692,12 @@ app.controller('homeDeliveryCtrl', function($scope, $location,$stateParams, appC
         $scope.booking.choice = 'online';
         $scope.addressCheck.choice = '';
 	
+=======
+    $scope.homeDeliveryInit = function() {
+        $scope.booking.phone = parseInt($localStorage.userProfile.phone);
+        $scope.booking.choice = 'online';
+        $scope.addressCheck.choice = '';
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
         $scope.booking.cost = $rootScope.totalCost;
         $scope.booking.location = '';
         $scope.booking.city = '';
@@ -502,16 +706,34 @@ app.controller('homeDeliveryCtrl', function($scope, $location,$stateParams, appC
             email: $localStorage.userProfile.email,
             password: $localStorage.userProfile.password
         };
+<<<<<<< HEAD
         $ionicLoading.show();
+=======
+        $ionicLoading.show({
+
+                	template: '<ion-spinner icon="bubbles"></ion-spinner>',
+                	animation: 'fade-in',
+                	maxWidth: 200,
+       				showDelay: 0
+                	
+                });
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
         Services.webServiceCallPost(params, 'get_user_address').then(function(response) {
             $ionicLoading.hide();
             if (response[1].response.status == 1) {
                 $rootScope.addedAddress = response[0].data;
+<<<<<<< HEAD
 
             }
         });
     }*/
     /*$scope.addAddress = function() {
+=======
+            }
+        });
+    }
+    $scope.addAddress = function() {
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
         var params = {
             user_id: $localStorage.userProfile.id,
             email: $localStorage.userProfile.email,
@@ -529,7 +751,18 @@ app.controller('homeDeliveryCtrl', function($scope, $location,$stateParams, appC
             window.plugins.toast.show($translate.instant("selectLandmark"), 'short', 'bottom');
         } else {
 
+<<<<<<< HEAD
             $ionicLoading.show();
+=======
+            $ionicLoading.show({
+
+                	template: '<ion-spinner icon="bubbles"></ion-spinner>',
+                	animation: 'fade-in',
+                	maxWidth: 200,
+        			showDelay: 0
+                	
+                });
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
             Services.webServiceCallPost(params, 'add_user_address').then(function(response) {
                 $ionicLoading.hide();
                 if (response[1].response.status == 1) {
@@ -538,7 +771,18 @@ app.controller('homeDeliveryCtrl', function($scope, $location,$stateParams, appC
                         email: $localStorage.userProfile.email,
                         password: $localStorage.userProfile.password
                     };
+<<<<<<< HEAD
                     $ionicLoading.show();
+=======
+                    $ionicLoading.show({
+                    	animation: 'fade-in',
+                		template: '<ion-spinner icon="bubbles"></ion-spinner>',
+                		
+                		maxWidth: 200,
+        				showDelay: 0
+                	
+                });
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
                     Services.webServiceCallPost(params, 'get_user_address').then(function(response) {
                         $ionicLoading.hide();
                         if (response[1].response.status == 1) {
@@ -549,12 +793,17 @@ app.controller('homeDeliveryCtrl', function($scope, $location,$stateParams, appC
                 }
             });
         }
+<<<<<<< HEAD
     }*/
+=======
+    }
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
 
     $scope.selectBookingAddress = function(address) {
         $rootScope.bookingAddress = address;
     }
     $scope.setSaveOrderParams = function() {
+<<<<<<< HEAD
 
 
         $rootScope.saveOrderParams = {
@@ -577,11 +826,32 @@ app.controller('homeDeliveryCtrl', function($scope, $location,$stateParams, appC
             //state: '',
             //pincode: '',
            // order_type: 'home',
+=======
+        $rootScope.saveOrderParams = {
+            email: $localStorage.userProfile.email,
+            user_id: $localStorage.userProfile.id,
+            order_date: moment($('#delivery_book_date').val(), ["DD-MM-YYYY HH:mm A"]).format("YYYY-MM-DD"),
+            order_time: moment($('#delivery_book_date').val(), ["DD-MM-YYYY hh:mm A"]).format("hh:mm A"),
+            total_cost: $rootScope.totalCost,
+            customer_name: $localStorage.userProfile.first_name + ' ' + $localStorage.userProfile.last_name,
+            phone: $scope.booking.phone,
+            table_no:$rootScope.table_no,
+            house_no: $rootScope.bookingAddress.house_no,
+            apartment_name: $rootScope.bookingAddress.apartment_name,
+            other: $rootScope.bookingAddress.other,
+            address: $rootScope.bookingAddress.house_no + "  " + $rootScope.bookingAddress.apartment_name,
+            landmark: $rootScope.bookingAddress.landmark,
+            city: $rootScope.bookingAddress.city,
+            state: '',
+            pincode: '',
+            order_type: 'home',
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
             payment_type: $scope.booking.choice,
             payment_gateway:'Cash',
             no_of_items: $rootScope.orderDetails.length,
             order_summary: JSON.stringify($rootScope.orderDetails),
             isAddons: $localStorage.bookedAddons.length > 0 ? 1 : 0,
+<<<<<<< HEAD
             addons_summary: JSON.stringify($localStorage.bookedAddons)
             //order_by_device_id: localStorage.getItem("registrationId")
         }
@@ -603,6 +873,22 @@ $scope.doPayment = function() {
         }*
 	else if(globalMethods.checkTimings(d1,d2,d3,$translate.instant("crunchyRestaurantNotAvailableOnSelectedTime"))){
 		var myPopup = $ionicPopup.show({
+=======
+            addons_summary: JSON.stringify($localStorage.bookedAddons),
+            order_by_device_id: localStorage.getItem("registrationId")
+        }
+    }
+    $scope.doPayment = function() {
+        var from_date = new Date(moment($rootScope.siteSettings.from_time, "HH:mm"));
+        var to_date = new Date(moment($rootScope.siteSettings.to_time, "HH:mm"));
+        var d1 = new Date(moment($('#delivery_book_date').val(), ["DD-MM-YYYY HH:mm A"]).format("YYYY-MM-DD hh:mm A"));
+        var d2 = new Date(from_date);
+        var d3 = new Date(to_date);
+        if ($('#delivery_book_date').val() == '') {
+            window.plugins.toast.show($translate.instant("specifyDate"), 'short', 'bottom');
+        } else if (globalMethods.checkTimings(d1, d2, d3, $translate.instant("crunchyRestaurantNotAvailableOnSelectedTime"))) {
+            var myPopup = $ionicPopup.show({
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
                 templateUrl: 'modules/home/timingsPopup.html',
                 title: $translate.instant("restaruentTimings"),
                 cssClass: 'timings-popup',
@@ -611,6 +897,7 @@ $scope.doPayment = function() {
                     type: 'button-assertive'
                 }]
             });
+<<<<<<< HEAD
         } /*else if ($scope.addressCheck.choice == '') {
 
             window.plugins.toast.show($translate.instant("selectAddress"), 'short', 'bottom');
@@ -623,6 +910,15 @@ $scope.doPayment = function() {
 
             $scope.setSaveOrderParams();
 
+=======
+        } else if ($scope.addressCheck.choice == '') {
+            window.plugins.toast.show($translate.instant("selectAddress"), 'short', 'bottom');
+        } else if ($scope.booking.choice == 'online') {
+            $scope.setSaveOrderParams();
+            $location.path(appConst.path.payment);
+        } else if ($scope.booking.choice == 'cash') {
+            $scope.setSaveOrderParams();
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
             $scope.transaction_details = {
                 transaction_id: '',
                 paid_date: '',
@@ -631,7 +927,10 @@ $scope.doPayment = function() {
                 payment_status: '',
                 payment_gateway:'Cash'
             };
+<<<<<<< HEAD
 		 
+=======
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
             $scope.saveOrder();
         }
     }
@@ -696,7 +995,11 @@ $scope.doPayment = function() {
     var hour = parseInt(new Date().getHours());
     var min = new Date(year, minMonth, minDate, hour, minute);
     var max = new Date(year + 50, date, date, time, time);
+<<<<<<< HEAD
     /*$('#delivery_book_date').mobiscroll().datetime({
+=======
+    $('#delivery_book_date').mobiscroll().datetime({
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
         theme: 'android-ics',
         display: 'bottom',
         mode: 'scroller',
@@ -704,6 +1007,7 @@ $scope.doPayment = function() {
         dateFormat: "dd-mm-yy",
         minDate: min,
         maxDate: max
+<<<<<<< HEAD
     });*/
     $scope.saveOrder = function() {
         
@@ -1060,10 +1364,110 @@ var taxResponse = localStorage.getItem('taxSettings');
             		}
         	});
 	}
+=======
+    });
+    $scope.saveOrder = function() {
+       
+        angular.extend($rootScope.saveOrderParams, $scope.transaction_details);
+        $ionicLoading.show({
+        			animation: 'fade-in',
+                	template: '<ion-spinner icon="bubbles"></ion-spinner>',
+                
+                	maxWidth: 200,
+        			showDelay: 0
+                	
+                });
+        Services.webServiceCallPost($rootScope.saveOrderParams, appConst.services.save_order).then(function(response) {
+            $ionicLoading.hide();
+            if (response[1].response.status == 1) {
+                $localStorage.cart_list = [];
+                $localStorage.bookedAddons = [];
+                $rootScope.orderDetails = [];
+                $rootScope.saveOrderParams = {};
+                $location.path(appConst.path.payment_status);
+                window.plugins.toast.show(response[1].response.message, 'short', 'bottom');
+            }
+        });
+    }
+});
+
+app.controller('itemsListCtrl', function($state,$scope, $location,appConst, $ionicLoading, globalMethods, Services, $localStorage, $rootScope, findItemIndex, $translate)
+ {
+    $scope.selected_item;
+
+
+    $scope.viewCart = function() {
+        $location.path(appConst.path.cart_list);
+        $rootScope.cartListBack_button = true;
+    }
+
+    $scope.getItemsList = function() {
+        $scope.totalAddonsCost = 0;
+        $ionicLoading.show({
+        		animation: 'fade-in',
+                	template: '<ion-spinner icon="bubbles"></ion-spinner>',
+                	
+                	maxWidth: 200,
+        			showDelay: 0
+                	
+                });
+
+
+        Services.webServiceCallPost($rootScope.selectedItem, appConst.services.get_items).then(function(response) 
+        
+        {
+        
+            $ionicLoading.hide();
+            $scope.handleCartListIcon('cart_list_icon2');
+            //alert('$rootScope.selectedItem :'+JSON.stringify($rootScope.selectedItem));
+    	        
+            if (response[1].response.status == 1) {
+                $scope.subMenuItems = [];
+                $scope.menuSubItems = [];
+                $scope.itemTypes = [];
+                    
+                   
+                   
+
+
+                    /*if-start*/
+   					 if (response[0].data.items.length > 0) {
+
+
+            		angular.forEach(response[0].data.items, function(value, key) 
+            		{
+
+
+                                var extraData = {
+                                    imageUrl: appConst.serviceUrl.item_image_url + value.item_image_name,
+                                    imageUrlThumb: appConst.serviceUrl.item_image_url_thumb + value.item_image_name,
+                                    size_id: '',
+                                    size_name: '',
+                                    item_size_id: '',
+                                    size_price: '',
+                                    costAfterSize: value.item_cost
+                                };
+
+                            angular.extend(value, extraData);
+                            
+                            $scope.subMenuItems.push(value);
+                            $scope.menuSubItems.push(value);
+                            console.log('$scope.subMenuItems.length :'+$scope.subMenuItems.length);
+                            console.log('$scope.subMenuItems:'+JSON.stringify($scope.subMenuItems));
+                		
+
+                    });
+
+                   // alert('@730 check whether we have values or not :'+$scope.subMenuItems.length);
+            		//end of for loop
+
+                } 
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
 
 
 
 
+<<<<<<< HEAD
 	$scope.calculateTotalCost = function(dineInItems) 
 	{			
 
@@ -1463,11 +1867,27 @@ app.controller('itemsListCtrl', function($state,$ionicModal,$scope, $stateParams
 */
 /*******************************************************call post****************************************************/
              /* if (response[0].data.item_types.length > 0) {
+=======
+
+                /*if end*/
+                else {
+                    $scope.noItemsAvailable = $translate.instant("no") + " " + $rootScope.selectedItem.menu_name + " " + $translate.instant("availableNow");
+          			
+                }
+                
+                
+
+
+
+               /*if-start*/
+                if (response[0].data.item_types.length > 0) {
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
                     
                     $scope.itemTypes.push({
                         text: "All",
                         value: "All"
                     });
+<<<<<<< HEAD
                     angular.forEach(response[0].data.item_types, function(value, key) {
                         var extraData = {
                             text: value.item_type,
@@ -1483,6 +1903,41 @@ app.controller('itemsListCtrl', function($state,$ionicModal,$scope, $stateParams
            // }
        // });
    // }
+=======
+                   
+                    
+                                       
+
+
+                    angular.forEach(response[0].data.item_types, function(value, key) {
+                        var extraData = {
+                            text: value.item_type,
+                            value: value.item_type
+                            
+                            
+                        };
+                        $scope.itemTypes.push(extraData);                   
+                      //  alert('$scope.itemTypes : '+JSON.stringify($scope.itemTypes));
+                        
+                        
+                    });
+                    //for end
+                    $scope.data = { clientSide: 'All' };
+                    //alert(JSON.stringify($scope.data));
+                
+
+                }
+                /*if-end*/
+            
+            }
+
+
+        	});
+
+            
+
+    }
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
 
 
 
@@ -1494,11 +1949,18 @@ app.controller('itemsListCtrl', function($state,$ionicModal,$scope, $stateParams
         }
     }
 
+<<<<<<< HEAD
 
     $scope.chooseItemType = function(type) 
     {
         $scope.menuSubItems = $scope.subMenuItems;
  
+=======
+/*
+    $scope.chooseItemType = function(type) {
+        $scope.menuSubItems = $scope.subMenuItems;
+       // alert('$scope.menuSubItems'+JSON.stringify($scope.menuSubItems));
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
         if (type == 'Addons') {
             $scope.menuSubItems = [];
             $scope.menuSubItems = $rootScope.totalAddons;
@@ -1506,16 +1968,31 @@ app.controller('itemsListCtrl', function($state,$ionicModal,$scope, $stateParams
         } else {
 
             $scope.data.clientSide =type;
+<<<<<<< HEAD
  
+=======
+           // alert('$scope.subMenuItems'+JSON.stringify($scope.subMenuItems));
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
             $scope.menuSubItems = $scope.subMenuItems;
 
         }
     }
+<<<<<<< HEAD
 
 
 
   $scope.swipechooseItemType = function($index) {
  
+=======
+*/
+
+
+        $scope.swipechooseItemType = function($index) {
+        
+           // alert('index value :'+$index);
+                  
+        //alert('$scope.menuSubItems :'+JSON.stringify($scope.menuSubItems));
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
         $scope.menuSubItems = $scope.subMenuItems;
         if ($index == 'Addons') {
             $scope.menuSubItems = [];
@@ -1533,10 +2010,15 @@ app.controller('itemsListCtrl', function($state,$ionicModal,$scope, $stateParams
 
 
     $scope.openSelectedItem = function(item) {
+<<<<<<< HEAD
            
          $rootScope.review_id = item.item_id;
         $location.path(appConst.path.selected_item);
 
+=======
+        
+        $location.path(appConst.path.selected_item);
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
         angular.element(document).ready(function() {
             var selectedItemScope = angular.element(document.getElementById('selected_item_page')).scope();
             
@@ -1547,6 +2029,7 @@ app.controller('itemsListCtrl', function($state,$ionicModal,$scope, $stateParams
         });
     };
     $scope.addToCart = function(item) {
+<<<<<<< HEAD
         console.log('add to cart items :'+JSON.stringify(item));
         if (!e) var e = window.event;
         e.cancelBubble = true;
@@ -1577,10 +2060,19 @@ app.controller('itemsListCtrl', function($state,$ionicModal,$scope, $stateParams
 
             }
                
+=======
+       
+        if (findItemIndex.findItemIndexInCartList($localStorage.cart_list, '', item.item_id) == -1) {
+            $localStorage.cart_list.push(item);
+            $rootScope.cartCount = $localStorage.cart_list.length;
+            $scope.handleCartListIcon('cart_list_icon2');
+            
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
             window.plugins.toast.show($translate.instant("itemAddedToCart"), 'short', 'bottom');
         } else {
             window.plugins.toast.show($translate.instant("alreadyAddedToCart"), 'short', 'bottom');
         }
+<<<<<<< HEAD
 
     }
 
@@ -1643,6 +2135,11 @@ app.controller('itemsListCtrl', function($state,$ionicModal,$scope, $stateParams
     $scope.totalAddonsCost = 0;
     $scope.addonsTabInit = function() {;
         
+=======
+    }
+    $scope.totalAddonsCost = 0;
+    $scope.addonsTabInit = function() {
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
         angular.element(document).ready(function() {
             $scope.totalAddonsCost = 0;
             angular.forEach($localStorage.cart_list, function(value, key) {
@@ -1650,6 +2147,7 @@ app.controller('itemsListCtrl', function($state,$ionicModal,$scope, $stateParams
             });
         });
     }
+<<<<<<< HEAD
     
       $scope.itemSizes = [];
 
@@ -1925,6 +2423,46 @@ $scope.close_sizes_modal = function() {
     $scope.bookingCoupons = [];
     $scope.offersInt = function() {
         $ionicLoading.show();
+=======
+    $scope.addQuantity = function(quantity) {
+        return parseInt(quantity) + 1;
+    }
+    $scope.subtractQuantity = function(quantity) {
+        if (parseInt(quantity) > 1) {
+            return parseInt(quantity) - 1;
+        } else {
+            return parseInt(quantity);
+        }
+    }
+    $scope.calculateAddonTotal = function(cost, quantity, operation) {
+        if (quantity != 0) {
+            if (operation == 'add') {
+                $scope.totalAddonsCost = parseInt($scope.totalAddonsCost) + parseInt(cost);
+            } else if (operation == 'subtract') {
+                $scope.totalAddonsCost = parseInt($scope.totalAddonsCost) - parseInt(cost);
+            }
+        }
+    }
+    $scope.changeAddonQuantity = function( quantity, unitCost) {
+
+        return parseInt(quantity) * parseInt(unitCost);
+    }
+
+
+});
+app.controller('offersCtrl', function($scope, $location, appConst, $ionicLoading, Services, $translate) {
+    $scope.bookingCoupons = [];
+    $scope.offersInt = function() {
+        $ionicLoading.show({
+        		animation: 'fade-in',
+                template: '<ion-spinner icon="bubbles"></ion-spinner>',
+                
+				
+                maxWidth: 200,
+        		showDelay: 0
+                	
+                });
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
         Services.webServiceCallPost('', appConst.services.get_offers).then(function(response) {
             $ionicLoading.hide();
             var offersScope = angular.element(document.getElementById('offersPage')).scope();
@@ -1935,6 +2473,7 @@ $scope.close_sizes_modal = function() {
     }
     $scope.offerItems = [];
     $scope.offerName = {};
+<<<<<<< HEAD
 
     $scope.offerDetails = function(offer,price) {
         
@@ -1968,6 +2507,34 @@ $scope.close_sizes_modal = function() {
                                 var extraData = {
                                     costAfterSize: price,
                                     imageUrlThumb: 'img/logo.png'
+=======
+    $scope.offerDetails = function(offer) {
+        $location.path(appConst.path.offerDetails);
+        angular.element(document).ready(function() {
+            $ionicLoading.show({
+            		animation: 'fade-in',
+                	template: '<ion-spinner icon="bubbles"></ion-spinner>',
+                
+                	maxWidth: 200,
+        			showDelay: 0
+                	
+                });
+            Services.webServiceCallPost(offer, appConst.services.get_offer_details).then(function(response) {
+                $ionicLoading.hide();
+                var offerDetailsScope = angular.element(document.getElementById('offerDetailsPage')).scope();
+                offerDetailsScope.offerName.name = offer.offer_name;
+                if (response[1].response.status == 1) {
+                    offerDetailsScope.offerItems = [];
+                    if (response[0].data.products.length > 0) {
+                        angular.forEach(response[0].data.products, function(value, key) {
+                            if (!value.menu_image_name && value.menu_image_name != '') {
+                                var extraData = {
+                                    imageUrl: appConst.serviceUrl.item_image_url + value.item_image_name
+                                }
+                            } else {
+                                var extraData = {
+                                    imageUrl: 'img/logo.png'
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
                                 }
                             }
                             angular.extend(value, extraData);
@@ -1978,6 +2545,7 @@ $scope.close_sizes_modal = function() {
                     }
                 }
             });
+<<<<<<< HEAD
         });     
     }
 //function is over here .....
@@ -2026,12 +2594,28 @@ $scope.handleCartListIcon = function(id) {
 
 });
 
+=======
+        });
+    }
+});
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
 app.controller('orderHistoryCtrl', function($scope, $location, appConst, globalMethods, $ionicLoading, Services, $localStorage, $rootScope, $translate) {
     $rootScope.estimates = [];
     $scope.orders = [];
     $scope.orderHistoryInit = function() {
         if (globalMethods.checkUserLogin()) {
+<<<<<<< HEAD
             $ionicLoading.show();
+=======
+            $ionicLoading.show({
+            		animation: 'fade-in',
+                	template: '<ion-spinner icon="bubbles"></ion-spinner>',
+                	
+                	maxWidth: 200,
+        			showDelay: 0
+                	
+                });
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
             Services.webServiceCallPost($localStorage.userProfile, appConst.services.order_history).then(function(response) {
                 $ionicLoading.hide();
                 var orderHistoryScope = angular.element(document.getElementById('orderHistoryPage')).scope();
@@ -2051,7 +2635,18 @@ app.controller('orderHistoryCtrl', function($scope, $location, appConst, globalM
     $scope.openOrderHistoryDetails = function(order) {
         $location.path(appConst.path.ordersHistoryDetails);
         angular.element(document).ready(function() {
+<<<<<<< HEAD
             $ionicLoading.show();
+=======
+            $ionicLoading.show({	animation: 'fade-in',
+
+                	template: '<ion-spinner icon="bubbles"></ion-spinner>',
+                	
+                	maxWidth: 200,
+        			showDelay: 0
+                	
+                });
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
             Services.webServiceCallPost(order, appConst.services.order_item_details).then(function(response) {
                 $ionicLoading.hide();
                 var orderHistoryDetailsScope = angular.element(document.getElementById('orderHistoryDetailsPage')).scope();
@@ -2082,11 +2677,14 @@ app.controller('orderHistoryCtrl', function($scope, $location, appConst, globalM
         $location.path(appConst.path.dashboard);
     };
 });
+<<<<<<< HEAD
 
 
 /* ----------------------------------------------------------------------------------------------------------------
 -------------------------------------------Payment Controller------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------------*/
+=======
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
 app.controller('paymentCtrl', function($scope, $location, stripe, checkCustomer, appConst, PaypalService, $ionicLoading, Services, $localStorage, $rootScope, $ionicModal, $ionicHistory, $translate, payUmoney) {
     $scope.payment = {};
     $ionicModal.fromTemplateUrl(appConst.page.stripe_modalHtml, {
@@ -2098,8 +2696,124 @@ app.controller('paymentCtrl', function($scope, $location, stripe, checkCustomer,
         $scope.stripePaymentModal = modal;
     });
 
+<<<<<<< HEAD
     /*$scope.openStripePaymentModal = function()$scope.closeStripePaymentModal = function()*/
     /*$scope.payUPayment = function()$scope.paypalPayment = function() */
+=======
+    $scope.openStripePaymentModal = function() {
+        $scope.years = [];
+        for (var year = (new Date).getFullYear(), i = 1; 16 > i; i++) {
+            var y = {
+                value: year
+            };
+            $scope.years.push(y);
+            year++;
+        }
+        $scope.months = [{
+            value: "01"
+        }, {
+            value: "02"
+        }, {
+            value: "03"
+        }, {
+            value: "04"
+        }, {
+            value: "05"
+        }, {
+            value: "06"
+        }, {
+            value: "07"
+        }, {
+            value: "08"
+        }, {
+            value: "09"
+        }, {
+            value: "10"
+        }, {
+            value: "11"
+        }, {
+            value: "12"
+        }];
+        $scope.stripePaymentModal.show();
+    }
+    $scope.closeStripePaymentModal = function() {
+        $scope.stripePaymentModal.hide();
+    }
+    $scope.payUPayment = function(){
+        //console.log("$rootScope.saveOrderParams      "+JSON.stringify($rootScope.saveOrderParams));
+        var params = {
+            email: $localStorage.userProfile.email,
+            password: $localStorage.userProfile.password,
+            userId: $localStorage.userProfile.id,
+            firstname: $localStorage.userProfile.username,
+            order_date: $rootScope.saveOrderParams.order_date,
+            order_time: $rootScope.saveOrderParams.order_time,
+            total_cost: $rootScope.saveOrderParams.total_cost,
+            customer_name: $rootScope.saveOrderParams.customer_name,
+            phone: $rootScope.saveOrderParams.phone,
+            house_no: $rootScope.saveOrderParams.house_no,
+            apartment_name: $rootScope.saveOrderParams.apartment_name,
+            other: $rootScope.saveOrderParams.other,
+            table_no: $rootScope.table_no,
+            address: $rootScope.saveOrderParams.address,
+            landmark: $rootScope.saveOrderParams.landmark,
+            city: $rootScope.saveOrderParams.city,
+            state: $rootScope.saveOrderParams.state,
+            pincode: $rootScope.saveOrderParams.pincode,
+            order_type: $rootScope.saveOrderParams.order_type,
+            payment_type: $rootScope.saveOrderParams.payment_type,
+            no_of_items: $rootScope.saveOrderParams.no_of_items,
+            order_summary: $rootScope.saveOrderParams.order_summary,
+            isAddons: $rootScope.saveOrderParams.isAddons,
+            addons_summary: $rootScope.saveOrderParams.addons_summary,
+            order_by_device_id: $rootScope.saveOrderParams.order_by_device_id,
+            payment_gateway:'PayU'
+        };
+        payUmoney.doPayment(params).then(function(browser) {
+            browser.addEventListener("loadstart", function(event) {
+
+                if (event.url == "http://conquerorslabs.com/crunchyv5/payuMobile/success") {
+                    browser.close();
+                    $localStorage.cart_list = [];
+                    $localStorage.bookedAddons = [];
+                    $rootScope.orderDetails = [];
+                    $rootScope.saveOrderParams = {};
+                    $rootScope.cartCount = $localStorage.cart_list.length;
+                    $location.path(appConst.path.payment_status);
+                    $scope.$apply();
+                } else if (event.url == "http://conquerorslabs.com/crunchyv5/payuMobile/payFailure") {
+                    window.plugins.toast.show(response[1].response.message, 'short', 'bottom');
+                    browser.close();
+                }
+                else if(event.url.match(/cancelled/g).length>0){
+                   browser.close();
+                }
+            });
+        });
+
+
+    }
+    $scope.paypalPayment = function() {
+        PaypalService.initPaymentUI().then(function() {
+            PaypalService.makePayment($rootScope.totalCost, "Total").then(function(data) {
+                $scope.transaction_details = {
+                    transaction_id: data.response.id,
+                    paid_date: data.response.create_time,
+                    payer_name: $localStorage.userProfile.first_name + " " + $localStorage.userProfile.last_name,
+                    payer_email: $localStorage.userProfile.email,
+                    payment_status: data.response.state,
+                    payment_gateway:'PayPal'
+
+                };
+                if (data.response.state == 'approved') {
+                    $scope.saveOrder();
+                } else {
+                    window.plugins.toast.show(response[1].response.message, 'short', 'bottom');
+                }
+            });
+        });
+    }
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
     $scope.paymentConfirmInit = function() {
         var history = $ionicHistory.viewHistory().histories[$rootScope.dashboardHistoryId];
         for (var i = history.stack.length - 1; i >= 0; i--) {
@@ -2108,11 +2822,124 @@ app.controller('paymentCtrl', function($scope, $location, stripe, checkCustomer,
             }
         }
     }
+<<<<<<< HEAD
   /*  $scope.stripePayment = function() */
     $scope.saveOrder = function() {
 		
         angular.extend($rootScope.saveOrderParams, $scope.transaction_details);
         $ionicLoading.show();
+=======
+    $scope.stripePayment = function() {
+        var stripePaymentScope = angular.element(document.getElementById('stripePaymentForm')).scope();
+        if (parseFloat(stripePaymentScope.payment.amount) > 0) {
+            $ionicLoading.show({
+            		animation: 'fade-in',
+                	template: '<ion-spinner icon="bubbles"></ion-spinner>',
+                	
+                	maxWidth: 200,
+        			showDelay: 0
+                	
+                });
+            var cardDetails = {
+                customerId: $localStorage.stripeAccountDetails.id,
+                cardNo: stripePaymentScope.payment.cardNo,
+                month: stripePaymentScope.payment.ExpMonth,
+                year: stripePaymentScope.payment.ExpYear,
+                cvc: stripePaymentScope.payment.cvc,
+                amount: parseFloat(stripePaymentScope.payment.amount),
+                userName: "" + $localStorage.userProfile.firstName + " " + $localStorage.userProfile.lastName
+            };
+            stripe.getMyAccountDetails($localStorage.stripeAccountDetails.id).then(function(data) {
+                if (data) {
+                    if (data.sources) {
+                        if (data.sources.data.length > 0) {
+                            var cardNoString = stripePaymentScope.payment.cardNo.toString();
+                            if (checkCustomer.isCardExist(data.sources.data, cardNoString.substring(cardNoString.length - 4, cardNoString.length))) {
+                                stripe.doPayment(cardDetails).then(function(data) {
+                                    $scope.transaction_details = {
+                                        transaction_id: data.id,
+                                        paid_date: data.created,
+                                        payer_name: data.customer,
+                                        payer_email: data.receipt_email,
+                                        payment_status: data.paid,
+                                        payment_gateway:'Stripe'
+                                    };
+                                    $ionicLoading.hide();
+                                    if (data.error) {
+                                        window.plugins.toast.showShortBottom(data.error.message);
+                                    } else {
+                                        $scope.closeStripePaymentModal();
+                                        $scope.saveOrder();
+                                    }
+                                });
+                            } else {
+                                stripe.addNewCard(cardDetails).then(function(data) {
+                                    if (data.error) {
+                                        $ionicLoading.hide();
+                                        window.plugins.toast.showShortBottom(data.error.message);
+                                        window.plugins.toast.showShortBottom(data.error.code);
+                                    } else {
+                                        stripe.doPayment(cardDetails).then(function(data) {
+                                            $ionicLoading.hide();
+                                            $scope.transaction_details = {
+                                                transaction_id: data.id,
+                                                paid_date: data.created,
+                                                payer_name: data.customer,
+                                                payer_email: data.receipt_email,
+                                                payment_status: data.paid,
+                                                payment_gateway:'Stripe'
+                                            };
+                                            window.plugins.toast.showShortBottom(response.response[1].response.message);
+                                            $scope.closeStripePaymentModal();
+                                            $scope.saveOrder();
+                                        });
+                                    }
+                                });
+                            }
+                        } else {
+                            stripe.addNewCard(cardDetails).then(function(data) {
+                                if (data.error) {
+                                    $ionicLoading.hide();
+                                    window.plugins.toast.showShortBottom(data.error.message);
+                                    window.plugins.toast.showShortBottom(data.error.code);
+                                } else {
+                                    stripe.doPayment(cardDetails).then(function(data) {
+                                        $scope.transaction_details = {
+                                            transaction_id: data.id,
+                                            paid_date: data.created,
+                                            payer_name: data.customer,
+                                            payer_email: data.receipt_email,
+                                            payment_status: data.paid,
+                                            payment_gateway:'Stripe'
+                                        };
+                                        $ionicLoading.hide();
+                                        $scope.closeStripePaymentModal();
+                                        $scope.saveOrder();
+                                    });
+                                }
+                            });
+                        }
+                    } else if (data.error) {
+                        $ionicLoading.hide();
+                        window.plugins.toast.showShortBottom($translate.instant("invalidCard"));
+                    }
+                }
+            });
+        } else {
+            window.plugins.toast.showShortBottom($translate.instant("amountMustBeGreaterThanZero"));
+        }
+    }
+    $scope.saveOrder = function() {
+        angular.extend($rootScope.saveOrderParams, $scope.transaction_details);
+        $ionicLoading.show({
+        			animation: 'fade-in',
+
+                	template: '<ion-spinner icon="bubbles"></ion-spinner>',
+                	
+                	maxWidth: 200,
+        			showDelay: 0
+                });
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
         Services.webServiceCallPost($rootScope.saveOrderParams, appConst.services.save_order).then(function(response) {
             $ionicLoading.hide();
             if (response[1].response.status == 1) {
@@ -2145,6 +2972,7 @@ app.controller('paymentCtrl', function($scope, $location, stripe, checkCustomer,
 });
 
 
+<<<<<<< HEAD
 
 /*********************************************************************************************************************
 ****************************************** selected Item Ctrl ********************************************************
@@ -2224,6 +3052,40 @@ $scope.customizeOrder = function(item) {
 					$scope.selectedItemSize($scope.itemSizes[key]);
             		}
         	});
+=======
+app.controller('selectedItemCtrl', function($scope, $location, appConst, $localStorage, $ionicPopup, $rootScope, $ionicModal, findItemIndex, $translate)
+ {
+   
+    $scope.addToCart = function(item) {
+
+
+        if (findItemIndex.findItemIndexInCartList($localStorage.cart_list, '', item.item_id) == -1) {
+            $localStorage.cart_list.push(item);
+               
+            $rootScope.cartCount = $localStorage.cart_list.length;
+           
+            $scope.handleCartListIcon('cart_list_icon2');
+            
+            window.plugins.toast.show($translate.instant("itemAddedToCart"), 'short', 'bottom');
+
+        } else {
+            window.plugins.toast.show($translate.instant("alreadyAddedToCart"), 'short', 'bottom');
+        }
+    }
+    $scope.customizeOrder = function(item) {
+        $scope.itemSizes = item.options;
+        $scope.data = {};
+        var selectedItemScope = angular.element(document.getElementById('selected_item_page')).scope();
+   	
+        $scope.radioCheck = '';
+        angular.forEach($scope.itemSizes, function(value, key) {
+
+            if (value.price == selectedItemScope.selected_item.costAfterSize) {
+                $scope.radioCheck = value.option_id;
+            }
+        });
+
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
         var myPopup = $ionicPopup.show({
             templateUrl: 'modules/home/sizes-popup.html',
             scope: $scope,
@@ -2231,6 +3093,7 @@ $scope.customizeOrder = function(item) {
             buttons: [{
                 text: $translate.instant("cancel"),
                 onTap: function(e){
+<<<<<<< HEAD
                 	$scope.radioCheck = '';
                 	angular.forEach($localStorage.cart_list,function(value,key){
                         	if(selectedItemScope.selected_item.item_id == value.item_id){
@@ -2288,6 +3151,44 @@ $scope.selectedItemSize = function(size) {
                      window.plugins.toast.show($translate.instant("firstAddItemToCart"), 'short', 'bottom');
          }else{
 	
+=======
+                  $scope.radioCheck = '';
+                  angular.forEach($localStorage.cart_list,function(value,key){
+                        if(selectedItemScope.selected_item.item_id == value.item_id){
+                            $localStorage.cart_list[key].costAfterSize = value.item_cost;
+                            $scope.radioCheck = '';
+                            selectedItemScope.selected_item.costAfterSize = value.item_cost;
+                        }
+                  });
+                  myPopup.close();
+                }
+            }, {
+                text: '<b>' + $translate.instant("done") + '</b>',
+                type: 'button-assertive',
+                onTap: function(e,value) {
+                    myPopup.close();
+                }
+            }]
+        });
+    };
+    $scope.findIndexInData =function (Array, property, action) {
+        var result = -1;
+        angular.forEach(Array, function(value, index) {
+        if(value[property]==action){
+            result=index;
+        }
+        });
+        return result;
+    }
+    $scope.itemSizes = [];
+    $scope.selectedItemSize = function(size) {
+            var index = $scope.findIndexInData($localStorage.cart_list,'item_id',size.item_id);
+            if(index==0){
+                 //if(index==-1){
+                     $scope.radioCheck = '';
+                     //window.plugins.toast.show($translate.instant("firstAddItemToCart"), 'short', 'bottom');
+            }else{
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
                     var selectedItemScope = angular.element(document.getElementById('selected_item_page')).scope();
                     selectedItemScope.selected_item.size_id = size.option_id;
                     selectedItemScope.selected_item.size_name = size.option_name;
@@ -2300,6 +3201,7 @@ $scope.selectedItemSize = function(size) {
                         }
                     });
                     $scope.radioCheck = selectedItemScope.selected_item.size_id;
+<<<<<<< HEAD
 
 
 			/*** for booked addons item size id and size id **/
@@ -2479,12 +3381,168 @@ $scope.done_addons_model = function(){
 /***************************************  Addons All functions end ********************************************************/
 
 
+=======
+            }
+    }
+    $scope.done_sizes_model = function() {
+        $scope.sizes_model.hide();
+    }
+    $scope.close_sizes_modal = function() {
+        $scope.sizes_model.hide();
+    }
+
+    $scope.addQuantity = function(quantity) {
+        return parseInt(quantity) + 1;
+    }
+    
+    $scope.subtractQuantity = function(quantity) {
+      
+
+        if (parseInt(quantity) > 1) {
+            return parseInt(quantity) - 1;
+        } else {
+            return parseInt(quantity);
+        }
+    }
+    $scope.calculateAddonTotal = function(cost, quantity, operation) {
+        if (quantity != 0) {
+            if (operation == 'add') {
+                //items_list_scope.totalAddonsCost = parseInt(items_list_scope.totalAddonsCost) + parseInt(cost);
+            } else if (operation == 'subtract') {
+                //items_list_scope.totalAddonsCost = parseInt(items_list_scope.totalAddonsCost) - parseInt(cost);
+            }
+        }
+    }
+    $scope.changeAddonQuantity = function(item, quantity, unitCost) {
+
+       
+        angular.forEach($localStorage.bookedAddons,function(value,key){
+                if(value.addon_id == item.addon_id){
+                    
+                    $localStorage.bookedAddons[key].quantity = parseInt(quantity);
+                   
+
+                    $localStorage.bookedAddons[key].finalCost = parseInt(quantity) * parseInt(unitCost);
+
+                }
+        });
+
+
+        return parseInt(quantity) * parseInt(unitCost);
+    }
+
+
+    $scope.selectAddon = function(item, addonCheck, index) {
+            
+         if (addonCheck) {
+
+            findItemIndex.findAddonIndexInCartList($rootScope.bookedAddonsTEMP, '', item.addon_id).then(function(index) {
+                if (index == -1) {
+                    $rootScope.bookedAddonsTEMP.push(item);
+                }
+            });
+        } else {
+            findItemIndex.findAddonIndexInCartList($rootScope.bookedAddonsTEMP, '', item.addon_id).then(function(index) {
+                if (index != -1) {
+                    $rootScope.bookedAddonsTEMP.splice(index, 1);
+                }
+            });
+
+        }
+    }
+
+    $scope.open_addons_model = function(item) {
+    	//and selected item is passing through that position
+//hey shivam item is coming from that function you just go to selected item page
+
+        $ionicModal.fromTemplateUrl('modules/home/addons.html', {
+
+            scope: $scope,
+            animation: 'slide-in-up',
+           // animation: 'fade-in',
+
+            preserveScope: true
+        }).then(function(modal) {
+            
+            $scope.addons_model = modal;
+
+            if (item.addons.length > 0) {
+
+
+                $scope.itemAddons = [];
+                
+                $rootScope.totalAddons = [];
+                angular.forEach(item.addons, function(value, key) 
+                    
+                    { 	
+                    var setInterest = false;
+                    var quantity = 1; 
+
+                    /*if ($localStorage.bookedAddons.length > 0) {
+
+                        angular.forEach($localStorage.bookedAddons, function(interestValue, interestKey) {
+                            if (value.addon_id == interestValue.addon_id) {
+
+                                setInterest = true;
+                                quantity = interestValue.quantity;
+                                
+
+                            }
+                        });
+
+                    }
+*/
+//1350
+                    var extraData = {
+                        finalCost: parseInt(value.price) * parseInt(quantity),
+                        quantity: quantity,
+                        interests: setInterest,
+                        imageUrl: appConst.serviceUrl.addon_image_url + value.addon_image
+                    };
+                    //alert(' extraData :'+JSON.stringify(extraData));
+                    angular.extend(value, extraData);
+                    //the actual data which is going to view-------->itemAddons
+                    $scope.itemAddons.push(value);
+                        
+                                    });
+            }
+            $scope.addons_model.show();
+        });
+    }
+    $scope.close_addons_model = function() {
+        $scope.addons_model.hide();
+    }
+    $scope.done_addons_model = function(){
+    
+      
+        alert('temp length :'+JSON.stringify($rootScope.bookedAddonsTEMP.length));
+
+       if($rootScope.bookedAddonsTEMP.length>0){
+
+
+          angular.forEach($rootScope.bookedAddonsTEMP,function(value,key){
+
+                
+                $localStorage.bookedAddons.push(value);
+          });
+       }
+     
+       $scope.addons_model.hide();
+   
+    }
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
     $scope.viewCart = function() {
         $location.path(appConst.path.cart_list);
         $rootScope.cartListBack_button = true;
     }
     
+<<<<<<< HEAD
    $scope.handleCartListIcon = function(id) {          
+=======
+    $scope.handleCartListIcon = function(id) {
+
+            
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
         if ($localStorage.cart_list.length > 0) {
                
             $('#' + id).show();
@@ -2496,6 +3554,103 @@ $scope.done_addons_model = function(){
 
 });
 
+<<<<<<< HEAD
+=======
+// app.controller('menuCtrl', function($scope, $location, appConst, globalMethods, $localStorage, $rootScope, $translate) {
+//     $scope.editProfile = {
+//         first_name: '',
+//         last_name: '',
+//         identity: '',
+//         phone: '',
+//         address: '',
+//         city: '',
+//         state: '',
+//         pincode: '',
+//         landmark: ''
+//     };
+//     $scope.openEditProfile = function() {
+//         if (globalMethods.checkUserLogin()) {
+//             $location.path(appConst.path.editProfile);
+//             angular.element(document).ready(function() {
+//                 var editProfileScope = angular.element(document.getElementById('editProfilePage')).scope();
+//                 editProfileScope.editProfile.first_name = $localStorage.userProfile.first_name;
+//                 editProfileScope.editProfile.last_name = $localStorage.userProfile.last_name;
+//                 editProfileScope.editProfile.identity = $localStorage.userProfile.email;
+//                 editProfileScope.editProfile.phone = parseInt($localStorage.userProfile.phone);
+//                 editProfileScope.editProfile.address = $localStorage.userProfile.address;
+//                 editProfileScope.editProfile.city = $localStorage.userProfile.city;
+//                 editProfileScope.editProfile.state = $localStorage.userProfile.state;
+//                 editProfileScope.editProfile.pincode = $localStorage.userProfile.pincode;
+//                 editProfileScope.editProfile.landmark = $localStorage.userProfile.landmark;
+//             });
+//         } else {
+//             $location.path(appConst.path.login);
+//         }
+//     }
+//    $scope.openViewProfile = function() {
+//            if (globalMethods.checkUserLogin()) {
+//                $location.path('/app/viewProfile');
+//            } else {
+//                $location.path(appConst.path.registration);
+//            }
+//        }
+
+//     $scope.editProfileInit = function() {
+//         if (globalMethods.checkUserLogin()) {
+//             $location.path(appConst.path.editProfile);
+//             angular.element(document).ready(function() {
+//                 var editProfileScope = angular.element(document.getElementById('editProfilePage')).scope();
+//                 editProfileScope.editProfile.first_name = $localStorage.userProfile.first_name;
+//                 editProfileScope.editProfile.last_name = $localStorage.userProfile.last_name;
+//                 editProfileScope.editProfile.identity = $localStorage.userProfile.email;
+//                 editProfileScope.editProfile.phone = parseInt($localStorage.userProfile.phone);
+//                 editProfileScope.editProfile.address = $localStorage.userProfile.address;
+//                 editProfileScope.editProfile.city = $localStorage.userProfile.city;
+//                 editProfileScope.editProfile.state = $localStorage.userProfile.state;
+//                 editProfileScope.editProfile.pincode = $localStorage.userProfile.pincode;
+//                 editProfileScope.editProfile.landmark = $localStorage.userProfile.landmark;
+//             });
+//         } else {
+//             $location.path(appConst.path.login);
+//         }
+//     }
+//     $scope.setLogin = function(){
+//         if($rootScope){
+//             $rootScope.loginThrough = '';
+//         }
+
+//     }
+//     $scope.settings = function() {
+//         $location.path(appConst.path.changeLanguage);
+//         angular.element(document).ready(function() {
+//             var changeLanguageScope = angular.element(document.getElementById('changeLanguage')).scope();
+//             changeLanguageScope.language.name = localStorage.getItem('defaultLanguage');
+//         });
+//     }
+//     $scope.shareToFriends = function() {
+//         window.plugins.socialsharing.share($translate.instant("crunchy"), $translate.instant("crunchyAppForRestaurant"), '', 'url Here');
+//     }
+//     $scope.setCartListBack_button = function() {
+//         $rootScope.cartListBack_button = false;
+//     }
+//     $scope.openPlaystore = function() {
+//         cordova.getAppVersion.getPackageName().then(function(name) {
+//             cordova.plugins.market.open(name, {
+//                 success: function() {},
+//                 failure: function() {}
+//             });
+//         });
+//     }
+    
+//     $scope.checkUserLogin = function() {
+//         return globalMethods.checkUserLogin();
+//     }
+// });
+
+
+
+
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
 app.controller('profileCtrl', function($scope, $location, appConst, globalMethods, $ionicLoading, Services, $localStorage, $rootScope, $ionicModal, $translate) {
     $scope.editProfile = {
         first_name: '',
@@ -2538,7 +3693,18 @@ app.controller('profileCtrl', function($scope, $location, appConst, globalMethod
                 email: $localStorage.userProfile.email,
                 password: $localStorage.userProfile.password
             };
+<<<<<<< HEAD
             $ionicLoading.show();
+=======
+            $ionicLoading.show({
+            		animation: 'fade-in',
+                	template: '<ion-spinner icon="bubbles"></ion-spinner>',
+                	
+                	maxWidth: 200,
+        			showDelay: 0
+                	
+                });
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
             Services.webServiceCallPost(params, 'get_user_address').then(function(response) {
                 $ionicLoading.hide();
                 if (response[1].response.status == 1) {
@@ -2616,7 +3782,18 @@ app.controller('profileCtrl', function($scope, $location, appConst, globalMethod
         } else if (params.landmark == '') {
             window.plugins.toast.show($translate.instant("selectLandmark"), 'short', 'bottom');
         } else {
+<<<<<<< HEAD
             $ionicLoading.show();
+=======
+            $ionicLoading.show({
+            		animation: 'fade-in',
+                	template: '<ion-spinner icon="bubbles"></ion-spinner>',
+                	
+                	maxWidth: 200,
+        			showDelay: 0
+                	
+                });
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
             Services.webServiceCallPost(params, 'add_user_address').then(function(response) {
                 $ionicLoading.hide();
                 if (response[1].response.status == 1) {
@@ -2649,7 +3826,19 @@ app.controller('profileCtrl', function($scope, $location, appConst, globalMethod
             ua_id: address.ua_id
         };
         angular.extend(params, $scope.address);
+<<<<<<< HEAD
         $ionicLoading.show();
+=======
+        $ionicLoading.show(
+        	{
+        		animation: 'fade-in',
+			template: '<ion-spinner icon="bubbles"></ion-spinner>',
+			
+			maxWidth: 200,
+        	showDelay: 0
+
+        	});
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
         Services.webServiceCallPost(params, 'edit_user_address').then(function(response) {
             $ionicLoading.hide();
             if (response[1].response.status == 1) {
@@ -2664,7 +3853,17 @@ app.controller('profileCtrl', function($scope, $location, appConst, globalMethod
             password: $localStorage.userProfile.password,
             ua_id: address.ua_id
         };
+<<<<<<< HEAD
         $ionicLoading.show();
+=======
+        $ionicLoading.show({
+        	animation: 'fade-in',
+        	template: '<ion-spinner icon="bubbles"></ion-spinner>',
+        	
+        	maxWidth: 200,
+        	showDelay: 0
+        });
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
         Services.webServiceCallPost(params, 'delete_user_address').then(function(response) {
             $ionicLoading.hide();
             if (response[1].response.status == 1) {
@@ -2679,7 +3878,17 @@ app.controller('profileCtrl', function($scope, $location, appConst, globalMethod
             id: $localStorage.userProfile.id
         };
         angular.extend(editProfileScope.editProfile, extraData);
+<<<<<<< HEAD
         $ionicLoading.show();
+=======
+        $ionicLoading.show({
+        	animation: 'fade-in',
+        	template: '<ion-spinner icon="bubbles"></ion-spinner>',
+        	
+        	maxWidth: 200,
+        	showDelay: 0
+        });
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
         Services.webServiceCallPost(editProfileScope.editProfile, appConst.services.edit_profile).then(function(response) {
             $ionicLoading.hide();
             if (response[1].response.status == 1) {
@@ -2698,6 +3907,7 @@ app.controller('profileCtrl', function($scope, $location, appConst, globalMethod
     }
 });
 app.controller('aboutUsCtrl', function($scope, $location, appConst, uiGmapGoogleMapApi, $ionicLoading, Services, $rootScope) {
+<<<<<<< HEAD
    
      $scope.home = function() {
         $location.path(appConst.path.dashboard);
@@ -2753,6 +3963,12 @@ app.controller('aboutUsCtrl', function($scope, $location, appConst, uiGmapGoogle
         $scope.getcomments();
 
  
+=======
+    $scope.home = function() {
+        $location.path(appConst.path.dashboard);
+    };
+    $scope.aboutUs = function() {
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
         if ($rootScope.appVersion == '') {
             cordova.getAppVersion.getVersionNumber().then(function(version) {
                 $rootScope.appVersion = version;
@@ -2793,11 +4009,24 @@ app.controller('aboutUsCtrl', function($scope, $location, appConst, uiGmapGoogle
         });
         $scope.pagesInfo();
     }
+<<<<<<< HEAD
 
 
 
     $scope.pagesInfo = function() {
         $ionicLoading.show();
+=======
+    $scope.pagesInfo = function() {
+        $ionicLoading.show(
+        	{
+        		animation: 'fade-in',
+        		template: '<ion-spinner icon="bubbles" class="custom-icon"></ion-spinner>',
+
+        		maxWidth: 210,
+        		
+        		showDelay: 0
+        	});
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
         Services.webServiceCallPost('', appConst.services.pages).then(function(response) {
             $ionicLoading.hide();
             if (response[1].response.status == 1) {
@@ -2808,9 +4037,14 @@ app.controller('aboutUsCtrl', function($scope, $location, appConst, uiGmapGoogle
         });
     }
     
+<<<<<<< HEAD
 });        
 
 app.controller('reports', function($scope,$location,$rootScope,appConst){
+=======
+});
+        app.controller('reports', function($scope,$location,$rootScope,appConst){
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
            
  $scope.viewCart = function() {
         $location.path(appConst.path.cart_list);
@@ -2856,6 +4090,7 @@ app.controller('reports', function($scope,$location,$rootScope,appConst){
 
 
 
+<<<<<<< HEAD
 
             
     app.controller('infotainmentcategaryctrl', function($ionicHistory,$location,$ionicLoading,$ionicSlideBoxDelegate,$localStorage,$scope,Services,appConst,$rootScope,$state,$stateParams){ 
@@ -2871,6 +4106,14 @@ $scope.goBack=function(){
 		$ionicSlideBoxDelegate.update();
   	},500);
 
+=======
+            
+    app.controller('infotainmentcategaryctrl', function($location,$ionicLoading,$ionicSlideBoxDelegate,$localStorage,$scope,Services,appConst,$rootScope,$state,$stateParams){ 
+     
+      $scope.selected_infotainment;
+
+
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
  $scope.viewCart = function() {
         $location.path(appConst.path.cart_list);
         $rootScope.cartListBack_button = true;
@@ -2883,6 +4126,7 @@ $scope.goBack=function(){
         $scope.infodata=[];
         
 
+<<<<<<< HEAD
         $ionicLoading.show();
         Services.webServiceCallPost('','fetch_categary').then(function(response)
          {
@@ -2904,6 +4148,17 @@ $scope.goBack=function(){
 			}
 			
 		}
+=======
+        $ionicLoading.show({
+        	animation: 'fade-in',
+        	template: '<ion-spinner icon="bubbles"></ion-spinner>',
+        	maxWidth: 210,
+       		showDelay: 0
+
+        });
+        Services.webServiceCallPost('','fetch_categary').then(function(response)
+         {
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
         $ionicLoading.hide();               
             if(response['parent_categary'].length>0) 
               {   
@@ -2926,10 +4181,22 @@ $scope.goBack=function(){
                           
             });
 
+<<<<<<< HEAD
             $ionicLoading.show();
             Services.webServiceCallPost('','fetch_media').then(function(response){
             $ionicLoading.hide();
  
+=======
+            $ionicLoading.show({
+				animation: 'fade-in',
+            	template: '<ion-spinner icon="bubbles"></ion-spinner>',
+            	maxWidth: 210,	
+        		showDelay: 0
+            });
+            Services.webServiceCallPost('','fetch_media').then(function(response){
+            $ionicLoading.hide();
+            //alert('response :'+JSON.stringify(response['media']));
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
 
             if(response['media'].length>0){
                 angular.forEach(response['media'],function(value,key){
@@ -2952,23 +4219,47 @@ $scope.goBack=function(){
             }
 
             });
+<<<<<<< HEAD
+=======
+
+              
+
+//            alert(' infotainmentdata :'+$scope.infotainmentdata);
+          //  $scope.itemTypes[$index].value
+        
+       
+
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
         }
 //fetch ending point
         $scope.listInfotainment = function($index)
  {
+<<<<<<< HEAD
 	
+=======
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
       	$scope.slider.slidermodel=$index;
 
        }
 
          $scope.selectedInfotainment = function(infodata)
        {
+<<<<<<< HEAD
  
  
 
         $state.go('app.singleInfotainment',{url:infodata.file_name});
         angular.element(document).ready(function() {
             var selectedInfotainmentScope = angular.element(document.getElementById('selectedInfotainment')).scope();
+=======
+        console.log('infodata :'+JSON.stringify(infodata));
+        //alert(JSON.stringify(infodata));
+
+        $location.path('/app/singleInfotainment');
+        angular.element(document).ready(function() {
+            var selectedInfotainmentScope = angular.element(document.getElementById('selectedInfotainment')).scope();
+        
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
             selectedInfotainmentScope.selected_infotainment = infodata;
         });
        }
@@ -2984,16 +4275,23 @@ $scope.goBack=function(){
             $scope.result = response['media'][0];
            var file_name = result['file_name'];
            $scope.file_name = file_name.split('.');
+<<<<<<< HEAD
  
+=======
+          //  alert(JSON.stringify($scope.result));
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
         });
        
        
     }); 
     
     app.controller('singleInfotainmentctrl', function($scope,Services,appConst,$rootScope,$stateParams){
+<<<<<<< HEAD
  
   	    $scope.url=$stateParams.url;
 		document.getElementById("iframev").src=$scope.url;
+=======
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
         //var id = {media_id:$stateParams.mediaId};
 
         
@@ -3006,7 +4304,11 @@ $scope.goBack=function(){
             $scope.result = response['media'][0];
            var file_name = result['file_name'];
            $scope.file_name = file_name.split('.');
+<<<<<<< HEAD
  
+=======
+          //  alert(JSON.stringify($scope.result));
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
 
         });
 */
@@ -3028,7 +4330,11 @@ $scope.goBack=function(){
         state: '',
         pincode: '',
         landmark: ''
+<<<<<<< HEAD
     }; 
+=======
+    };
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
      $ionicModal.fromTemplateUrl('modules/home/terms_conditions_modal.html', {
         scope: $scope,
         animation: 'slide-in-up',
@@ -3038,7 +4344,11 @@ $scope.goBack=function(){
     });
     
      $scope.openTermsConditions = function() {
+<<<<<<< HEAD
  
+=======
+//        alert('hel');
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
         $scope.pagesInfo();
         $scope.terms_conditions_modal.show();
     };
@@ -3053,11 +4363,27 @@ $scope.goBack=function(){
     
       
     $scope.pagesInfo = function() {
+<<<<<<< HEAD
         $ionicLoading.show();
  
         Services.webServiceCallPost('', appConst.services.pages).then(function(response) {
             $ionicLoading.hide();
  
+=======
+    	
+        $ionicLoading.show({
+        	animation: 'fade-in',
+        	template: '<ion-spinner icon="bubbles"></ion-spinner>',
+        	animation: 'fade-in',
+        	maxWidth: 300,
+   			showDelay: 0
+
+        });
+        //alert('show ke bad');
+        Services.webServiceCallPost('', appConst.services.pages).then(function(response) {
+            $ionicLoading.hide();
+           // alert('hide ke bad');
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
 
             if (response[1].response.status == 1) {
                 if (response[0].data.length > 0) {
@@ -3147,7 +4473,11 @@ $scope.goBack=function(){
 
         $rootScope.cartListBack_button = true;
         $location.path(appConst.path.cart_list);
+<<<<<<< HEAD
  
+=======
+        alert($rootScope.cartListBack_button);
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
         
 
 
@@ -3171,6 +4501,7 @@ $scope.goBack=function(){
         return globalMethods.checkUserLogin();
     }  
 });
+<<<<<<< HEAD
 app.controller('searchCtrl', function($scope, $ionicModal,$location, appConst, globalMethods, $localStorage, $rootScope, $translate,$ionicHistory,$ionicLoading,Services) 
             {
                 var count=0;
@@ -3654,3 +4985,39 @@ app.controller('myWidgetCtrl', function($scope, $ionicModal,$location, $ionicPop
 
 });
 
+=======
+
+app.controller('searchCtrl', function($scope, $ionicModal,$location, appConst, globalMethods, $localStorage, $rootScope, $translate,$ionicHistory,$ionicLoading,Services) 
+            {
+            $scope.cartListBack = function() 
+            {
+                    $ionicHistory.goBack();
+            }
+
+            $scope.querysubmit = function(query)
+            {
+
+                alert('query'+query);
+                
+                $scope.searchinput={"search": "1"};
+                
+                
+                $ionicLoading.show({
+                	template: '<ion-spinner icon="bubbles" ></ion-spinner>',
+                	maxWidth: 210,
+        			showDelay: 0
+                });		//
+                Services.webServiceCallPost($scope.searchinput,'search').then(function(response) { 
+                $ionicLoading.hide();
+
+                alert(response['parent_categary']);
+
+
+          		});  
+            }
+
+
+
+
+            });
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318

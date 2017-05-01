@@ -96,8 +96,15 @@ app.factory('globalMethods', function($http, $rootScope, $timeout, $localStorage
              }
         },
         getCostAfterSizeValue : function(id){
+<<<<<<< HEAD
          var deferred = $q.defer();
             if($localStorage.cart_list.length>0){
+=======
+
+         var deferred = $q.defer();
+            if($localStorage.cart_list.length>0){
+                
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
                 angular.forEach($localStorage.cart_list, function(value, key) {
                     if(value.item_id==id){
                          deferred.resolve(value.costAfterSize);

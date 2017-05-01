@@ -3310,11 +3310,22 @@ table {
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
 html {
   overflow: hidden;
   -ms-touch-action: pan-y;
   touch-action: pan-y; }
 
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
 body,
 .ionic-body {
   -webkit-touch-callout: none;
@@ -3566,6 +3577,15 @@ ion-infinite-scroll {
   background-color: #fff;
   overflow: hidden; }
 
+<<<<<<< HEAD
+=======
+
+.spinner svg {
+  stroke: #444444;
+  fill: #444444;
+}
+
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
 .view-container {
   position: absolute;
   display: block;
@@ -8629,13 +8649,21 @@ progress {
         color: #fff; }
   .button.button-positive {
     border-color: transparent;
+<<<<<<< HEAD
     background-color: #444444;
+=======
+    background-color: #3b5998;
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
     color: #fff; }
     .button.button-positive:hover {
       color: #fff;
       text-decoration: none; }
     .button.button-positive.active, .button.button-positive.activated {
+<<<<<<< HEAD
       background-color: #6d6d6d; }
+=======
+      background-color: #2e5493; }
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
     .button.button-positive.button-clear {
       border-color: transparent;
       background: none;
@@ -9815,9 +9843,13 @@ button {
 
 .popup-title {
   font-size: 1.4em;
+<<<<<<< HEAD
   color: #444444;
   
  }
+=======
+  color: #3262b0; }
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
 
 .pageNote {
   margin: 0 7px;
@@ -10327,7 +10359,11 @@ button {
   height: 80px; }
 
 .sidebar-profile h2 {
+<<<<<<< HEAD
   color: #f34c30; font-size: 1.3em }
+=======
+  color:  ‎#808080; font-size: 1.3em }
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
 
 .sidebar-profile .item {
   width: 100%;
@@ -10348,7 +10384,11 @@ button {
   font-size: 1.4em; }
 
 .menu.menu-left .item-content.activated {
+<<<<<<< HEAD
   background: #444444; }
+=======
+  background: #0f0e0e; }
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
 
 .menu.menu-left .item-content {
   color: #333;
@@ -10825,7 +10865,11 @@ float:right;
     height: 324px;
 }
 .supportTextArea{width:100%;height: 160px;}
+<<<<<<< HEAD
 .aboutUsDesc{margin-top: 0px;}
+=======
+.aboutUsDesc{margin-top: 300px;}
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
 
 .header-badge{
   top: -12px !important;

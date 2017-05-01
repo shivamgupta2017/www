@@ -1,10 +1,15 @@
 "use strict";
 app.factory('Services', function($http, $rootScope, $timeout, $localStorage, $ionicLoading, $q, appConst, $translate) {
+<<<<<<< HEAD
+=======
+  
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
     $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
     return {
         webServiceCallPost: function(data, action) {
             //alert("data 1st parameter :"+JSON.stringify(data));
             //alert("action 2st parameter :"+JSON.stringify(action));
+<<<<<<< HEAD
             var data_send = JSON.stringify(data);
             console.log("data:   "+data_send);
             console.log("action    "+JSON.stringify(action));
@@ -14,6 +19,11 @@ app.factory('Services', function($http, $rootScope, $timeout, $localStorage, $io
                 data = data_send;
 //                alert(data);
             }
+=======
+            console.log("data:   "+JSON.stringify(data));
+            console.log("action    "+JSON.stringify(action));
+            var deferred = $q.defer();
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
                        // 
                 return $.ajax({
                     type: "POST",
@@ -24,13 +34,19 @@ app.factory('Services', function($http, $rootScope, $timeout, $localStorage, $io
                     timeout: 2000000,
                     async: true,
                     success: function(response) {
+<<<<<<< HEAD
                     //    alert(JSON.stringify(response));
+=======
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
                         console.log("response \n:"+JSON.stringify(response));
                        // alert("response    "+JSON.stringify(response));
                         deferred.resolve();
                     },
                     error: function(xhr, ajaxOptions, thrownError) {
+<<<<<<< HEAD
                         //alert("errorrrr");
+=======
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
                         $ionicLoading.hide();
                        // alert("status   :"+xhr.status);
                         if (xhr.status == 0) {
@@ -151,6 +167,7 @@ app.factory('Services', function($http, $rootScope, $timeout, $localStorage, $io
             return $http.get(appConst.serviceUrl.service + action).then(function(response) {
                 return response;
             });
+<<<<<<< HEAD
         },
         pa: function(object,string, isShown) {
 		if(isShown){
@@ -161,6 +178,8 @@ app.factory('Services', function($http, $rootScope, $timeout, $localStorage, $io
 		if(isShown){
             		console.log(string+' '+JSON.stringify(object)+' '+string);
 		}
+=======
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
         }
     }
 });

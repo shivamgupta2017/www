@@ -5,36 +5,20 @@
 	<ion-nav-buttons side="right" >
 		<button id="cart_list_icon1" ng-click="viewCart()" class="button-icon button button-clear flaticon-shop"><i class="badge badge-light header-badge"><span ng-if="cartCount!=0">{{cartCount}}</span></i></button>
 	</ion-nav-buttons>
-	<ion-nav-title> {{selected_item.item_name}} </ion-nav-title>
-		
+	<ion-nav-title> {{selected_item.item_name}} </ion-nav-title>		
 		<ion-content ng-init="getreview()" scroll="true"><!--ng-init="getreview()"-->
-		
 		<img ng-src="{{selected_item.imageUrl}}"  class="full-image" alt="" style="height:95vh; width:80vw">
 		
 		<div class="list profileDetails" style="height:100vh; width:20vw; float:right">
 				<div class="item item-icon-left item-button-right">
-					<i class="icon"><span>{{siteSettings.currency_symbol}}</span></i> {{'cost' | translate}} {{selected_item.item_cost}}
-					<!-- <button class="button button-icon button-green flaticon-commerce" ng-click="addToCart(selected_item)">
-			        </button> -->
+					<i class="icon"><span>{{siteSettings.currency_symbol}}</span></i> {{'cost' | translate}} {{selected_item.item_cost}}					
 				</div>
-
-				<!--<div class="item item-icon-left item-button-right" ng-click="customizeOrder(selected_item)" ng-if="selected_item.options.length!=0">
-					<i class="icon ion ion-ios-pie-outline"></i> {{'sizes' | translate}}
-					<i class="icon icon-right ion ion-ios-arrow-down"></i>
-				</div>
-				
-				<div class="item item-icon-left item-button-right" ng-click="open_addons_model(selected_item)" ng-if="selected_item.addons.length!=0">
-					<i class="icon ion ion-ios-color-wand-outline"></i> {{'addons' | translate}}
-					<i class="icon icon-right ion ion-ios-arrow-down"></i>
-				</div>
-				-->
 				<div class="item item-icon-left"> <i class="icon mdi mdi-map"></i> <strong>{{'description' | translate}}</strong> </div>
 				<div class="item item-text-wrap address">
 					<p>
 						{{selected_item.item_description}}
 					</p>
 				</div>
-		
 				<button class="button-block button button-dark" ng-disabled="disableButtons" ng-style="disableTagButton" ng-click="	addToCart(selected_item)">{{'addToCart' | translate}}</button>
 				<!--  style=" height: 500px"-->
 				<ion-scroll class="list" direction="y"  style="height: 60%; color: black; font-style: normal; ">
@@ -51,12 +35,6 @@
 				</div>
 
 				</div>
-							
-				
-
-				
-
-
-
+			
 	</ion-content>
 </ion-view>

@@ -1,5 +1,9 @@
 ion-slide {
+<<<<<<< HEAD
     background-color: #f0f0f0;
+=======
+    
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
 }
 
 ion-slide:nth-child(2n) {
@@ -12,19 +16,29 @@ ion-slide:nth-child(2n) {
 
 .slidingTabs {
     height: 48px;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
     z-index: 10;
 }
 
 .slidingTabs .scroll {
     height: auto;
     min-width: 100%;
+<<<<<<< HEAD
 
 }
 
 .slidingTabs ul {
     width:100%;
     background-color: #444444;
+=======
+}
+
+.slidingTabs ul {
+    background-color: #4B4E54;
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
     height: 48px;
 }
 
@@ -32,11 +46,18 @@ ion-slide:nth-child(2n) {
     height: 48px;
     line-height: 48px;
     text-align: center;
+<<<<<<< HEAD
     width:250px;
     float: left;
     margin: 0;
     padding: 0 12px 20px 12px;
     font-size: 13px;
+=======
+    float: left;
+    margin: 0;
+    padding: 0 12px 20px 12px;
+    font-size: 11px;
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.6);
     -webkit-transition: color .25s ease-in-out;
@@ -46,8 +67,12 @@ ion-slide:nth-child(2n) {
 }
 
 .slidingTabs ul li.tab-active {
+<<<<<<< HEAD
     color: #fff;
     font-weight:bold;
+=======
+    color: #FECB72;
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
 }
 
 .slidingTabs ul li .ink {
@@ -77,6 +102,7 @@ ion-slide:nth-child(2n) {
     background-color: #fff;
     width: 70px;
     position: relative;
+<<<<<<< HEAD
    -webkit-box-shadow: 0px 5px 5px -1px rgba(0,0,0,0.61);
 -moz-box-shadow: 0px 5px 5px -1px rgba(0,0,0,0.61);
 box-shadow: 0px 5px 5px -1px rgba(0,0,0,0.61);
@@ -89,3 +115,7 @@ box-shadow: 0px 5px 5px -1px rgba(0,0,0,0.61);
 		-webkit-transform:scale(2.5);
     }
 }
+=======
+}
+
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318

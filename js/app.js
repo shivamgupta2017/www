@@ -1,6 +1,11 @@
 "use strict";
+<<<<<<< HEAD
 var app = angular.module('starter', ['ionic','ionic.rating', 'ngStorage', 'ngAnimate', 'declarations','nzToggle', 'socialLogins', 'ngCordovaOauth', 'uiGmapgoogle-maps', 'pascalprecht.translate','angularRandomString','ngCordova'], function($httpProvider) {
      
+=======
+var app = angular.module('starter', ['ionic','ionic.cloud','ionic.rating', 'ngStorage', 'ngAnimate', 'declarations', 'socialLogins', 'ngCordovaOauth', 'uiGmapgoogle-maps', 'pascalprecht.translate','angularRandomString','ngCordova'], function($httpProvider) {
+  
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
     var param = function(obj) {
         var query = '',
             name, value, fullSubName, subName, subValue, innerObj, i;
@@ -31,20 +36,71 @@ var app = angular.module('starter', ['ionic','ionic.rating', 'ngStorage', 'ngAni
         return angular.isObject(data) && String(data) !== '[object File]' ? param(data) : data;
     }];
 });
+<<<<<<< HEAD
 app.run(function($ionicPlatform, $rootScope, $cordovaNetwork,$translate,$cordovaPush) {
  
     $ionicPlatform.ready(function() {
         
 
+=======
+app.run(function($ionicPlatform, $rootScope,$cordovaNetwork,$translate,$cordovaPushV5) {
+ 
+    $ionicPlatform.ready(function() {
+	
+  /* var options = {
+  	android: {
+  	  senderID: "12345679"
+  	},
+    ios: {
+      alert: "true",
+      badge: "true",
+      sound: "true"
+    },
+    windows: {}
+  };
+
+  	$cordovaPushV5.initialize(options).then(function() {
+  		$cordovaPushV5.onNotification();
+  		// start listening for errors
+    	$cordovaPushV5.onError();
+    // register to get registrationId
+    	$cordovaPushV5.register().then(function(registrationId) {
+
+    	  // save `registrationId` somewhere;
+  })
+    	});
+
+  	$rootScope.$on('$cordovaPushV5:notificationReceived', function(event, data){
+    // data.message,
+    // data.title,
+
+    // data.count,
+    // data.sound,
+    // data.image,
+    // data.additionalData
+  });
+  	// triggered every time error occurs
+  $rootScope.$on('$cordovaPushV5:errorOcurred', function(event, e){
+    // e.message
+  });
+
+*/
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
         if (window.cordova && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
             cordova.plugins.Keyboard.disableScroll(true);
         }
         if (window.StatusBar) {
             if (ionic.Platform.isAndroid()) {
+<<<<<<< HEAD
                 StatusBar.backgroundColorByHexString("#444444");
             } else {
                 StatusBar.backgroundColorByHexString("#444444");// StatusBar.styleDefault();
+=======
+                StatusBar.backgroundColorByHexString("#ee2e2e");
+            } else {
+                StatusBar.styleDefault();
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
             }
         }
         if (localStorage.getItem('defaultLanguage')) {
@@ -100,7 +156,12 @@ window.plugins.OneSignal
     });
 });
 
+<<<<<<< HEAD
 app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, appConst, $translateProvider) {
+=======
+app.config(function($stateProvider,$ionicCloudProvider, $urlRouterProvider, $ionicConfigProvider, appConst, $translateProvider) {
+   
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
     $ionicConfigProvider.backButton.text('').previousTitleText(false);
     $ionicConfigProvider.views.transition('android');
     $ionicConfigProvider.tabs.position('top');
@@ -182,9 +243,12 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, ap
            "noOfItems": "No Of Items",
            "noOrdersFound": "No Orders Found",
            "paymentStatus": "Payment Status",
+<<<<<<< HEAD
 	   "orderCreated" : "Your order has been done",
 	   "orderTitle": "Order Confirmation Status",
 	   "waitOrder" : "We will place your order shortly",
+=======
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
            "yourPaymentStatusIs": "Your Payment Status Is",
            "successful": "Successful",
            "yourPaymentOfAmount": "Your Payment Of Amount",
@@ -196,7 +260,11 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, ap
            "viewCart": "View Cart",
            "terms": "Terms",
            "myAccount": "My Account",
+<<<<<<< HEAD
            "timedOutError": "Timed Out Error",
+=======
+           "timedOutError": "You May Not Have Internet Connection",
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
            "checkNetworkConnection": "Check Network Connection",
            "validatingUser": "Validating User...",
            "passwordNotMatch": "Password Not Match",
@@ -240,7 +308,11 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, ap
            "quantity": "Quantity",
            "registrationCompletedSuccessfullyPasswordSentToEmail": "Registration Completed Successfully Password Sent To Email",
            "save": " Save",
+<<<<<<< HEAD
            "itemAddons": "Would you like to add some addons",
+=======
+           "itemAddons": "Item Addons",
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
            "noAddonsAvailable": "No Addons Available",
            "itemSizes": "Item Sizes",
            "customizeYourItem": "Customize Your Item",
@@ -255,7 +327,11 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, ap
            "deleted": "Deleted",
            "selectMinimumOneItemThenOnlyAddonsWillApply": "Select Minimum One Item Then Only Addons Will Apply",
            "items": "Items",
+<<<<<<< HEAD
            "infotainmentWatch": "You may watch infotainment now",
+=======
+
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
            "addAddress": "Add Address",
            "editAddress": "Edit Address",
            "crunchyRestaurantNotAvailableOnSelectedTime": "Crunchy Restaurant Not Available On Selected Time",
@@ -305,6 +381,10 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, ap
            "home": "Home",
            "free": "Free"
     });
+<<<<<<< HEAD
+=======
+
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
     $.ajax({
         type: "POST",
         url: appConst.serviceUrl.service + 'get_site_settings',
@@ -315,10 +395,15 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, ap
         async: true,
         success: function(response) {
             if (response[1].response.status == 1) {
+<<<<<<< HEAD
+=======
+             
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
                 var translations = {};
                 localStorage.setItem('googleApiKey', response[0].data.siteDetails[0].google_api);
                 localStorage.setItem('facebookApiKey', response[0].data.siteDetails[0].facebook_api);
                 localStorage.setItem('siteSettings', JSON.stringify(response));
+<<<<<<< HEAD
                 
                 var response = JSON.parse(localStorage.getItem('siteSettings'));
 
@@ -326,6 +411,9 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, ap
                 localStorage.setItem('taxSettings', JSON.stringify(response[0].data.tax_params));
                 
                 var x=localStorage.getItem('taxSettings');
+=======
+                var response = JSON.parse(localStorage.getItem('siteSettings'));
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
                 angular.forEach(response[0].data.language_types, function(value, key) {
                     translations = value.language_strings;
                     $translateProvider.translations(value.language_code, translations);
@@ -350,6 +438,25 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, ap
         complete: function() {}
     });
 
+<<<<<<< HEAD
+=======
+ $ionicCloudProvider.init({
+"core": {
+      "app_id": "APP_ID"
+    },
+
+    "push":{
+      "sender_id": "SENDER_ID",
+      "pluginConfig": {
+ "android": {
+          "iconColor": "#343434"
+        }
+    }
+  }
+
+
+ });
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
 
 
     $stateProvider
@@ -359,8 +466,11 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, ap
             templateUrl: appConst.page.menuHtml,
             controller: 'menuCtrl'
         })
+<<<<<<< HEAD
         
 
+=======
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
 
         .state(appConst.state.login, {
             url: appConst.url.login,
@@ -371,9 +481,12 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, ap
                 }
             }
         })
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
         .state(appConst.state.registration, {
             url: appConst.url.registration,
             views: {
@@ -437,6 +550,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, ap
                 }
             }
         })
+<<<<<<< HEAD
 
 /**/
 .state(appConst.state.paymentDoneviaCard,{
@@ -484,6 +598,8 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, ap
             }
         })
 //Yash
+=======
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
         .state(appConst.state.selected_item, {
             url: appConst.url.selected_item,
             views: {
@@ -514,7 +630,11 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, ap
         })
 
         .state(appConst.state.items_list, {
+<<<<<<< HEAD
             url: appConst.url.items_list+'/:pos',
+=======
+            url: appConst.url.items_list,
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
             views: {
                 'menuContent': {
                     templateUrl: appConst.page.items_listHtml,
@@ -604,7 +724,11 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, ap
         })
     
          .state('app.singleInfotainment', 
+<<<<<<< HEAD
           {url: '/singleInfotainment/:url',views: {
+=======
+          {url: '/singleInfotainment',views: {
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
                 'menuContent': {
                     templateUrl: 'modules/home/singleInfotainment.html',
                     controller: 'singleInfotainmentctrl'
@@ -619,7 +743,11 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, ap
 
 
         .state(appConst.state.home_delivery, {
+<<<<<<< HEAD
             url: appConst.url.home_delivery+"/:cost",
+=======
+            url: appConst.url.home_delivery,
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
             views: {
                 'menuContent': {
                     templateUrl: appConst.page.home_deliveryHtml,
@@ -690,7 +818,11 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, ap
                 }
             }
         })
+<<<<<<< HEAD
       
+=======
+        
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
        .state('app.homeWheel', {
     url: '/homeWheel',
     views: {
@@ -711,6 +843,15 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, ap
     }
   })
 
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
       .state('app.infotainment', {
     url: '/infotainment/',
     views: {
@@ -720,6 +861,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, ap
       }
     }
   })
+<<<<<<< HEAD
       //Yash Changes
       .state(appConst.state.show_reviews, {    
             url: appConst.url.show_reviews,  
@@ -732,5 +874,10 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, ap
         })
       
   
+=======
+      
+
+
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
 $urlRouterProvider.otherwise('/app/homeWheel');
 });

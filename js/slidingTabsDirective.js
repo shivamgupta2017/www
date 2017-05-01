@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 var slidingTabsDirective = angular.module("ionic").directive('ionSlideTabs', ['$timeout', '$compile', '$interval', '$ionicSlideBoxDelegate', '$ionicScrollDelegate', '$ionicGesture', '$ionicPopup', function ($timeout, $compile, $interval, $ionicSlideBoxDelegate, $ionicScrollDelegate, $ionicGesture, $ionicPopup) {
     return {
         require: "^ionSlideBox",
         restrict: 'A',
         link: function (scope, element, attrs, parent) {
+=======
+var slidingTabsDirective = angular.module("ionic").directive('ionSlideTabs', ['$timeout', '$compile', '$interval', '$ionicSlideBoxDelegate', '$ionicScrollDelegate', '$ionicGesture', function($timeout, $compile, $interval, $ionicSlideBoxDelegate, $ionicScrollDelegate, $ionicGesture) {
+    return {
+        require: "^ionSlideBox",
+        restrict: 'A',
+        link: function(scope, element, attrs, parent) {
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
 
             var ionicSlideBoxDelegate;
             var ionicScrollDelegate;
@@ -21,16 +29,27 @@ var slidingTabsDirective = angular.module("ionic").directive('ionSlideTabs', ['$
 
             var init = function () {
 
+<<<<<<< HEAD
                 if (angular.isDefined(attrs.slideTabsScrollable) && attrs.slideTabsScrollable === "false") {
+=======
+                if(angular.isDefined( attrs.slideTabsScrollable ) && attrs.slideTabsScrollable === "false" ) {
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
                     options.slideTabsScrollable = false;
                 }
 
                 var tabItems = '<li ng-repeat="(key, value) in tabs" ng-click="onTabTabbed($event, {{key}})" class="slider-slide-tab" ng-bind-html="value"></li>';
 
                 if(options.slideTabsScrollable) {
+<<<<<<< HEAD
                     ionicScrollDelegateID = "ion-slide-tabs-handle-" + Math.floor((Math.random() * 10000) + 1);
                  //alert(ionicScrollDelegateID);
                   tabsBar = angular.element('<ion-scroll has-bouncing="false" overflow-scroll="false" delegate-handle="' + ionicScrollDelegateID + '" class="slidingTabs" direction="x" ><ul>' + tabItems + '</ul> <div class="tab-indicator-wrapper"><div class="tab-indicator"></div></div> </ion-scroll>');
+=======
+
+                    ionicScrollDelegateID = "ion-slide-tabs-handle-" + Math.floor((Math.random() * 10000) + 1);
+					//alert(ionicScrollDelegateID);
+                  tabsBar = angular.element('<ion-scroll has-bouncing ="false" overflow-scroll="false" delegate-handle="' + ionicScrollDelegateID + '" class="slidingTabs" direction="x" ><ul>' + tabItems + '</ul> <div class="tab-indicator-wrapper"><div class="tab-indicator"></div></div> </ion-scroll>');
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
                 }
                 else {
 
@@ -45,7 +64,11 @@ var slidingTabsDirective = angular.module("ionic").directive('ionSlideTabs', ['$
                 slider.parent().prepend(tabsBar);
                 compiled(scope);
 
+<<<<<<< HEAD
 
+=======
+                //get Tabs DOM Elements
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
                 indicator = angular.element(tabsBar[0].querySelector(".tab-indicator"));
 
                 //get the slideBoxHandle
@@ -58,7 +81,11 @@ var slidingTabsDirective = angular.module("ionic").directive('ionSlideTabs', ['$
                 }
 
 
+<<<<<<< HEAD
                 if (options.slideTabsScrollable) {
+=======
+                if(options.slideTabsScrollable) {
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
 
                     ionicScrollDelegate = $ionicScrollDelegate;
                     if (scrollHandle) {
@@ -73,6 +100,7 @@ var slidingTabsDirective = angular.module("ionic").directive('ionSlideTabs', ['$
                 slideToCurrentPosition();
             };
 
+<<<<<<< HEAD
             var addEvents = function () {
 
                 ionic.onGesture("dragleft", scope.onSlideMove, slider[0]);
@@ -84,37 +112,70 @@ var slidingTabsDirective = angular.module("ionic").directive('ionSlideTabs', ['$
             var setTabBarWidth = function () {
 
                 if (!angular.isDefined(slideTabs) || slideTabs.length == 0) {
+=======
+            var addEvents = function() {
+
+                ionic.onGesture("dragleft", scope.onSlideMove ,slider[0]);
+                ionic.onGesture("dragright", scope.onSlideMove ,slider[0]);
+                ionic.onGesture("release", scope.onSlideChange ,slider[0]);
+
+            }
+
+            var setTabBarWidth = function() {
+
+                if( !angular.isDefined(slideTabs) || slideTabs.length == 0 ) {
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
                     return false;
                 }
 
                 tabsList = tabsBar.find("ul");
                 var tabsWidth = 0;
 
+<<<<<<< HEAD
                 angular.forEach(slideTabs, function (currentElement, index) {
+=======
+                angular.forEach(slideTabs, function (currentElement,index) {
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
 
                     var currentLi = angular.element(currentElement);
                     tabsWidth += currentLi[0].offsetWidth;
                 });
 
+<<<<<<< HEAD
                 if (options.slideTabsScrollable) {
+=======
+                if(options.slideTabsScrollable) {
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
 
                     angular.element(tabsBar[0].querySelector(".scroll")).css("width", tabsWidth + 1 + "px");
 
                 }
                 else {
 
+<<<<<<< HEAD
                     slideTabs.css("width", tabsList[0].offsetWidth / slideTabs.length + "px");
+=======
+                    slideTabs.css("width",tabsList[0].offsetWidth / slideTabs.length + "px");
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
                 }
 
                 slideToCurrentPosition();
 
             };
 
+<<<<<<< HEAD
             var addTabTouchAnimation = function (event, currentElement) {
 
                 var ink = angular.element(currentElement[0].querySelector(".ink"));
 
                 if (!angular.isDefined(ink) || ink.length == 0) {
+=======
+            var addTabTouchAnimation = function(event,currentElement) {
+
+                var ink = angular.element(currentElement[0].querySelector(".ink"));
+
+                if( !angular.isDefined(ink) || ink.length == 0 ) {
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
                     ink = angular.element("<span class='ink'></span>");
                     currentElement.prepend(ink);
                 }
@@ -122,7 +183,12 @@ var slidingTabsDirective = angular.module("ionic").directive('ionSlideTabs', ['$
 
                 ink.removeClass("animate");
 
+<<<<<<< HEAD
                 if (!ink.offsetHeight && !ink.offsetWidth) {
+=======
+                if(!ink.offsetHeight && !ink.offsetWidth)
+                {
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
 
                     d = Math.max(currentElement[0].offsetWidth, currentElement[0].offsetHeight);
                     ink.css("height", d + "px");
@@ -133,6 +199,7 @@ var slidingTabsDirective = angular.module("ionic").directive('ionSlideTabs', ['$
                 y = event.offsetY - ink[0].offsetHeight / 2;
 
 
+<<<<<<< HEAD
                 ink.css("top", y + 'px');
                 ink.css("left", x + 'px');
                 ink.addClass("animate");
@@ -141,6 +208,16 @@ var slidingTabsDirective = angular.module("ionic").directive('ionSlideTabs', ['$
             var slideToCurrentPosition = function () {
 
                 if (!angular.isDefined(slideTabs) || slideTabs.length == 0) {
+=======
+                ink.css("top", y +'px');
+                ink.css("left", x +'px');
+                ink.addClass("animate");
+            }
+
+            var slideToCurrentPosition = function() {
+
+                if( !angular.isDefined(slideTabs) || slideTabs.length == 0 ) {
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
                     return false;
                 }
 
@@ -154,6 +231,7 @@ var slidingTabsDirective = angular.module("ionic").directive('ionSlideTabs', ['$
 
                 indicator.css({
                     "-webkit-transition-duration": "300ms",
+<<<<<<< HEAD
                     "-webkit-transform": "translate(" + targetLeftOffset + "px,0px)",
                     "width": targetWidth + "px",
 		    "background-color":"#fff",
@@ -165,11 +243,19 @@ var slidingTabsDirective = angular.module("ionic").directive('ionSlideTabs', ['$
             	    "-webkit-box-shadow": "0px 3px 5px -1px rgba(0,0,0,0.61)",
 		    "-moz-box-shadow": "0px 3px 5px -1px rgba(0,0,0,0.61)",
 		    "box-shadow": "0px 5px 3px -1px rgba(0,0,0,0.61)"
+=======
+                    "-webkit-transform":"translate(" + targetLeftOffset + "px,0px)",
+                    "width": targetWidth + "px"
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
                 });
 
                 if (options.slideTabsScrollable && ionicScrollDelegate) {
                     var scrollOffset = 40;
+<<<<<<< HEAD
                     ionicScrollDelegate.scrollTo(targetLeftOffset - scrollOffset, 0, true);
+=======
+                    ionicScrollDelegate.scrollTo(targetLeftOffset - scrollOffset,0,true);
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
                 }
 
                 slideTabs.removeClass("tab-active");
@@ -179,8 +265,12 @@ var slidingTabsDirective = angular.module("ionic").directive('ionSlideTabs', ['$
 
 
             var setIndicatorPosition = function (currentSlideIndex, targetSlideIndex, position, slideDirection) {
+<<<<<<< HEAD
 			//console.log(currentSlideIndex);
 		
+=======
+
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
                 var targetTab = angular.element(slideTabs[targetSlideIndex]);
 
                 var currentTab = angular.element(slideTabs[currentSlideIndex]);
@@ -190,8 +280,13 @@ var slidingTabsDirective = angular.module("ionic").directive('ionSlideTabs', ['$
                 var offsetLeftDiff = Math.abs(targetLeftOffset - currentLeftOffset);
 
 
+<<<<<<< HEAD
                 if (currentSlideIndex == 0 && targetSlideIndex == ionicSlideBoxDelegate.slidesCount() - 1 && slideDirection == "right" ||
                     targetSlideIndex == 0 && currentSlideIndex == ionicSlideBoxDelegate.slidesCount() - 1 && slideDirection == "left") {
+=======
+                if( currentSlideIndex == 0 && targetSlideIndex == ionicSlideBoxDelegate.slidesCount() - 1 && slideDirection == "right" ||
+                    targetSlideIndex == 0 && currentSlideIndex == ionicSlideBoxDelegate.slidesCount() - 1 && slideDirection == "left" ) {
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
                     return;
                 }
 
@@ -215,24 +310,41 @@ var slidingTabsDirective = angular.module("ionic").directive('ionSlideTabs', ['$
 
                 }
 
+<<<<<<< HEAD
 
 
                 indicator.css({
                     "-webkit-transition-duration": "0ms",
                     "-webkit-transform": "translate(" + indicatorPos + "px,0px)",
+=======
+				
+				
+                indicator.css({
+                    "-webkit-transition-duration":"0ms",
+                    "-webkit-transform":"translate(" + indicatorPos + "px,0px)",
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
                     "width": indicatorWidth + "px"
                 });
 
 
                 if (options.slideTabsScrollable && ionicScrollDelegate) {
                     var scrollOffset = 40;
+<<<<<<< HEAD
                     ionicScrollDelegate.scrollTo(indicatorPos - scrollOffset, 0, false);
+=======
+                    ionicScrollDelegate.scrollTo(indicatorPos - scrollOffset,0,false);
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
                 }
 
             }
 
+<<<<<<< HEAD
             scope.onTabTabbed = function (event, index) {
                 addTabTouchAnimation(event, angular.element(event.currentTarget));
+=======
+            scope.onTabTabbed = function(event, index) {
+                addTabTouchAnimation(event, angular.element(event.currentTarget) );
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
                 ionicSlideBoxDelegate.slide(index);
                 slideToCurrentPosition();
             }
@@ -244,7 +356,11 @@ var slidingTabsDirective = angular.module("ionic").directive('ionSlideTabs', ['$
                 scope.tabs.push($content);
                 scope.$apply();
 
+<<<<<<< HEAD
                 $timeout(function () {
+=======
+                $timeout(function() {
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
                     slideTabs = angular.element(tabsBar[0].querySelector("ul").querySelectorAll(".slider-slide-tab"));
                     slideToCurrentPosition();
                     setTabBarWidth()
@@ -273,7 +389,11 @@ var slidingTabsDirective = angular.module("ionic").directive('ionSlideTabs', ['$
                 var targetSlide = angular.element(scrollDiv[targetSlideIndex]);
 
                 var position = currentSlideLeftOffset / slider[0].offsetWidth;
+<<<<<<< HEAD
                 var slideDirection = position > 0 ? "right" : "left";
+=======
+                var slideDirection = position > 0 ? "right":"left";
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
                 position = Math.abs(position);
 
                 setIndicatorPosition(currentSlideIndex, targetSlideIndex, position, slideDirection);
@@ -281,6 +401,7 @@ var slidingTabsDirective = angular.module("ionic").directive('ionSlideTabs', ['$
 
             init();
         },
+<<<<<<< HEAD
         controller: ['$scope', function ($scope) {
             this.addTab = function ($content) {
                 $timeout(function () {
@@ -288,6 +409,13 @@ var slidingTabsDirective = angular.module("ionic").directive('ionSlideTabs', ['$
                         $scope.addTabContent($content);
 
 
+=======
+        controller: ['$scope',function($scope) {
+            this.addTab = function($content) {
+                $timeout(function() {
+                    if($scope.addTabContent) {
+                        $scope.addTabContent($content);
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
                     }
                 });
             }
@@ -295,6 +423,7 @@ var slidingTabsDirective = angular.module("ionic").directive('ionSlideTabs', ['$
     };
 }]);
 
+<<<<<<< HEAD
 slidingTabsDirective.directive('ionSlideTabLabel', ['$ionicPopup', '$timeout', function ($ionicPopup, $timeout) {
     return {
         require: "^ionSlideTabs",
@@ -314,6 +443,13 @@ slidingTabsDirective.directive('ionSlideTabLabel', ['$ionicPopup', '$timeout', f
                     myPopup.close();
                 },200);
             */
+=======
+slidingTabsDirective.directive('ionSlideTabLabel', [ function() {
+    return {
+        require: "^ionSlideTabs",
+        link: function ($scope, $element, $attrs, $parent) {
+            $parent.addTab($attrs.ionSlideTabLabel);
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
         }
     }
 }]);

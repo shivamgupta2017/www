@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 
 @font-face {
@@ -174,6 +175,8 @@ animation: mymove 1s;
 
 
 
+=======
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
 .ionic_ratings .icon {
   font-size:50px;
 }
@@ -182,6 +185,10 @@ animation: mymove 1s;
   pointer-events:none;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
 /*wrapper*/
 .ball_wrap {
     position: relative;
@@ -190,6 +197,7 @@ animation: mymove 1s;
     width: 200px;
     height: 200px;
 
+<<<<<<< HEAD
  transform: rotate(0deg);
  -webkit-animation: spin 1s linear;
 
@@ -203,6 +211,17 @@ animation: mymove 1s;
 }
 
 
+=======
+// transform: rotateX(45deg);
+// -webkit-animation: spin 2s linear;
+
+}
+@-webkit-keyframes spin {
+   // 0%  {transform: rotateX(0deg)}
+   // 100% {transform: rotateX(45deg)}   
+}
+
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
 /*----------------------------------------------balls---------------------------------------------------------------*/
 .green_ball {
     background: #444444;
@@ -259,7 +278,11 @@ box-shadow: inset -1px 3px 30px 2px rgba(0,0,0,1);
     left: -185px;/*-200px*/
     animation-name: animation1;
     animation-duration: 1s;
+<<<<<<< HEAD
 animation-timing-function:  cubic-bezier(0.1, 0.1, 1.0, 0.1);
+=======
+animation-timing-function:  cubic-bezier(0.8, 0.7, 1.0, 0.1);
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
 
     
 }
@@ -396,6 +419,7 @@ animation-timing-function:  cubic-bezier(0.8, 0.7, 1.0, 0.1);
 }
 /*------------------ball 5-------------------------------------------------------------------------------------*/
 
+<<<<<<< HEAD
 	.slider-slide-tab span:last-child {
 		border-radius: 10px;
 		background: #000;
@@ -562,3 +586,7 @@ span2 {
   text-align: right !important;
   max-width: 240px !important;
 }
+=======
+
+
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318

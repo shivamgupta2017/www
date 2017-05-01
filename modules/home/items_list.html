@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <ion-view id="items_page" cache-view="true" view-title="Guru Kripa's Menu">
 
 
@@ -102,5 +103,63 @@ ng-if="menuSubItem.no_of_users>1">
 
 
 
+=======
+<ion-view cache-view="false" view-title="{{selectedItem.menu_name}}">
+	
+	<ion-nav-buttons side="left">
+		<button ui-sref="app.dashboard" class="button back-button buttons button-clear header-item"><i class="icon ion-android-arrow-back"></i></button>
+	</ion-nav-buttons>
+
+	<ion-nav-buttons side="right">
+		<button  ng-controller="itemsListCtrl" id="cart_list_icon1" ng-click="viewCart()" class="button-icon button button-clear flaticon-shop"><i class="badge badge-light header-badge"><span ng-if="cartCount!=0">{{cartCount}}</span></i></button>
+	</ion-nav-buttons>
+	
+
+	<ion-content id="items_list_page" has-header="true" ng-init="getItemsList()" scroll="true" >
+		
+	{{data.clientSide}}
+				
+
+			<div class="list card pageNote">
+			<div class="item item-text-wrap">{{selectedItem.punch_line}} </div>
+			</div>
+		<!--
+		<div class="row tabs-custom item-text-wrap">
+			
+			<div class="col" ng-repeat="itemType in itemTypes | orderBy:'item_type' track by $index ">
+				<ion-radio ng-model="data.clientSide" ng-value="itemType.value"  ng-click="chooseItemType(itemType.value)">{{ itemType.text }}</ion-radio>
+			</div>
+		</div>-->
+
+     <ion-slide-box slide-tabs-scrollable="false" does-continue="false" show-pager="false" ion-slide-tabs on-slide-changed="swipechooseItemType($index)">
+
+     <!--ng-model="data.clientSide" ng-value="itemType.value"-->
+		
+		<!--ng-model="data.clientSide" ng-value="itemType.value"-->
+	
+		<ion-slide disable-scroll="false" ng-repeat="itemType in itemTypes | orderBy:'item_type'" ion-slide-tab-label="{{itemType.text}}">
+		
+	<div class="list listLink filter" style="width: 100vw; height: 100vh;">			
+		
+		<a class="item item-button-right item-text-wrap item-thumbnail-left" ng-if="data.clientSide!='Addons'" ng-repeat="menuSubItem in menuSubItems  | orderBy:'item_name' | ItemsFilter:data.clientSide track by $index" >
+		
+		
+				<img ng-src="{{menuSubItem.imageUrlThumb}}" ng-click="openSelectedItem(menuSubItem)">
+				<div ng-click="openSelectedItem(menuSubItem)">{{menuSubItem.item_name}}
+					<div class="amount">
+						<h2 class="addedAmount"><i class="">{{siteSettings.currency_symbol}}</i> {{menuSubItem.item_cost | number:2}}</h2>
+					</div>
+				</div>
+				
+				
+			</a>
+			
+			<p>{{noItemsAvailable}}</p>
+			
+		</div>
+
+		</ion-slide> 
+		</ion-slide-box>
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
 	</ion-content>
 </ion-view>

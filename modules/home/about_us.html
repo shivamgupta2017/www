@@ -5,6 +5,7 @@
 	<ion-nav-buttons side="right">
 		<button  ng-controller="itemsListCtrl" id="cart_list_icon1" ng-click="viewCart()" class="button-icon button button-clear flaticon-shop"><i class="badge badge-light header-badge"><span ng-if="cartCount!=0">{{cartCount}}</span></i></button>
 	</ion-nav-buttons>
+<<<<<<< HEAD
 	<ion-content class="aboutusPage" id="aboutUsPage" scroll="false" ng-init="aboutUs()">
 		<div class="" style="">
 			<div style="background-image:url(img/Restaurant.jpg); background-size:cover; height:50vh; width:70vw; display:inline-block" >
@@ -32,15 +33,36 @@
 
 		</div>
 		<div class="aboutUsDesc" style="width:70vw">
+=======
+	<ion-content class="aboutusPage" id="aboutUsPage" ng-init="aboutUs()">
+		<div class="padding">
+			<ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="false" options="options" bounds="map.bounds" control="googlemap">
+				<ui-gmap-window show="show" coords='windowCoords' closeClick="closeClick()">
+					<div>{{parkName}}</div>
+				</ui-gmap-window>
+				<ui-gmap-markers models="markers" coords="'self'" icon="'icon'" options="'options'" doRebuildAll="true" click="onClick">
+				</ui-gmap-markers>
+			</ui-gmap-google-map>
+		</div>
+		<div class="aboutUsDesc">
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
 			<div class="item item-text-wrap" ng-if="page.id=='1'" ng-repeat="page in pages track by $index">
 				<div ng-bind-html="page.description | trustAsHtml"></div>
 			</div>
 			<div class="item item-text-wrap address">
+<<<<<<< HEAD
 				<!--<h2>{{'address' | translate}}</h2>-->
 				<!----><h4 ng-if="address.site_name!=''">{{siteSettings.site_name }} </h4>
 				<p>
 				<span ng-if="address.address!=''">{{siteSettings.address}} </span><br>
 				<!----><span ng-if="address.city!=''">{{siteSettings.city}} </span>,
+=======
+				<h2>{{'address' | translate}}</h2>
+				<h4 ng-if="address.site_name!=''">{{siteSettings.site_name }} </h4>
+				<p>
+				<span ng-if="address.address!=''">{{siteSettings.address}} </span><br>
+				<span ng-if="address.city!=''">{{siteSettings.city}} </span>,
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
 				<span ng-if="address.state!=''">{{siteSettings.state}} </span>,
 				<span ng-if="address.country!=''">{{siteSettings.country}} </span>,
 				<span ng-if="address.zip!=''">{{siteSettings.zip}} </span></p>
@@ -50,6 +72,7 @@
 				<span ng-if="address.portal_email!=''">{{siteSettings.portal_email}} </span>
 				</p>
 			</div>
+<<<<<<< HEAD
 
 		</div>
 			
@@ -60,3 +83,12 @@
 		
 	</ion-content>
 </ion-view>
+=======
+			<div class="item item-text-wrap">
+				<!--<h2 class="text-center">{{'version' | translate}}  {{appVersion}}</h2>-->
+			</div>
+		</div>
+	</ion-content>
+</ion-view>
+
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318

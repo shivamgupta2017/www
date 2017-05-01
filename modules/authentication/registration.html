@@ -1,5 +1,9 @@
 <ion-view cache-view="false" view-title="{{'signUp' | translate}}">
+<<<<<<< HEAD
   <ion-header-bar align-title="center" class="bar-dark">
+=======
+  <ion-header-bar align-title="center" class="bar-positive">
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
     <div class="buttons">
       <!-- <button class="button back-button buttons button-clear header-item" ui-sref="app.login"><i class="icon ion-android-arrow-back"></i></button> -->
        <button class="button back-button buttons button-clear header-item" ui-sref="app.dashboard"><i class="icon ion-android-arrow-back"></i></button>
@@ -37,7 +41,11 @@
         <ion-checkbox ng-model="registration.terms" name="terms"
                       ng-class="{ 'has-error' : (registrationForm.terms.$error.required) && (registrationForm.terms.$dirty || submitted), 'valid' : registrationForm.terms.$valid   && (registrationForm.terms.$dirty || submitted)}" ng-required="true"></ion-checkbox>
         {{'iAccept' | translate}} <a href="" ng-click="openTermsConditions()">{{'termsAndConditions' | translate}}</a> </div>
+<<<<<<< HEAD
       <button class="button button-dark button-block"  type="submit"
+=======
+      <button class="button button-block button-assertive" type="submit"
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
               ng-click="submitted=true">{{'register' | translate}}</button>
         </form>
 

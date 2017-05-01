@@ -1,5 +1,9 @@
 "use strict";
+<<<<<<< HEAD
 app.controller('authenticationCtrl', function($scope, appConst, randomString, $location, $sce, $translate, socialLogin, checkCustomer, $ionicModal, stripe, $cordovaOauth, $ionicHistory, $rootScope, $timeout, $ionicPopup, Services, $localStorage, $ionicLoading) {
+=======
+app.controller('authenticationCtrl', function($scope,$ionicPush, appConst, randomString, $location, $sce, $translate, socialLogin, checkCustomer, $ionicModal, stripe, $cordovaOauth, $ionicHistory, $rootScope, $timeout, $ionicPopup, Services, $localStorage, $ionicLoading) {
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
     $scope.registration = {};
     $scope.showEmail = function() {
         $scope.actInactEmail = "active";
@@ -43,7 +47,11 @@ app.controller('authenticationCtrl', function($scope, appConst, randomString, $l
                 window.plugins.toast.showLongBottom(response[1].response.message);
             }
         });
+<<<<<<< HEAD
         $scope.signIn();$scope.signIn();
+=======
+        $scope.signIn();//$scope.signIn();
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
     }
     $scope.Otp = { code: '', retrievedCode: '' };
         $scope.submitOTP = function() {
@@ -86,6 +94,11 @@ app.controller('authenticationCtrl', function($scope, appConst, randomString, $l
         $location.path(appConst.path.registration);
     }
     $scope.login = {};
+<<<<<<< HEAD
+=======
+
+    
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
     $scope.signIn = function() {
 var registrationScope = angular.element(document.getElementById('registrationPage')).scope();
         var extraData = {
@@ -114,7 +127,18 @@ var registrationScope = angular.element(document.getElementById('registrationPag
                 window.plugins.toast.show(response[1].response.message, 'short', 'bottom');
             }
         });
+<<<<<<< HEAD
     }
+=======
+
+
+
+
+
+
+    }
+
+>>>>>>> 01719dc743fd3d8b4a31f253faf9ae11f681f318
     $scope.loginRedirect = function() {
         if ($rootScope.loginThrough === 'order') {
             $location.path(appConst.path.home_delivery);
