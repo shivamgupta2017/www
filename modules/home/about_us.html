@@ -1,0 +1,62 @@
+<ion-view cache-view="false" view-title="{{'aboutUs' | translate}}" name="aboutUsView">
+	<ion-nav-buttons side="right">
+		<button class="button button-icon button-clear jsm-home" ng-click="home()"></button>
+	</ion-nav-buttons>
+	<ion-nav-buttons side="right">
+		<button  ng-controller="itemsListCtrl" id="cart_list_icon1" ng-click="viewCart()" class="button-icon button button-clear flaticon-shop"><i class="badge badge-light header-badge"><span ng-if="cartCount!=0">{{cartCount}}</span></i></button>
+	</ion-nav-buttons>
+	<ion-content class="aboutusPage" id="aboutUsPage" scroll="false" ng-init="aboutUs()">
+		<div class="" style="">
+			<div style="background-image:url(img/Restaurant.jpg); background-size:cover; height:50vh; width:70vw; display:inline-block" >
+			</div>
+			
+			<div class="list" ng-if="user_comments" style="border-radius: 25px; border-style: solid; color: black;  display:inline-block; width:30vw; float:right; font-weight: bold;">
+<div style="text-align:center">{{'Some Useful Comments By Our Customers'}}</div>
+<div style="height:96vh; overflow-y:scroll; ">
+<div  class="item item-text-wrap"  style="font-weight: bold;" ng-repeat="user_reviews in user_comments">
+	<div>			
+		<div style="font-family:regular; display:inline-block; float:left; color:black;">
+			<span >{{user_reviews.user_name}}</span> 
+		</div>
+		<div style="float: right;display:inline-block;">
+			{{user_reviews.description}}
+		</div>
+	</div>
+	<div style="display:block; font-size:15px;">
+				<br>{{user_reviews.comment}}
+	</div>
+</div>
+			</div>
+
+
+
+		</div>
+		<div class="aboutUsDesc" style="width:70vw">
+			<div class="item item-text-wrap" ng-if="page.id=='1'" ng-repeat="page in pages track by $index">
+				<div ng-bind-html="page.description | trustAsHtml"></div>
+			</div>
+			<div class="item item-text-wrap address">
+				<!--<h2>{{'address' | translate}}</h2>-->
+				<!----><h4 ng-if="address.site_name!=''">{{siteSettings.site_name }} </h4>
+				<p>
+				<span ng-if="address.address!=''">{{siteSettings.address}} </span><br>
+				<!----><span ng-if="address.city!=''">{{siteSettings.city}} </span>,
+				<span ng-if="address.state!=''">{{siteSettings.state}} </span>,
+				<span ng-if="address.country!=''">{{siteSettings.country}} </span>,
+				<span ng-if="address.zip!=''">{{siteSettings.zip}} </span></p>
+				<p><b>{{'phoneNumber' | translate}} : </b><br> <span ng-if="address.phone!=''">{{siteSettings.phone}}</span>,
+				<span ng-if="address.land_line!=''">{{siteSettings.land_line}} </span></p>
+				<p><b>{{'email' | translate}}: </b><br>
+				<span ng-if="address.portal_email!=''">{{siteSettings.portal_email}} </span>
+				</p>
+			</div>
+
+		</div>
+			
+<br><br>
+
+
+			
+		
+	</ion-content>
+</ion-view>

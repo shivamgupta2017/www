@@ -1,0 +1,22 @@
+<ion-view cache-view="false" view-title="Mobile Verification">
+    <ion-header-bar align-title="center" class="bar-positive">
+        <div class="buttons">
+            <button class="button button-clear button-icon mdi mdi-chevron-left" ui-sref="app.login"></button>
+        </div>
+        <h1 class="title">Mobile Verification</h1>
+    </ion-header-bar>
+    <ion-content class="padding">
+        <div class="list formList">
+            <form name="mobileVerificationForm" ng-submit="mobileVerificationForm.$valid && submitVerificationCode()">
+                <label class="item item-input item-icon-left"
+                       ng-class="{ 'has-error' : mobileVerificationForm.verificationCode.$error.required && (mobileVerificationForm.verificationCode.$dirty || submitted), 'valid' : mobileVerificationForm.verificationCode.$valid   && (mobileVerificationForm.verificationCode.$dirty || submitted)}"
+                        ><i class="icon mdi mdi-lock"></i>
+                    <input type="text"
+                           name="verificationCode" ng-model="verification.code" required
+                           placeholder="Enter Verification Code">
+                </label>
+                <button class="button button-block button-assertive" type="submit" ng-click="submitted=true">Submit</button>
+            </form>
+        </div>
+    </ion-content>
+</ion-view>

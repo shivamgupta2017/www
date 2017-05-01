@@ -1,0 +1,61 @@
+<ion-modal-view cache-view="false" id="search_modal_page">
+  <ion-header-bar class="bar-dark" align-title="center">
+     
+
+    <div class="buttons">
+
+      <button class="button back-button buttons button-clear header-item" ng-click="close_addons_model()"><i class="icon ion-android-arrow-back"></i></button>
+    
+    </div>
+
+    <h1 class="title">{{'letusknowyourquerywearealwaysheretohelpyou' | translate}}</h1>
+    
+
+    </ion-header-bar> 
+   
+
+    <ion-content  class="padding" scroll="false"
+                 on-swipe-left="hideTime = false"
+                 on-swipe-right="hideTime = true" style="background-color:#cfd1d3"  ng-init="initTableNo()">
+
+     <!-- <div   class="messages">
+         	<div  class=""  ng-if="message.user_name!='admin'" style="border:2px solid black; width:100%;">
+          		<span1>{{ message.message }}</span1>
+        	</div>
+         
+	        <div class="time">{{message.time}}</div>
+	       </div>
+        	<div style="border:2px solid black; width:100%; right:0px; padding:0px;" ng-if="message.user_name=='admin'">
+          		<span2>
+          		{{ message.message}}
+			</span2><br>
+        
+      		</div>
+	</div>-->
+<div id="chattt" style="width:70vw; min-height:30vh; max-height:70vh; overflow-y:scroll; margin:0 auto; border:2px solid #444444; border-radius:5px; background-color:white; padding-bottom:80px;" >
+	<div ng-repeat="message in receivedMsg" style="padding-left:12px;">
+		<div style="width:100%; display:inline-block"  ng-if="message.user_name!='admin'" >
+			<div style="border-radius:5px; margin-top:10px; padding:6px; display:inline-block;  left:0; line-height:50px; min-width:150px; background-color:#f49b42; color:white;">
+				{{ message.message }}
+			</div>
+		</div>
+		<div style="width:100%; display:inline-block" ng-if="message.user_name=='admin'">
+			<div style="border-radius:5px; margin-top:10px; padding:6px; display:inline-block; line-height:50px; min-width:150px; background-color:#444444; color:white;  margin-right:12px; float:right;  ">
+				{{ message.message }}
+			</div>
+		</div>
+	</div>
+</div>
+
+
+    </ion-content>
+   
+    <form ng-submit="sendMessage()">
+    <ion-footer-bar keyboard-attach class="bar-stable item-input-inset">
+      <label class="item-input-wrapper">
+        <input type="text" placeholder="Type your message" on-return="sendMessage(); closeKeyboard()" ng-model="data.message" on-focus="inputUp()" on-blur="inputDown()"/>
+      </label>
+      <button class="button button-positive" type="submit">
+        {{'Send'}}
+      </button>
+    </ion-footer-bar></form>

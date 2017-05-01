@@ -1,0 +1,106 @@
+<ion-view id="items_page" cache-view="true" view-title="Guru Kripa's Menu">
+
+
+<!-------------------------------------nav-buttons------------------------------------------------------------------->	
+<ion-nav-buttons side="left">
+	<button ng-click="backa()" class="button back-button buttons button-clear header-item">
+		<i class="icon ion-android-arrow-back"></i>
+	</button>
+</ion-nav-buttons>
+<ion-nav-buttons side="right">
+	<div class="">
+				<div ng-if="itemtyp=='Veg' || itemtyp==null" class="vegc" style="margin-top:5px; margin-right:5px">
+					<div class="vegci">
+					</div>
+				</div>	
+				
+				<div  ng-if="itemtyp=='Non-Veg' || itemtyp==null" class="nonvegc" style="margin-top:5px; margin-right:5px">
+					<div class="nonvegci">
+					</div>
+				</div>	
+		<nz-toggle tri-toggle on-toggle="myFunction(myValue1)" ng-model="myValue1" ></nz-toggle>
+	</div>
+	<button  ng-controller="itemsListCtrl" id="cart_list_icon1" ng-click="viewCart()" class="button-icon button button-clear flaticon-shop">
+		<i class="badge badge-light header-badge">
+			<span ng-if="cartCount!=0">{{cartCount}}</span>
+		</i>
+	</button>
+</ion-nav-buttons>
+<!--------------------------------nav-buttons end-------------------------------------------------------------------->	
+
+
+
+<!--ng-init="getItemsList()" -->
+<ion-content id="items_list_page" has-header="true" scroll="false" style="background-image:url(img/order.jpg); ">
+	
+
+            
+<!---------------------------------------------Slide box start ------------------------------------------------------>
+<ion-slide-box slide-tabs-scrollable="true" does-continue="false"  show-pager="false"   ion-slide-tabs active-slide="position"> 
+<!-- active-slide="position"-->
+<ion-slide disable-scroll="false" ng-repeat="itemType in allitemscategories track by $index"  ion-slide-tab-label="{{itemType.category_name}}" style="background-color:transparent;">
+<ion-scroll zooming="false" direction="y" style="height:85vh; width:100vw; margin-top:5px">		
+
+
+<!-- inner scroll ----------->
+
+<div class="itemlistmaincontainer"> 
+	<div class="myanim">
+		<div class="listbox" ng-repeat="menuSubItem in itemType.items" ng-click="openSelectedItem(menuSubItem)" ng-if="menuSubItem.item_type==itemtyp || itemtyp==null">
+			<div style="background-image:url({{menuSubItem.imageUrlThumb}});" class="listboximg">
+			</div>
+			<div class="listboxcont">
+				<div style="display:inline-block; width:100%">
+				<div ng-if="menuSubItem.item_type=='Veg'" class="vegc">
+					<div class="vegci">
+					</div>
+				</div>	
+				
+				<div ng-if="menuSubItem.item_type=='Non-Veg'" class="nonvegc">
+					<div class="nonvegci">
+					</div>
+				</div>	
+				<div class="itemnamec fontcheck" style="font-size:25px; margin-left:20px">
+					{{menuSubItem.item_name}}
+				</div>
+				<div style="display:inline-block; float:right; font-size:25px; font-weight:bold; margin-bottom:20px">
+					{{siteSettings.currency_symbol}} {{menuSubItem.item_cost | number:2}}
+				</div>
+				</div>
+<div  style="display:inline-block">
+					<div class="itemrating" >
+					   <rating readonly="true" ng-model='menuSubItem.avg_rating' max='5' ng-if="menuSubItem.no_of_users>0"></rating>
+					</div>
+					<div class="itemrating" style="margin-left:5px" ng-if="menuSubItem.no_of_users==1">
+						{{menuSubItem.no_of_users}} 
+{{'customer rated this product' | translate}}
+					</div>
+					<div class="itemrating"  style="margin-left:10px" 
+ng-if="menuSubItem.no_of_users>1">
+						{{menuSubItem.no_of_users}} 
+{{'customers rated this product' | translate}}
+					</div>
+				</div>
+				<button class="button button-dark" style="float:right; margin-right:25px" ng-click="addToCart(menuSubItem)" >
+					{{'Add To Cart' | translate}}
+				</button>
+	
+			</div>
+	
+		</div>
+	</div>
+</div>
+
+
+<!-- inner scroll end----------->
+
+</ion-scroll>
+</ion-slide>
+</ion-slide-box>
+<!-- new new nwe nwe end -->
+
+
+
+
+	</ion-content>
+</ion-view>

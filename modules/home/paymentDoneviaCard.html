@@ -1,0 +1,76 @@
+<ion-view cache-view="false" view-title="{{'paymentSuccess' | translate}}">
+  <ion-header-bar align-title="center" class="bar-positive">
+    <h1 class="title">{{'paymentStatus' | translate}}</h1>
+  </ion-header-bar>
+  <ion-content ng-init="paymentConfirmInit()">
+    <div class="list card paymentStatus">
+   <!--
+      <div class="item text-center">-->
+      <!-- <i class="icon mdi mdi-thumb-up"></i>-->
+       <!-- <h2>{{'yourPaymentStatusIs' | translate}}<br>
+          <span>{{'successful' | translate}}</span></h2>-->
+  <!--    </div>
+   -->
+      <div class="item item-text-wrap">
+   
+        <p>{{'yourPaymentOfAmount' | translate}} {{siteSettings.currency_symbol}} <strong>{{totalCost}}</strong> {{'hasBeenSuccessfullyProcessed' | translate}}</p>
+   
+      </div>
+
+
+
+       <div class="list estimatesList" >
+    <!---ng-click="rateusnow(order)"-->
+      <a class="item" ng-repeat="order in dineInItems track by $index | orderBy: '-order_id'">
+     
+     <!-- <p>{{'orderedOn' | translate}} <i class="mdi mdi-calendar"></i> {{order.order_date}}</p>-->
+     
+       <!-- <p>{{'time' | translate}} <i class="mdi mdi-calendar"></i>{{order.order_time}}</p>-->
+     
+      <div class="">
+        <h2 class="addedAmount"><i class="mdi">{{siteSettings.currency_symbol}}</i> {{order.item_name}}</h2>
+        <p>{{'noOfItems' | translate}} <strong>{{order.item_qty}}</strong></p>
+      </div>
+
+      <div class="amount">
+
+      <rating style="display: inline;
+  border: 0px;
+  background: none;
+  padding: 3px 4px;  font-size: 5px; " ng-model="parameter.items[$index].rating" max="5" ng-change="change();"></rating>
+        <!--<h2 class="addedAmount"><i class="mdi">{{siteSettings.currency_symbol}}</i> {{order.final_cost}}</h2>
+      }
+      -->
+      </div>     
+
+      </a>
+      
+    </div>
+    
+<div class="item item-text-wrap offer">
+  
+
+
+        
+
+        <label class="item item-input item-icon-left"
+            <i class="icon mdi mdi-flaticon-about-us" hidden></i>
+          <textarea style="height:100px"
+          placeholder="{{'comment...' | translate}}" name="" ng-model="parameter.comment" ></textarea>
+        </label>
+
+
+
+      </div>
+
+      </div>
+</div>
+
+
+    <div class="padding">
+      <div class="button-bar">
+      <a class="button button-positive"  ng-click="clicktoSend()"><i class="mdi mdi-home"></i> {{'Next...' | translate}}</a>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

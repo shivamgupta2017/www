@@ -1,0 +1,57 @@
+<ion-view id="selectedInfotainment" cache-view="false" view-title="{{'infotainmentcategary'| translate}}">
+
+<ion-nav-buttons side="left">
+
+  <button ui-sref="app.infotainmentcategary" class="button back-button buttons button-clear header-item"><i class="icon ion-android-arrow-back"></i></button>
+</ion-nav-buttons>
+<!--
+<ion-nav-buttons side="right">
+    <button  ng-controller="itemsListCtrl" id="cart_list_icon1" ng-click="viewCart()" class="button-icon button button-clear flaticon-shop"><i class="badge badge-light header-badge"><span ng-if="cartCount!=0">{{cartCount}}</span></i></button>
+
+</ion-nav-buttons>
+-->
+
+ <ion-content padding="true" overflow-scroll="true" style="background-image:url(img/back.jpg)" scroll="false">
+  <div class="">
+
+<img ng-if="selected_infotainment.file_ext == 'image'" ng-src="{{selected_infotainment.img_url}}"  class="full-image" alt="image...">
+  <!--ng-if="selected_infotainment.file_ext == 'video'" -->
+<div class="video-container">
+<iframe width="853" height="480" id="iframev" frameborder="0" allowfullscreen >
+</iframe>
+</div>
+
+
+   <div class="list profileDetails">
+
+<span>
+  
+{{selected_infotainment.media_name}}
+
+</span>
+
+<div class="item item-icon-left"><i class="icon mdi mdi-map"></i> <strong>{{'description' | translate}}</strong> </div>
+
+        <div class="item item-text-wrap address">
+          <p>
+            {{selected_infotainment.description}}
+          </p>
+       </div>
+
+
+</div>
+
+
+
+  </div>
+<!--
+      <img ng-if="selected_infotainment.file_ext == 'image'" style="width:80px;height:80px;" ng-src="{{url}}/{{result.file_name}}">
+      
+      <video ng-if="selected_infotainment.file_ext == 'video'" style="width:120px;height:80px;" ng-src="{{url}}/{{result.file_name}}" class="centerme" controls="controls"></video>
+   -->
+
+
+
+
+  </ion-content>
+</ion-view>

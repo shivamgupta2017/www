@@ -1,0 +1,69 @@
+<ion-view cache-view="false" view-title="{{'Thank you finish your dine in here ' | translate}}">
+	<ion-nav-buttons side="left">
+		<button  ng-click="goBack()"class="button back-button buttons button-clear header-item"><i class="icon ion-android-arrow-back"></i></button>
+	</ion-nav-buttons>
+	
+  <!--<ion-nav-buttons side="right">
+    <button class="button button-icon button-clear jsm-home" ng-click="home()"></button>
+  </ion-nav-buttons>-->
+  <!--
+  <ion-nav-buttons side="right">
+    
+    <button id="cart_list_icon1" ng-click="viewCart()" class="button-icon button button-clear flaticon-shop"><i class="badge badge-light header-badge"><span ng-if="cartCount!=0">{{cartCount}}</span></i></button>
+  </ion-nav-buttons>
+  -->
+<ion-content ng-init="dineInItems()">
+    <div class="padding">
+      <div class="list card pageNote">
+        <div class="item item-text-wrap">{{'yourOrders' | translate}}
+        </div>
+      </div>
+    </div>
+
+
+<div class="list" data-spy="scroll" data-target=".navbar">
+	<div class = "row item">
+   		<div class = "col col-50"><strong>Items list</strong></div>
+   		<div class = "col"><strong>Quantity</strong></div>
+   		<div class = "col"><strong>Price</strong></div>
+	</div>
+
+	<div ng-repeat="order in dineInItems">
+		<div class = "row item" >
+   			<div class = "col col-50" style="font-size:20px">{{order.item_name}}<span ng-if="order.size_name!=''"> <strong>({{order.size_name}})</strong></span></div>
+   			<div class = "col" style="line-height:100%; vertical-align:middle">{{order.item_qty}}</div>
+   			<div class = "col">{{order.final_cost}}</div>
+		</div>
+		<div class = "row item" ng-repeat="addons in addonslist" ng-if="(addons.item_id==order.item_id)&&(addons.size_id==order.size_id)">
+   			<div class = "col col-10"><strong></strong></div>
+   			<div class = "col col-40">{{addons.addon_name}}</div>
+   			<div class = "col">{{addons.quantity}}</div>
+   			<div class = "col">{{addons.final_cost}}</div>
+		</div>
+	</div>
+
+<div class = "row item" style="border-top:3px solid #444444;">
+      <div class = "col"><strong>Total Amount</strong></div>
+      <div class = "col"></div>
+      <div class = "col"><!-- {{cost.rate}} % of {{basePrice}} --></div>
+      <div class = "col">{{cost.totalCost+addonstotal | number:2}}</div>
+  </div>
+  <div ng-repeat="gettax in AlongwithTax">
+    <div class = "row item">
+        <div class = "col"><strong>{{gettax.tax_name}} <i ng-if="gettax.type_tax==1">({{gettax.rate}}%)</i></strong></div>
+        <div class = "col"></div>
+        <div class = "col"><!-- {{cost.rate}} % of {{basePrice}} --></div>
+        <div class = "col">{{gettax.finalTax | number:2}}</div>
+    </div>
+</div>
+	<div class = "row item" style="border-top:3px solid #444444;">
+   		<div class = "col col-10"><strong>Total Amount(included tax)</strong></div>
+   		<div class = "col col-40"></div>
+   		<div class = "col"><!-- {{cost.rate}} % of {{basePrice}} --></div>
+   		<div class = "col">{{(cost.totalCost+addonstotal)+total_tax | number:2}} </div>
+	</div>
+</div>
+      <button class="button button-dark" style="float:left; left:15px; width:200px" ng-click="">{{'Pay Online' | translate}}</button>
+      <button class="button button-dark" style="float: right; right:15px; width:200px" ng-click="openRestaurentLogin()">{{'Call A Waiter'|translate}}</button>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,26 @@
+<ion-view cache-view="false" view-title="OTP Code">
+    <ion-header-bar align-title="center" class="bar-positive">
+        <div class="buttons">
+            <button class="button button-clear button-icon mdi mdi-chevron-left" ng-click="goBackHistory()"></button>
+        </div>
+        <h1 class="title">OTP Form</h1>
+    </ion-header-bar>
+    <ion-content class="padding">
+        <div class="list formList">
+            <form name="OtpForm" novalidate ng-submit="OtpForm.$valid && submitOTP()">
+                <label class="item item-input item-icon-left"
+                       ng-class="{ 'has-error' : OtpForm.OtpCode.$error.required && (OtpForm.OtpCode.$dirty || submitted), 'valid' : OtpForm.OtpCode.$valid   && (OtpForm.OtpCode.$dirty || submitted)}"
+                        ><i class="icon mdi mdi-lock"></i>
+                    <input type="number"
+                           placeholder="Enter OTP"
+                           name="OtpCode"
+                           ng-model="Otp.code"
+                           required="true">
+                </label>
+                <button class="button button-block button-assertive" type="submit" ng-click="submitted=true">Submit</button>
+            </form>
+            <p>Please Enter the OTP,You Received </p>
+        </div>
+
+    </ion-content>
+</ion-view>

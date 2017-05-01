@@ -1,0 +1,81 @@
+<ion-view cache-view="false" view-title="{{'infotainmentcategary' | translate}}"
+ class="loginScreen" ng-controller="infotainmentcategaryctrl" >
+
+<!-------------------------------------------------------nav buttons------------------------------------------------------>
+	<ion-nav-buttons side="left">
+		<button  ng-click="goBack()"class="button back-button buttons button-clear header-item"><i class="icon ion-android-arrow-back"></i></button>
+	</ion-nav-buttons>
+	
+
+
+<ion-nav-buttons side="right">
+  <button  id="cart_list_icon1" ng-click="viewCart()" class="button-icon button button-clear flaticon-shop"><i class="badge badge-light header-badge"><span ng-if="cartCount!=0">{{cartCount}}</span></i></button>
+</ion-nav-buttons>
+<!------------------------------------------------------nav buttons ------------------------------------------------------>
+<ion-content  has-header="true" ng-init="fetchInfotainment()" scroll="true" style="background-image:url(img/list.jpg)">
+<!---------------------------------------------Slide box start ------------------------------------------------------>  
+
+
+
+<ion-slide-box slide-tabs-scrollable="true" does-continue="false" show-pager="false" ion-slide-tabs >
+<ion-slide disable-scroll="false" ng-repeat="(parent,y) in rrr track by $index" ion-slide-tab-label="{{parent}}" style=" background-color: rgba(4, 4, 4, 0); width:80vw;">
+<ion-scroll zooming="false" direction="y" style=" height:100vh; width:100vw; margin-top:5px">
+        			<div class="list listLink filter" style="width: 100vw; height: 100vh; background-color:transparent"> 
+        <a class="item item-button-right item-text-wrap item-thumbnail-left" ng-repeat="file in y" style="background-color:transparent; margin:20px; border-radius:5px; border:none; background-color: rgba(4, 4, 4, 0.6);" ng-click="selectedInfotainment(file)">
+        
+         <img src="{{file.img_thumbnail}}">
+
+     
+
+
+     <h2 style="color:white"> {{file.media_name}}</h2>
+            
+
+       
+        </a>
+
+        </div>
+</ion-scroll>
+        </ion-slide>
+
+
+      </ion-slide-box>
+<!--
+        <ion-slide-box slide-tabs-scrollable="true" does-continue="false" show-pager="false" ion-slide-tabs on-slide-changed="listInfotainment($index+1)" style="margin-top:10px">
+        
+        <ion-slide disable-scroll="false" ng-repeat="parent in infocatname"
+         ion-slide-tab-label="{{parent.category_name}}">
+        
+        <div class="list listLink filter" style="width: 100vw; height: 100vh;"> 
+ 
+
+
+        <a class="item item-button-right item-text-wrap item-thumbnail-left" ng-repeat="file in infodata | Infotainmentfilter:slider.slidermodel track by $index" style="background-color:transparent">
+        
+         
+        <img ng-if="file.file_ext == 'image'" ng-src="{{file.img_url}}" ng-click="selectedInfotainment(file)">
+        
+       <img ng-if="file.file_ext=='video'" ng-src="{{file.img_thumbnail}}" ng-click="selectedInfotainment(file)">
+         
+
+       </iframe> 
+
+
+      {{file.description}}
+            
+
+       
+        </a>
+
+        </div>
+        </ion-slide>
+
+
+      </ion-slide-box>
+-->
+      </ion-content>
+
+
+
+
+</ion-view>

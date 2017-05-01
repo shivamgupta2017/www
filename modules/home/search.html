@@ -1,0 +1,63 @@
+<ion-view  cache-view="true" view-title="{{'search your query here...' | translate}}">
+    
+  
+
+    <ion-nav-buttons side="left">
+     <button ng-click="goBack()" ng-if="cartListBack_button" class="button back-button buttons button-clear header-item"><i class="icon ion-android-arrow-back"></i></button>  
+    </ion-nav-buttons> 
+    
+    
+    <div class="bar bar-subheader">
+     <form  class="forms" name="editProfileForm" ng-submit="querysubmit(searchquery)">
+     <label class="item item-input">
+           <i class="icon ion-search placeholder-icon"></i>
+           <input type="text" placeholder="Enter search" data-ng-model="searchquery" >
+         
+      </form>  
+      </label>
+      
+      </div>                       
+<ion-content>
+	
+
+
+<br><br><br>
+<div class="list estimatesList" >
+    <!---ng-click="rateusnow(order)"-->
+     
+
+     <div class="list listLink filter">
+
+      <a class="item item-text-wrap item-thumbnail-left" ng-repeat="item in result" ng-click="openSelectedItem(item)">
+
+      <img ng-src="{{item.imageUrl}}" alt="">
+
+        <div>
+
+        <h2>{{item.item_name}}</h2>
+
+         <div class="amount">
+
+            <h2 class="addedAmount"><i class="mdi ">{{siteSettings.currency_symbol | translate}}</i> {{item.item_cost }}</h2>
+
+          </div>
+
+        </div>
+
+      </a>
+
+    </div>     
+      
+     
+
+
+    </div>
+
+	
+
+
+</ion-content>
+
+    
+
+	</ion-view>

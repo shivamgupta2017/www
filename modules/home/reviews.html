@@ -1,0 +1,51 @@
+<ion-view >
+<script src="rate.js"></script>
+<ion-nav-buttons side="left">
+		<button ng-click="goBack()" class="button back-button buttons button-clear header-item"><i class="icon ion-android-arrow-back"></i></button>
+	</ion-nav-buttons>
+	<ion-nav-buttons side="right" >
+		<button id="cart_list_icon1" ng-click="viewCart()" class="button-icon button button-clear flaticon-shop"><i class="badge badge-light header-badge"><span ng-if="cartCount!=0">{{cartCount}}</span></i></button>
+	</ion-nav-buttons>
+<ion-content has-header="true" scroll="false" style="background-image:url(img/order.jpg); ">
+	
+  <div class="itemlistmaincontainer" style"width:100%"> 
+		
+		<div style="background-image:url({{item.imageUrlThumb}});" class="listboximg">
+			</div>
+			<div class="listboxcont" ng-if="item.rating" style="width:100%">
+				<div class="itemnamec" >
+					{{item.item_name}}
+				</div>
+			</div>
+	 
+  		 </div>
+ 
+
+
+   <div class="itemlistmaincontainer"> 
+	
+   
+
+		<div class="" ng-repeat="user_review in review">
+			<div style="">
+				
+					
+				
+
+					<div class="">
+					<rating readonly="true" ng-model='user_review.rating' max='5'></rating>
+						{{user_review.review_date}}
+						<br>{{user_review.userName}}
+					</div>
+			</div>
+			<hr>
+ 		</div>
+
+ 		<div class="itemnamec" ng-if="review == ''" style="text-align: center;">
+						<p>No Review Found</p>
+				</div>
+   
+  </div>
+
+	</ion-content>
+</ion-view>

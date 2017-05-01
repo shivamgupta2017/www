@@ -1,0 +1,53 @@
+<ion-view cache-view="true" view-title="{{'menu' | translate}}">
+ 
+  <ion-nav-buttons side="left">
+    <button class="button button-icon button-clear ion-navicon" menu-toggle="left"> </button>
+  </ion-nav-buttons>
+  
+  <ion-nav-buttons  side="right" >
+   
+    <div class="buttons"><button class="button button-icon ion-android-search" ng-click="opensearch()"></button></div>
+
+
+  <!--  <div class="buttons"><button class="button button-icon ion-android-notifications" ng-click=""><i class="badge badge-light header-badge"></i></button></div>  -->
+
+      <button  ng-controller="itemsListCtrl" id="cart_list_icon1" ng-click="viewCart()" class="button-icon button button-clear flaticon-shop"><i class="badge badge-light header-badge"><span ng-if="cartCount!=0">{{cartCount}}</span></i></button>
+  </ion-nav-buttons>
+
+
+
+<button ng-if="checkval!=true" ng-init ="donotshowPrompt()"></button>
+    
+
+  <ion-content   style="background-image:url('img/back.jpg'); background-repeat:no-repeat; background-position:center; background-size:100% auto">
+<!--    <ion-slide-box class="dashboard-slide" on-slide-changed="slideHasChanged($index)" does-continue="true" auto-play="true" slide-interval="6000">
+      <ion-slide>
+        <div class="image-container"><img ng-src="img/images/slide1.jpg" alt=""></div>
+      </ion-slide>
+      <ion-slide>
+        <div class="image-container"><img ng-src="img/images/slide2.jpg" alt=""></div>
+      </ion-slide>
+      <ion-slide>
+        <div class="image-container"><img ng-src="img/images/slide3.jpg" alt=""></div>
+      </ion-slide>
+    </ion-slide-box>
+-->
+
+
+
+
+  <!--<div class="list card pageNote">
+      <div class="item item-text-wrap">{{'byYourMoodOrPreference' | translate}} </div>
+    </div>-->
+    <div class="col-items"  ng-repeat="row in categories track by $index">
+      <div ng-click="openItem($index)" class="col" style="height:20vw; width:33vw; display:inline-block; float:left;"  ng-if="row[0].menu_name!='Starters'"><!-- ng-if="list.menu_name!='Starters'"-->
+        <div class="content-bg">
+         <div class="dashboard-items" style="background-image: url({{row[0].imageUrl}}); background-position:center top; background-repeat: no-repeat; height:80%; width:100%; margin:0 auto; background-size:auto 100%;"></div>
+          <div class="servive-content" style="opacity:1;"> <i class="icon"></i>
+            <p class="fontcheck" style="font-size:35px;">{{row[0].menu_name}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

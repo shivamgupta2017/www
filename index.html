@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <meta charset="utf-8">
+    
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+    <link href="css/ionic.app.css" rel="stylesheet">
+    <link href="css/slidingTabs.min.css" rel="stylesheet">
+      <link href="css/slidingTabs.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/nz-toggle.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+   <link href="css/style.css" rel="stylesheet">
+     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+ <!-- <link rel="stylesheet" href="/resources/demos/style.css">-->
+    <link href="css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="fonts/fonts.css" rel="stylesheet">
+    <link rel="stylesheet" href="fonts/flaticon.css">
+    <link rel="stylesheet" href="lib/ionic-rating/ionic-rating.css">
+  <link async href="http://fonts.googleapis.com/css?family=Aladin" data-generated="http://enjoycss.com" rel="stylesheet" type="text/css">
+  
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/ionic-native-transitions/dist/ionic-native-transitions.min.js"></script>
+     <script src="lib/ngCordova/ng-cordova.min.js"></script>
+      <script src="lib/ng-cordova-oauth/dist/ng-cordova-oauth.min.js"></script>
+      <script src="cordova.js"></script>
+
+      
+      
+      <script src="lib/ionic-rating/ionic-rating.min.js"></script>
+      <script src="lib/angular-random-string/src/angular-random-string.js"></script>
+     
+    <script src="lib/momentjs/min/moment.min.js"></script>
+    <script src="lib/angularMap/angular-google-maps.js"></script>
+    <script src="lib/angularMap/lodash.js"></script>
+    <link href="lib/datePicker/css/mobiscroll-2.3.1.custom.min.css" rel="stylesheet" type="text/css">
+    <script src="lib/datePicker/js/jquery.min.js"></script>
+    <script src="lib/datePicker/js/jquery.sidr.min.js"></script>
+    <script src="lib/datePicker/js/mobiscroll-2.3.1.custom.min.js"></script>
+    <script src="lib/ngstorage/ngStorage.js"></script>
+    <script src="lib/angular-translate/angular-translate.min.js"></script>
+    <script src="lib/social-login/socialLogin.js"></script>
+    <script src="js/app.js"></script>
+    <script src="modules/Service/service.js"></script>
+    <script src="modules/Service/payUmoney.js"></script>
+    <script src="modules/Service/filters.js"></script>
+    <script src="modules/Service/constants.js"></script>
+    <script src="modules/Service/globalMethods.js"></script>
+    <script src="modules/authentication/authenticationCtrl.js"></script>
+  
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="js/jquery.ui.touch-punch.min.js" type="text/javascript"></script>
+    <script src="js/jquery.ui.touch-punch.min.js"></script>    
+    <script src="modules/home/dashboardCtrl.js"></script>
+    <script type="text/javascript" src="lib/paypal/paypal-mobile-js-helper.js"></script>
+    <script src="js/slidingTabsDirective.js"></script>
+    <script src="js/ngDraggable.js"></script>
+    <script src="js/nz-toggle.js"></script>
+  </head>
+  <body ng-app="starter" class="platform-android platform-cordova platform-webview">
+    <ion-nav-view></ion-nav-view>
+  
+
+
+  <div  ng-if="showWidget && showw" ng-controller="myWidgetCtrl" class="mizicon" style="height:60px; position:fixed;  width:400px; z-index:13; bottom:20px; left: 50%; background-color: rgba(68,68,68,0.8); transform: translate(-50%, 0); border-radius:30px; -webkit-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.75);-moz-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.75);box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.75);"> 
+		<div ng-click="status()" style="font-size:20px; color:white;  display:inline-block; height:60px; line-height:60px; width:150px; text-align:center; font: normal 20px/1 'Nova Flat', Helvetica, sans-serif;">Order more</div>
+		<div ng-click="info()" class="flaticon-television" style="border-left:1px solid rgba(255,255,255,0.2); border-right:1px solid rgba(255,255,255,0.2); font-size:30px; color:white; display:inline-block; height:60px; line-height:60px; width:90px;text-align:center"></div>
+		<div ng-click="finish()" style="font-size:20px; color:white; height:60px; display:inline-block; line-height:60px; width:150px;text-align:center; font: normal 20px/1 'Nova Flat', Helvetica, sans-serif;">Finish Dine in</div>
+</div>
+
+
+<div ng-controller="chatctrl" ng-init="get_admin_settings()">
+  <br><br><br><br>{{status}}  
+<div id="drag_me" ng-controller="chatctrl" ng-show="status==1" ng-click="openchatBox()" style="z-index:13;">
+	<div style="color:white;"> <i class="icon ion-chatboxes" style="font-size:25px; vertical-align:middle"></i></div>
+</div>
+	
+
+</div>
+<script>
+
+
+
+ $(document).ready(function() {
+                 $('#drag_me').draggable({
+                containment: "window"
+               });
+                });
+</script>
+
+  </body>
+</html>
+ <!-- <div ng-if="showWidget && showw" ng-controller="myWidgetCtrl" class="mizicon" style="height:60px; position:fixed;  width:400px; z-index:13; bottom:20px; left: 50%; background-color: rgba(68,68,68,0.8); transform: translate(-50%, 0); border-radius:30px; -webkit-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.75);-moz-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.75);box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.75);"> 
+		<div ng-click="status()" style="font-size:20px; color:white;  display:inline-block; height:60px; line-height:60px; width:150px; text-align:center; font: normal 20px/1 'Nova Flat', Helvetica, sans-serif;">Order more</div>
+		<div ng-click="info()" class="flaticon-television" style="border-left:1px solid rgba(255,255,255,0.2); border-right:1px solid rgba(255,255,255,0.2); font-size:30px; color:white; display:inline-block; height:60px; line-height:60px; width:90px;text-align:center"></div>
+		<div ng-click="finish()"style="font-size:20px; color:white; height:60px; display:inline-block; line-height:60px; width:150px;text-align:center; font: normal 20px/1 'Nova Flat', Helvetica, sans-serif;">Finish Dine in</div>
+</div>
+
+<div id="drag_me" ng-controller="chatctrl" ng-click="openchatBox()" style="z-index:13;">
+	<div style="color:white;"> <i class="icon ion-chatboxes" style="font-size:25px; vertical-align:middle"></i></div>
+</div>
+	
+	
+
+<script>
+ $(document).ready(function() {
+                 $('#drag_me').draggable({containment:"window"});
+                });
+</script>
+
+  </body>
+</html>-->
